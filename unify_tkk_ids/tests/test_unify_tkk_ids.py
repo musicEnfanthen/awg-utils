@@ -492,21 +492,21 @@ class TestIntegration(unittest.TestCase):
 class TestEdgeCases(unittest.TestCase):
     """Test edge cases and error conditions"""
     
-    def test_extract_numbers_special_characters(self):
-        """Test extract_numbers with special characters"""
-        self.assertEqual(extract_numbers("M_143-op5.2"), "143")
-        self.assertEqual(extract_numbers("Mx_123#test456$"), "123")
-        self.assertEqual(extract_numbers("M_789_测试_123"), "789")
+    def test_extract_moldenhauer_number_with_special_characters(self):
+        """Test extract_moldenhauer_numbers with special characters"""
+        self.assertEqual(extract_moldenhauer_number("M_143-op5.2"), "143")
+        self.assertEqual(extract_moldenhauer_number("Mx_123#test456$"), "123")
+        self.assertEqual(extract_moldenhauer_number("M_789_测试_123"), "789")
     
     @patch('sys.stdout', new_callable=StringIO)
-    def test_display_uncertainties_empty_data(self, mock_stdout):
+    def test_display_uncertainties_with_empty_data(self, mock_stdout):
         """Test display_uncertainties with empty data"""
         display_uncertainties({}, "g-tkk-", {})
         output = mock_stdout.getvalue()
         self.assertIn("All JSON and SVG 'tkk' IDs successfully updated", output)
     
     @patch('sys.stdout', new_callable=StringIO)
-    def test_display_uncertainties_malformed_json(self, mock_stdout):
+    def test_display_uncertainties_with_malformed_json(self, mock_stdout):
         """Test display_uncertainties with malformed JSON structure"""
         data = {
             "textcritics": [
