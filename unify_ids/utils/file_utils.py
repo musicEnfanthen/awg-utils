@@ -46,7 +46,7 @@ def load_and_validate_inputs(json_path, svg_folder):
         raise ValueError(f"No SVG files found in folder: {svg_folder}")
 
     entry_count = len(data.get('textcritics', [])) if isinstance(data, dict) else 'nested'
-    print(f"Loaded JSON with {entry_count} entries")
+    print(f"Loaded JSON with {entry_count} textcritics entries")
     print(f"Found {len(all_svg_files)} SVG files in folder")
 
     return data, all_svg_files

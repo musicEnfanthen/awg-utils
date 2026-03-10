@@ -102,7 +102,7 @@ class TestLoadAndValidateInputs(unittest.TestCase):
 
         # Verify printed messages
         output = mock_stdout.getvalue()
-        self.assertIn("Loaded JSON with 1 entries", output)
+        self.assertIn("Loaded JSON with 1 textcritics entries", output)
         self.assertIn("Found 2 SVG files", output)
 
     def test_load_and_validate_inputs_with_json_not_found(self):
@@ -184,7 +184,7 @@ class TestLoadAndValidateInputs(unittest.TestCase):
 
         # Check that it handles nested structure in print statement
         output = mock_stdout.getvalue()
-        self.assertIn("Loaded JSON with nested entries", output)
+        self.assertIn("Loaded JSON with nested textcritics entries", output)
 
     def test_load_and_validate_inputs_with_case_insensitive_svg_detection(self):
         """Test that SVG file detection is case insensitive"""

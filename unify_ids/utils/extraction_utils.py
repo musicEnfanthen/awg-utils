@@ -7,17 +7,52 @@ This module provides utility functions for extracting and parsing various
 identifiers and data structures used in TKK ID processing workflows.
 
 Functions:
-- extract_moldenhauer_number: Extracts catalog numbers from entry ID strings
-- extract_svg_group_ids: Extracts svgGroupIds from JSON entry structures
+    - extract_id_suffix: Extracts suffix for linkBox IDs from SVG filenames
+    - extract_moldenhauer_number: Extracts catalog numbers from entry ID strings
+    - extract_svg_group_ids: Extracts svgGroupIds from JSON entry structures
+    - extract_link_boxes: Extracts linkBox objects from JSON entry structures
 
 Usage:
-    from extraction_utils import extract_moldenhauer_number, extract_svg_group_ids
+    from utils.extraction_utils import (
+        extract_id_suffix,
+        extract_moldenhauer_number,
+        extract_svg_group_ids,
+        extract_link_boxes
+    )
 
+    suffix = extract_id_suffix("M35_42_Sk1-3von6-final.svg")
     number = extract_moldenhauer_number("M_143_TF1")
     ids, comments = extract_svg_group_ids(entry_data)
+    link_boxes = extract_link_boxes(entry_data)
 """
 
 import re
+
+def extract_id_suffix(svg_filename):
+    """
+    Extract the suffix for a linkBox ID from an SVG filename based on '-NvonM-' pattern.
+
+    Supports filenames containing '-NvonM-' (e.g., '-3von6-', '-9von12-', '-1von1-').
+    - For '1von1', returns an empty string (no suffix).
+    - For other values, returns a letter suffix (1->'a', 2->'b', ...).
+    - If the pattern is not found, returns 'x'.
+
+    Args:
+        svg_filename (str): The SVG filename to extract the suffix from.
+
+    Returns:
+        str: The extracted suffix for the ID, or 'x' if not found.
+    """
+    m = re.search(r'-(\d+)von(\d+)-', svg_filename)
+    if m:
+        num = int(m.group(1))
+        total = int(m.group(2))
+        if num == 1 and total == 1:
+            return ''
+        else:
+            return chr(ord('a') + num - 1)
+    else:
+        return 'x'
 
 
 def extract_moldenhauer_number(text):

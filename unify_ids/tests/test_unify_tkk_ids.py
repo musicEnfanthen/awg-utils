@@ -347,7 +347,7 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
         )  # new_id parameter
 
         # Should print processing messages
-        mock_print.assert_any_call("\nProcessing Entry ID: M_143_TF1")
+        mock_print.assert_any_call("\nProcessing textcritics entry ID: M_143_TF1")
         mock_print.assert_any_call(" Standard anchor: M_143_TF1")
 
     def test_process_textcritics_entry_with_skrt_detection(self):

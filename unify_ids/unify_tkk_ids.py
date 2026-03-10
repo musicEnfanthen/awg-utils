@@ -166,7 +166,7 @@ def process_single_svg_group_id(svg_group_id, block_comment, matching_files,
     if verbose:
         dry_marker = " [DRY-RUN]" if dry_run else ""
         print(f"{dry_marker} [JSON] Changing '{svg_group_id}' -> '{new_id}'")
-        print(f"{dry_marker} [SVG] Changing '{svg_group_id}' -> '{new_id}' in {svg_filename}")
+        print(f"{dry_marker} [SVG]  Changing '{svg_group_id}' -> '{new_id}' in {svg_filename}")
 
     if dry_run:
         return True
@@ -178,7 +178,7 @@ def process_single_svg_group_id(svg_group_id, block_comment, matching_files,
 
 
 def process_textcritics_entry(
-        textcritics_entry, all_svg_files, get_svg_data, prefix,
+        textcritics_entry, all_svg_files, get_svg_data, tkk_prefix,
         dry_run=False, stats=None, verbose=True, use_index=False):
     """Process a single textcritics entry and all its block comments."""
     if not isinstance(textcritics_entry, dict):
@@ -190,7 +190,14 @@ def process_textcritics_entry(
 
     _bump(stats, "entries_seen")
     if verbose:
-        print(f"\nProcessing Entry ID: {textcritics_entry_id}")
+        print(f"\nProcessing textcritics entry ID: {textcritics_entry_id}")
+
+    svg_group_ids, block_comments = extract_svg_group_ids(textcritics_entry)
+
+    if not svg_group_ids:
+        if verbose:
+            print(" No svgGroupIds to process")
+        return
 
     current_main_number = extract_moldenhauer_number(textcritics_entry_id)
     relevant_svgs = find_relevant_svg_files(
@@ -204,12 +211,7 @@ def process_textcritics_entry(
             print(f" Standard anchor: {textcritics_entry_id}")
         print(f" Relevant SVGs ({len(relevant_svgs)}): {relevant_svgs}")
 
-    svg_group_ids, block_comments = extract_svg_group_ids(textcritics_entry)
 
-    if not svg_group_ids:
-        if verbose:
-            print(" No svgGroupIds to process")
-        return
 
     tkk_id_index = {}
     fallback_cache = {}
@@ -239,7 +241,7 @@ def process_textcritics_entry(
                     svg_group_id, relevant_svgs, get_svg_data
                 )
 
-        new_id = f"{prefix}{entry_id_formatted}-{counter}"
+        new_id = f"{tkk_prefix}{entry_id_formatted}-{counter}"
 
         # Keep old call shape when defaults are used (test compatibility)
         if use_index or dry_run or stats is not None or not verbose:
@@ -259,7 +261,7 @@ def process_textcritics_entry(
             counter += 1
 
 
-def unify_tkk_ids(json_path, svg_folder, prefix="g-tkk-",
+def unify_tkk_ids(json_path, svg_folder, tkk_prefix="g-tkk-",
                   dry_run=False, verbose=True):
     """Unify TKK IDs in JSON and SVG files."""
     if verbose:
@@ -285,7 +287,7 @@ def unify_tkk_ids(json_path, svg_folder, prefix="g-tkk-",
 
     for textcritics_entry in all_textcritics_entries:
         process_textcritics_entry(
-            textcritics_entry, all_svg_files, get_svg_data, prefix,
+            textcritics_entry, all_svg_files, get_svg_data, tkk_prefix,
             dry_run=dry_run, stats=stats, verbose=verbose, use_index=True
         )
 
@@ -295,7 +297,7 @@ def unify_tkk_ids(json_path, svg_folder, prefix="g-tkk-",
         elif verbose:
             print(" No changes detected; skipping writes.")
 
-        display_validation_report(json_data, prefix, loaded_svg_texts)
+        display_validation_report(json_data, tkk_prefix, loaded_svg_texts)
     elif verbose:
         print(" [DRY-RUN] Skipping write + validation report.")
 
@@ -324,10 +326,10 @@ def main():
     ##### fill in:
     svg_folder = './tests/img/'
 
-    prefix = "g-tkk-"
+    tkk_prefix = "g-tkk-"
 
     try:
-        success = unify_tkk_ids(json_path, svg_folder, prefix)
+        success = unify_tkk_ids(json_path, svg_folder, tkk_prefix)
         if success:
             print("\n Finished!")
         else:

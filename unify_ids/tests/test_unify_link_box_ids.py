@@ -188,7 +188,7 @@ class TestProcessTextcriticsEntry:
         ]
 
         output = capsys.readouterr().out
-        assert "Processing Entry ID: M_143_TF1" in output
+        assert "Processing textcritics entry ID: M_143_TF1" in output
         assert "Standard anchor: M_143_TF1" in output
         assert "Relevant SVGs (2): ['test1.svg', 'test2.svg']" in output
         assert "Found 2 linkBox(es)" in output
