@@ -201,6 +201,10 @@ def process_textcritics_entry(textcritics_entry, all_svg_files, get_svg_data, li
             relevant_svgs, get_svg_data, linkbox_prefix, messages
         )
 
+    # Sort linkBoxes by svgGroupId after all processing
+    if isinstance(link_boxes, list):
+        link_boxes.sort(key=lambda lb: lb.get('svgGroupId', ''))
+
 
 def unify_link_box_ids(json_path, svg_folder, linkbox_prefix="g-lb-"):
     """Unify link box IDs in JSON and SVG files.
