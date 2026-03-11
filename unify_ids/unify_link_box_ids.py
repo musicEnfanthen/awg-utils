@@ -81,6 +81,7 @@ def process_single_link_box(svg_group_id, parent_link_boxes, textcritics_entry_i
             messages, "error", "svg_group_id_not_found", textcritics_entry_id,
             f"'{svg_group_id}' with class '{linkbox_class}' not found in any relevant SVG files"
         )
+        return False
 
     # Find the link box to update by svg_group_id
     link_box = next((lb for lb in parent_link_boxes if lb.get('svgGroupId') == svg_group_id), None)
@@ -124,6 +125,7 @@ def process_single_link_box(svg_group_id, parent_link_boxes, textcritics_entry_i
         new_link_box = dict(link_box)
         new_link_box['svgGroupId'] = new_group_id
         parent_link_boxes.append(new_link_box)
+
         if expanded_json:
             log_report_message(
                 messages, "info", "json_expanded", textcritics_entry_id,
@@ -255,6 +257,9 @@ def unify_link_box_ids(json_path, svg_folder, linkbox_prefix="g-lb-"):
 
     print("\n--- Link Box ID processing completed ---")
 
+    # TODO: Validation that there is no link-box class in relevant svgs
+    # that do not have a corresponding entry in textcritics.json
+
     if report_messages:
         print("\n--- REPORT ---")
         error_warning_msgs = [msg for msg in report_messages if msg.startswith(" [ERROR]") or msg.startswith(" [WARNING]")]
@@ -284,7 +289,7 @@ def main():
     ##### fill in:
     svg_folder = './tests/img/'
 
-    linkbox_prefix = "g-lb-"
+    linkbox_prefix = "g-lb-"  # TODO: move to awg-lb
 
     try:
         success = unify_link_box_ids(json_path, svg_folder, linkbox_prefix)
