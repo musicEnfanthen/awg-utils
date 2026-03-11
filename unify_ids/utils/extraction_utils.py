@@ -7,26 +7,47 @@ This module provides utility functions for extracting and parsing various
 identifiers and data structures used in TKK ID processing workflows.
 
 Functions:
+    - extract_class_attr_value: Extracts the value of the class attribute from an SVG tag string
     - extract_id_suffix: Extracts suffix for linkBox IDs from SVG filenames
+    - extract_link_boxes: Extracts linkBox objects from JSON entry structures
     - extract_moldenhauer_number: Extracts catalog numbers from entry ID strings
     - extract_svg_group_ids: Extracts svgGroupIds from JSON entry structures
-    - extract_link_boxes: Extracts linkBox objects from JSON entry structures
+    - has_class_token: Checks if a specific class token is present in a class attribute string
 
 Usage:
     from utils.extraction_utils import (
+        extract_class_attr_value,
         extract_id_suffix,
+        extract_link_boxes,
         extract_moldenhauer_number,
         extract_svg_group_ids,
-        extract_link_boxes
+        has_class_token
     )
 
+
+    class_attr = extract_class_attr_value('<g class="tkk important">...</g>')
     suffix = extract_id_suffix("M35_42_Sk1-3von6-final.svg")
     number = extract_moldenhauer_number("M_143_TF1")
     ids, comments = extract_svg_group_ids(entry_data)
     link_boxes = extract_link_boxes(entry_data)
+    has_tkk_class = has_class_token(class_attr, "tkk")
 """
 
 import re
+
+
+def extract_class_attr_value(tag_text: str) -> str:
+    """
+    Extracts the value of the class attribute from an SVG tag string.
+    Returns the class value if found, otherwise an empty string.
+    """
+    match = re.search(r'class\s*=\s*(["\']).*?\1', tag_text, flags=re.IGNORECASE)
+
+    if match:
+        # Remove quotes and return the value
+        return match.group(0).split('=', 1)[1].strip().strip('"\'')
+    return ""
+
 
 def extract_id_suffix(svg_filename):
     """
@@ -49,10 +70,21 @@ def extract_id_suffix(svg_filename):
         total = int(m.group(2))
         if num == 1 and total == 1:
             return ''
-        else:
-            return chr(ord('a') + num - 1)
-    else:
-        return 'x'
+        return chr(ord('a') + num - 1)
+    return 'x'
+
+
+def extract_link_boxes(entry):
+    """Extract all linkBoxes from an entry.
+
+    Args:
+        entry (dict): Single textcritics entry
+
+    Returns:
+        list: List of linkBox objects with svgGroupId and linkTo information
+    """
+    link_boxes = entry.get('linkBoxes', [])
+    return link_boxes if isinstance(link_boxes, list) else []
 
 
 def extract_moldenhauer_number(text):
@@ -97,14 +129,19 @@ def extract_svg_group_ids(entry):
 
     return svg_group_ids, block_comments
 
-def extract_link_boxes(entry):
-    """Extract all linkBoxes from an entry.
+
+def has_class_token(class_attr: str, wanted_class: str) -> bool:
+    """
+    Check if the required class token is present in the class attribute string.
 
     Args:
-        entry (dict): Single textcritics entry
+        class_attr (str): The class attribute value from an SVG tag.
+        wanted_class (str): The class name to check for.
 
     Returns:
-        list: List of linkBox objects with svgGroupId and linkTo information
+        bool: True if the required class token is present, False otherwise.
     """
-    link_boxes = entry.get('linkBoxes', [])
-    return link_boxes if isinstance(link_boxes, list) else []
+    wanted = (wanted_class or "").strip().lower()
+    if not wanted:
+        return False
+    return any(token.lower() == wanted for token in (class_attr or "").split())

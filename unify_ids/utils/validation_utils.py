@@ -9,6 +9,7 @@ across JSON and SVG files, ensuring all IDs have been properly updated.
 
 import re
 
+from .extraction_utils import has_class_token
 
 def validate_json_entries(data, prefix):
     """Validate JSON entries for unchanged svgGroupId values.
@@ -39,19 +40,37 @@ def validate_json_entries(data, prefix):
 _G_TAG_RE = re.compile(r"<g\b[^>]*>", re.IGNORECASE | re.DOTALL)
 _ATTR_RE = re.compile(r"([:\w-]+)\s*=\s*(\"[^\"]*\"|'[^']*')", re.DOTALL)
 
+
 def _extract_attrs(tag_text):
+    """
+    Extracts attribute key-value pairs from an SVG tag string.
+
+    Args:
+        tag_text (str): The SVG tag text to parse.
+
+    Returns:
+        dict: Dictionary of attribute names (lowercased) mapped to their values (unquoted).
+    """
     attrs = {}
     for name, quoted in _ATTR_RE.findall(tag_text):
         attrs[name.lower()] = quoted[1:-1]
     return attrs
 
-def _has_class_token(class_attr, required_class):
-    wanted = (required_class or "").strip().lower()
-    if not wanted:
-        return False
-    return any(tok.lower() == wanted for tok in (class_attr or "").split())
+
 
 def validate_svg_entries(loaded_svgs, id_prefix, required_class="tkk"):
+    """
+    Validate SVG entries for IDs that have not been updated with the required prefix.
+
+    Args:
+        loaded_svgs (dict): Dictionary mapping SVG filenames to their content and metadata.
+        id_prefix (str): The target prefix that all updated SVG IDs should start with.
+        required_class (str): The required class name for SVG elements to be validated
+                            (default is "tkk").
+
+    Returns:
+        int: Number of SVG ID errors found (IDs not updated with the prefix).
+    """
     errors = 0
     for svg_filename, svg_data in loaded_svgs.items():
         content = (svg_data or {}).get("content", "")
@@ -64,7 +83,7 @@ def validate_svg_entries(loaded_svgs, id_prefix, required_class="tkk"):
 
             if not svg_id or svg_id in seen:
                 continue
-            if not _has_class_token(class_attr, required_class):
+            if not has_class_token(class_attr, required_class):
                 continue
 
             seen.add(svg_id)
@@ -97,7 +116,7 @@ def display_validation_report(data, id_prefix, loaded_svgs, required_class="tkk"
         loaded_svgs (dict): Dictionary mapping SVG filenames to their content
                            and path information from the processing cache.
         required_class (str): The required class name for SVG elements to be
-                           validated (default is "tkk").
+                            validated (default is "tkk").
 
     Returns:
         None: Prints validation results directly to stdout. Does not return values.

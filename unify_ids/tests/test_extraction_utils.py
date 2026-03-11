@@ -8,14 +8,20 @@ used in TKK ID processing. The extraction_utils module handles extraction
 and parsing of various identifiers and data structures.
 
 Test Categories:
+- extract_class_attr_value function tests (class attribute extraction from SVG tags)
+- extract_id_suffix function tests (linkBox ID suffix extraction from SVG filenames)
+- extract_link_boxes function tests (linkBox extraction from entries)
 - extract_moldenhauer_number function tests (catalog number extraction)
 - extract_svg_group_ids function tests (SVG group ID collection from entries)
 - Edge cases and error conditions for extraction operations
 
 Usage:
-    python -m pytest tests/test_extraction_utils.py -v
-    python -m pytest tests/test_extraction_utils.py::TestExtractMoldenhauerNumber -v
-    python -m pytest tests/test_extraction_utils.py::TestExtractSvgGroupIds -v
+    pytest tests/test_extraction_utils.py -v
+    pytest tests/test_extraction_utils.py::TestExtractClassAttrValue -v
+    pytest tests/test_extraction_utils.py::TestExtractIdSuffix -v
+    pytest tests/test_extraction_utils.py::TestExtractLinkBoxes -v
+    pytest tests/test_extraction_utils.py::TestExtractMoldenhauerNumber -v
+    pytest tests/test_extraction_utils.py::TestExtractSvgGroupIds -v
 """
 
 import unittest
@@ -23,9 +29,123 @@ import pytest
 
 # Import extraction functions from extraction_utils
 from utils.extraction_utils import (
+    extract_class_attr_value,
+    extract_id_suffix,
+    extract_link_boxes,
     extract_moldenhauer_number,
-    extract_svg_group_ids
+    extract_svg_group_ids,
+    has_class_token
 )
+
+
+@pytest.mark.unit
+class TestExtractClassAttrValue(unittest.TestCase):
+    """Test cases for the extract_class_attr_value function"""
+
+    def test_extract_class_attr_value_from_double_quotes(self):
+        """Test extracting class attribute value from a tag with double quotes"""
+        tag = '<g class="tkk other-class" id="foo">'
+        self.assertEqual(extract_class_attr_value(tag), 'tkk other-class')
+
+    def test_extract_class_attr_value_from_single_quotes(self):
+        """Test extracting class attribute value from a tag with single quotes"""
+        tag = "<rect class='link-box' id='bar'>"
+        self.assertEqual(extract_class_attr_value(tag), 'link-box')
+
+    def test_extract_class_attr_value_with_spaces(self):
+        """Test extracting class attribute value from a tag with extra spaces"""
+        tag = '<g   class =   "active tkk selected"   id="foo">'
+        self.assertEqual(extract_class_attr_value(tag), 'active tkk selected')
+
+    def test_extract_class_attr_value_with_no_class(self):
+        """Test extracting class attribute value from a tag that has no class attribute"""
+        tag = '<g id="foo">'
+        self.assertEqual(extract_class_attr_value(tag), '')
+
+    def test_extract_class_attr_value_with_empty_class(self):
+        """Test extracting class attribute value from a tag with an empty class attribute"""
+        tag = '<g class="" id="foo">'
+        self.assertEqual(extract_class_attr_value(tag), '')
+
+    def test_extract_class_attr_value_with_class_at_end(self):
+        """Test extracting class attribute value from a tag where class is the last attribute"""
+        tag = '<g id="foo" class="tkk">'
+        self.assertEqual(extract_class_attr_value(tag), 'tkk')
+
+    def test_extract_class_attr_value_with_multiple_attributes(self):
+        """Test extracting class attribute value from a tag with multiple attributes"""
+        tag = '<g class="tkk" data-x="1" id="foo">'
+        self.assertEqual(extract_class_attr_value(tag), 'tkk')
+
+
+@pytest.mark.unit
+class TestExtractIdSuffix(unittest.TestCase):
+    """Test cases for the extract_id_suffix function"""
+
+    def test_extract_id_suffix_with_single_file_partial(self):
+        """Test extracting suffix from a filename with '-1von1-' pattern"""
+        self.assertEqual(extract_id_suffix('file-1von1-.svg'), '')
+        self.assertEqual(extract_id_suffix('something-1von1-.svg'), '')
+
+    def test_extract_id_suffix_with_multiple_file_partials(self):
+        """Test extracting suffix from filenames with '-NvonM-' patterns"""
+        self.assertEqual(extract_id_suffix('file-1von6-.svg'), 'a')
+        self.assertEqual(extract_id_suffix('file-2von7-.svg'), 'b')
+        self.assertEqual(extract_id_suffix('file-3von5-.svg'), 'c')
+        self.assertEqual(extract_id_suffix('file-4von8-.svg'), 'd')
+        self.assertEqual(extract_id_suffix('file-5von9-.svg'), 'e')
+        self.assertEqual(extract_id_suffix('file-6von6-.svg'), 'f')
+        self.assertEqual(extract_id_suffix('file-9von12-.svg'), 'i')
+        self.assertEqual(extract_id_suffix('file-15von15-.svg'), 'o')
+
+    def test_extract_id_suffix_with_pattern_not_found(self):
+        """Test extracting suffix from filenames that do not match the pattern"""
+        self.assertEqual(extract_id_suffix('file-no-pattern.svg'), 'x')
+        self.assertEqual(extract_id_suffix('file-abcvonxyz-.svg'), 'x')
+        self.assertEqual(extract_id_suffix('file-.svg'), 'x')
+
+    def test_extract_id_suffix_edge_cases(self):
+        """Test extracting suffix from edge case filenames"""
+        self.assertEqual(extract_id_suffix('file-0von1-.svg'), '`')  # 0->chr(ord('a')-1)
+        self.assertEqual(extract_id_suffix('file-1von0-.svg'), 'a')  # total=0, num=1
+        self.assertEqual(extract_id_suffix('file-100von100-.svg'), 'Ä')  # 100->chr(ord('a')+99)
+
+
+@pytest.mark.unit
+class TestExtractLinkBoxes(unittest.TestCase):
+    """Test cases for the extract_link_boxes function"""
+
+    def test_extract_link_boxes_normal(self):
+        """Test extracting linkBoxes from a normal entry structure"""
+        entry = {
+            'linkBoxes': [
+                {'svgGroupId': 'g1', 'linkTo': 'foo'},
+                {'svgGroupId': 'g2', 'linkTo': 'bar'}
+            ]
+        }
+        result = extract_link_boxes(entry)
+        self.assertEqual(result, [
+            {'svgGroupId': 'g1', 'linkTo': 'foo'},
+            {'svgGroupId': 'g2', 'linkTo': 'bar'}
+        ])
+
+    def test_extract_link_boxes_with_missing_key(self):
+        """Test extracting linkBoxes when the key is missing"""
+        entry = {}
+        result = extract_link_boxes(entry)
+        self.assertEqual(result, [])
+
+    def test_extract_link_boxes_with_wrong_type(self):
+        """Test extracting linkBoxes when the key is not a list"""
+        entry = {'linkBoxes': 'not-a-list'}
+        result = extract_link_boxes(entry)
+        self.assertEqual(result, [])
+
+    def test_extract_link_boxes_empty(self):
+        """Test extracting linkBoxes when the list is empty"""
+        entry = {'linkBoxes': []}
+        result = extract_link_boxes(entry)
+        self.assertEqual(result, [])
 
 
 @pytest.mark.unit
@@ -278,6 +398,41 @@ class TestExtractSvgGroupIds(unittest.TestCase):
 
         # Original should also be modified (same object reference)
         self.assertEqual(original_comment["text"], "Modified")
+
+
+@pytest.mark.unit
+class TestHasClassToken(unittest.TestCase):
+    """Test cases for has_class_token function"""
+
+    def test_has_class_token_with_exact_match(self):
+        """Test that returns True for exact class match"""
+        self.assertTrue(has_class_token("tkk", "tkk"))
+
+    def test_has_class_token_with_multiple_classes(self):
+        """Test that returns True when the wanted class is among multiple classes"""
+        self.assertTrue(has_class_token("active tkk selected", "tkk"))
+        self.assertTrue(has_class_token("selected tkk", "tkk"))
+        self.assertTrue(has_class_token("tkk selected", "tkk"))
+
+    def test_has_class_token_with_case_insensitive(self):
+        """Test that class matching is case-insensitive"""
+        self.assertTrue(has_class_token("TKK important", "tkk"))
+        self.assertTrue(has_class_token("tkk", "TKK"))
+
+    def test_has_class_token_not_present(self):
+        """Test that returns False when the wanted class is not present"""
+        self.assertFalse(has_class_token("active selected", "tkk"))
+        self.assertFalse(has_class_token("", "tkk"))
+
+    def test_has_class_token_with_empty_wanted_class(self):
+        """Test that returns False when the wanted class is empty or whitespace"""
+        self.assertFalse(has_class_token("tkk", ""))
+        self.assertFalse(has_class_token("", ""))
+
+    def test_has_class_token_with_spaces_and_strip(self):
+        """Test that leading/trailing spaces in wanted class are stripped"""
+        self.assertTrue(has_class_token("  tkk  ", "tkk"))
+        self.assertTrue(has_class_token("active   tkk   selected", "tkk"))
 
 
 if __name__ == '__main__':
