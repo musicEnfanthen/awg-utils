@@ -337,13 +337,13 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
         self.assertEqual(self.mock_process_single.call_count, 2)
         call_args = self.mock_process_single.call_args_list
 
-        # First call with new_id="g-tkk-m_143_tf1-1"
+        # First call with new_id="g-tkk-m_143_tf1-001"
         self.assertEqual(
-            call_args[0][0][4], "g-tkk-m_143_tf1-1"
+            call_args[0][0][4], "g-tkk-m_143_tf1-001"
         )  # new_id parameter
-        # Second call with new_id="g-tkk-m_143_tf1-2"
+        # Second call with new_id="g-tkk-m_143_tf1-002"
         self.assertEqual(
-            call_args[1][0][4], "g-tkk-m_143_tf1-2"
+            call_args[1][0][4], "g-tkk-m_143_tf1-002"
         )  # new_id parameter
 
         # Should print processing messages
@@ -442,15 +442,15 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
 
         call_args = self.mock_process_single.call_args_list
 
-        # Counter should increment only on success: 1, 2 (skipped), 2
+        # Counter should increment only on success: 001, 002 (skipped), 002
         self.assertEqual(
-            call_args[0][0][4], "g-tkk-m_143_tf1-1"
-        )  # First call: new_id="g-tkk-m_143_tf1-1"
+            call_args[0][0][4], "g-tkk-m_143_tf1-001"
+        )  # First call: new_id="g-tkk-m_143_tf1-001"
         self.assertEqual(
-            call_args[1][0][4], "g-tkk-m_143_tf1-2"
-        )  # Second call: new_id="g-tkk-m_143_tf1-2"
+            call_args[1][0][4], "g-tkk-m_143_tf1-002"
+        )  # Second call: new_id="g-tkk-m_143_tf1-002"
         self.assertEqual(
-            call_args[2][0][4], "g-tkk-m_143_tf1-2"
+            call_args[2][0][4], "g-tkk-m_143_tf1-002"
         )  # Third call: no increment after failure
 
     def test_process_textcritics_entry_prints_relevant_svgs(self):
@@ -531,27 +531,27 @@ class TestIdGeneration(unittest.TestCase):
         """Test ID generation with various basic entry IDs"""
         test_cases = [
             # (entry_id, prefix, counter, expected_result)
-            ("M_143_TF1", "g-tkk-", 1, "g-tkk-m_143_tf1-1"),
-            ("M_144_SkRT", "g-tkv-", 2, "g-tkv-m_144_skrt-2"),
-            ("M_34_Sk1_1", "g-tkk-", 5, "g-tkk-m_34_sk1_1-5"),
-            ("Test_Entry", "prefix-", 42, "prefix-test_entry-42"),
+            ("M_143_TF1", "g-tkk-", 1, "g-tkk-m_143_tf1-001"),
+            ("M_144_SkRT", "g-tkv-", 2, "g-tkv-m_144_skrt-002"),
+            ("M_34_Sk1_1", "g-tkk-", 5, "g-tkk-m_34_sk1_1-005"),
+            ("Test_Entry", "prefix-", 42, "prefix-test_entry-042"),
         ]
 
         for entry_id, prefix, counter, expected in test_cases:
             with self.subTest(entry_id=entry_id):
                 # Simulate the actual ID generation logic
                 entry_id_formatted = entry_id.lower()
-                new_id = f"{prefix}{entry_id_formatted}-{counter}"
+                new_id = f"{prefix}{entry_id_formatted}-{counter:03d}"
                 self.assertEqual(new_id, expected)
 
     def test_id_generation_case_conversion(self):
         """Test that entry IDs are properly converted to lowercase"""
         test_cases = [
-            ("UPPERCASE", "g-tkk-uppercase-1"),
-            ("MixedCase", "g-tkk-mixedcase-1"),
-            ("M_143_TF1", "g-tkk-m_143_tf1-1"),
-            ("m_already_lowercase", "g-tkk-m_already_lowercase-1"),
-            ("Numbers123AndText", "g-tkk-numbers123andtext-1"),
+            ("UPPERCASE", "g-tkk-uppercase-001"),
+            ("MixedCase", "g-tkk-mixedcase-001"),
+            ("M_143_TF1", "g-tkk-m_143_tf1-001"),
+            ("m_already_lowercase", "g-tkk-m_already_lowercase-001"),
+            ("Numbers123AndText", "g-tkk-numbers123andtext-001"),
         ]
 
         prefix = "g-tkk-"
@@ -560,18 +560,18 @@ class TestIdGeneration(unittest.TestCase):
         for entry_id, expected in test_cases:
             with self.subTest(entry_id=entry_id):
                 entry_id_formatted = entry_id.lower()
-                new_id = f"{prefix}{entry_id_formatted}-{counter}"
+                new_id = f"{prefix}{entry_id_formatted}-{counter:03d}"
                 self.assertEqual(new_id, expected)
 
     def test_id_generation_underscore_preservation(self):
         """Test that underscores are preserved in entry IDs"""
         test_cases = [
-            ("M_143_Sk1_1_Extra", "g-tkk-m_143_sk1_1_extra-1"),
-            ("Single_Underscore", "g-tkk-single_underscore-1"),
-            ("Multiple_Under_Scores", "g-tkk-multiple_under_scores-1"),
-            ("_Leading_Underscore", "g-tkk-_leading_underscore-1"),
-            ("Trailing_Underscore_", "g-tkk-trailing_underscore_-1"),
-            ("No_Underscores_Here", "g-tkk-no_underscores_here-1"),
+            ("M_143_Sk1_1_Extra", "g-tkk-m_143_sk1_1_extra-001"),
+            ("Single_Underscore", "g-tkk-single_underscore-001"),
+            ("Multiple_Under_Scores", "g-tkk-multiple_under_scores-001"),
+            ("_Leading_Underscore", "g-tkk-_leading_underscore-001"),
+            ("Trailing_Underscore_", "g-tkk-trailing_underscore_-001"),
+            ("No_Underscores_Here", "g-tkk-no_underscores_here-001"),
         ]
 
         prefix = "g-tkk-"
@@ -580,7 +580,7 @@ class TestIdGeneration(unittest.TestCase):
         for entry_id, expected in test_cases:
             with self.subTest(entry_id=entry_id):
                 entry_id_formatted = entry_id.lower()
-                new_id = f"{prefix}{entry_id_formatted}-{counter}"
+                new_id = f"{prefix}{entry_id_formatted}-{counter:03d}"
                 self.assertEqual(new_id, expected)
 
     def test_id_generation_counter_values(self):
@@ -589,16 +589,16 @@ class TestIdGeneration(unittest.TestCase):
         prefix = "g-tkk-"
 
         test_cases = [
-            (1, "g-tkk-m_143_tf1-1"),
-            (10, "g-tkk-m_143_tf1-10"),
+            (1, "g-tkk-m_143_tf1-001"),
+            (10, "g-tkk-m_143_tf1-010"),
             (999, "g-tkk-m_143_tf1-999"),
-            (0, "g-tkk-m_143_tf1-0"),  # Edge case
+            (0, "g-tkk-m_143_tf1-000"),  # Edge case
         ]
 
         for counter, expected in test_cases:
             with self.subTest(counter=counter):
                 entry_id_formatted = entry_id.lower()
-                new_id = f"{prefix}{entry_id_formatted}-{counter}"
+                new_id = f"{prefix}{entry_id_formatted}-{counter:03d}"
                 self.assertEqual(new_id, expected)
 
     def test_id_generation_different_prefixes(self):

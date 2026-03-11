@@ -241,7 +241,7 @@ def process_textcritics_entry(
                     svg_group_id, relevant_svgs, get_svg_data
                 )
 
-        new_id = f"{tkk_prefix}{entry_id_formatted}-{counter}"
+        new_id = f"{tkk_prefix}{entry_id_formatted}-{counter:03d}"
 
         # Keep old call shape when defaults are used (test compatibility)
         if use_index or dry_run or stats is not None or not verbose:
