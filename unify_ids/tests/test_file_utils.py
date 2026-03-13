@@ -56,7 +56,7 @@ class TestLoadAndValidateInputs(unittest.TestCase):
         self.test_data = {
             "textcritics": [
                 {
-                    "id": "M_143_TF1",
+                    "id": "M143_TF1",
                     "commentary": {
                         "comments": [
                             {
@@ -163,7 +163,7 @@ class TestLoadAndValidateInputs(unittest.TestCase):
         # Create nested data structure
         nested_data = [
             {
-                "id": "M_123_TF1",
+                "id": "M123_TF1",
                 "commentary": {"comments": []}
             }
         ]
@@ -363,12 +363,12 @@ class TestSaveOperations(unittest.TestCase):
         test_data = {
             "textcritics": [
                 {
-                    "id": "M_143_TF1",
+                    "id": "M143_TF1",
                     "commentary": {
                         "comments": [
                             {
                                 "blockComments": [
-                                    {"svgGroupId": "g-tkk-1"}
+                                    {"svgGroupId": "awg-tkk-m32_Sk1-001"}
                                 ]
                             }
                         ]
@@ -402,7 +402,7 @@ class TestSaveOperations(unittest.TestCase):
         test_data = {"textcritics": [{"id": "test", "commentary": {"comments": []}}]}
         loaded_svg_texts = {
             "test.svg": {
-                "content": '<svg><g id="g-tkk-1" class="tkk"></g></svg>',
+                "content": '<svg><g id="awg-tkk-m32_Sk1-001" class="tkk"></g></svg>',
                 "path": self.svg_file
             }
         }
@@ -417,7 +417,7 @@ class TestSaveOperations(unittest.TestCase):
         # Verify SVG file was saved
         with open(self.svg_file, 'r', encoding='utf-8') as f:
             svg_content = f.read()
-        self.assertEqual(svg_content, '<svg><g id="g-tkk-1" class="tkk"></g></svg>')
+        self.assertEqual(svg_content, '<svg><g id="awg-tkk-m32_Sk1-001" class="tkk"></g></svg>')
 
         # Verify JSON file was saved
         with open(self.json_file, 'r', encoding='utf-8') as f:

@@ -7,14 +7,14 @@ This script unifies link box svgGroupIds in JSON textcritic files
 and corresponding SVG files.
 
 For each linkBox:
-- The new ID is formatted as: g-lb-{entry_id}-to-{sheetId}
+- The new ID is formatted as: awg-lb-{entry_id}-to-{sheetId}
   where sheetId is extracted from the linkTo.sheetId field
 
 Example:
 - Entry ID: "M34_Sk1"
 - LinkBox svgGroupId: "g6407"
 - LinkBox linkTo.sheetId: "M_317_Sk2"
-- New ID: "g-lb-m34_sk1c-to-m317_sk2a"
+- New ID: "awg-lb-m34_sk1c-to-m317_sk2a"
 """
 
 import sys
@@ -208,7 +208,7 @@ def process_textcritics_entry(textcritics_entry, all_svg_files, get_svg_data, li
         link_boxes.sort(key=lambda lb: lb.get('svgGroupId', ''))
 
 
-def unify_link_box_ids(json_path, svg_folder, linkbox_prefix="g-lb-"):
+def unify_link_box_ids(json_path, svg_folder, linkbox_prefix="awg-lb-"):
     """Unify link box IDs in JSON and SVG files.
 
     For each JSON entry:
@@ -219,7 +219,7 @@ def unify_link_box_ids(json_path, svg_folder, linkbox_prefix="g-lb-"):
     Args:
         json_path (str): Path to the JSON textcritics file
         svg_folder (str): Path to the folder containing SVG files
-        linkbox_prefix (str): Prefix to use for new link box IDs (default: "g-lb-")
+        linkbox_prefix (str): Prefix to use for new link box IDs (default: "awg-lb-")
 
     Returns:
         bool: True if processing completed successfully
@@ -289,7 +289,7 @@ def main():
     ##### fill in:
     svg_folder = './tests/img/'
 
-    linkbox_prefix = "g-lb-"  # TODO: move to awg-lb
+    linkbox_prefix = "awg-lb-"
 
     try:
         success = unify_link_box_ids(json_path, svg_folder, linkbox_prefix)

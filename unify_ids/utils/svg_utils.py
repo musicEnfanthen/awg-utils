@@ -237,4 +237,3 @@ def update_svg_id_by_class(svg_content, old_id, new_id, target_class):
 
     updated_content = tag_re.sub(replace_tag, svg_content)
     return updated_content, None
-

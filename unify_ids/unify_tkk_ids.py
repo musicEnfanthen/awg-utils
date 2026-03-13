@@ -261,7 +261,7 @@ def process_textcritics_entry(
             counter += 1
 
 
-def unify_tkk_ids(json_path, svg_folder, tkk_prefix="g-tkk-",
+def unify_tkk_ids(json_path, svg_folder, tkk_prefix="awg-tkk-",
                   dry_run=False, verbose=True):
     """Unify TKK IDs in JSON and SVG files."""
     if verbose:
@@ -326,7 +326,7 @@ def main():
     ##### fill in:
     svg_folder = './tests/img/'
 
-    tkk_prefix = "g-tkk-"
+    tkk_prefix = "awg-tkk-"
 
     try:
         success = unify_tkk_ids(json_path, svg_folder, tkk_prefix)

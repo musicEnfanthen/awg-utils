@@ -45,7 +45,7 @@ class TestProcessSingleSvgGroupId(unittest.TestCase):
         # Common test data
         self.svg_group_id = "test-id"
         self.block_comment = {"svgGroupId": "test-id", "text": "Test comment"}
-        self.prefix = "g-tkk-"
+        self.prefix = "awg-tkk-"
         self.counter = 5
 
         # Mock get_svg_data function
@@ -172,7 +172,7 @@ class TestProcessSingleSvgGroupId(unittest.TestCase):
         self.assertTrue(result)
 
         # Original comment object should be modified
-        self.assertEqual(original_comment["svgGroupId"], "g-tkk-5")
+        self.assertEqual(original_comment["svgGroupId"], "awg-tkk-005")
         self.assertEqual(original_comment["text"], "Original text")  # Other fields unchanged
 
     def test_process_single_svg_group_id_with_svg_content_handling(self):
@@ -197,7 +197,7 @@ class TestProcessSingleSvgGroupId(unittest.TestCase):
         self.mock_update_svg_id.assert_called_once_with(
             '<g class="tkk" id="test-id">Content</g>',
             self.svg_group_id,
-            "g-tkk-5"
+            "awg-tkk-005"
         )
 
         # SVG data's content should be updated with return value from update_svg_id
@@ -223,11 +223,11 @@ class TestProcessSingleSvgGroupId(unittest.TestCase):
 
         # Check JSON update message
         self.assertIn("[JSON]", json_msg)
-        self.assertIn("'test-id' -> 'g-tkk-5'", json_msg)
+        self.assertIn("'test-id' -> 'awg-tkk-005'", json_msg)
 
         # Check SVG update message
         self.assertIn("[SVG]", svg_msg)
-        self.assertIn("'test-id' -> 'g-tkk-5'", svg_msg)
+        self.assertIn("'test-id' -> 'awg-tkk-005'", svg_msg)
         self.assertIn("progress.svg", svg_msg)
 
     def test_process_single_svg_group_id_with_update_svg_error_handling(self):
@@ -247,7 +247,7 @@ class TestProcessSingleSvgGroupId(unittest.TestCase):
         self.assertTrue(result)
 
         # JSON should still be updated
-        self.assertEqual(self.block_comment["svgGroupId"], "g-tkk-5")
+        self.assertEqual(self.block_comment["svgGroupId"], "awg-tkk-005")
 
         # SVG content should be updated with the return value (even if error occurred)
         svg_data = self.mock_get_svg_data.return_value
@@ -285,7 +285,7 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
 
         # Test data
         self.test_textcritics_entry = {
-            "id": "M_143_TF1",
+            "id": "M143_TF1",
             "commentary": {
                 "preamble": "",
                 "comments": [{
@@ -301,7 +301,7 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
         self.all_svg_files = ["test1.svg", "test2.svg", "test3.svg"]
         self.mock_get_svg_data = MagicMock()
         self.loaded_svg_texts = {}
-        self.prefix = "g-tkk-"
+        self.prefix = "awg-tkk-"
 
     def tearDown(self):
         """Clean up patches"""
@@ -320,11 +320,11 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
             )
 
         # Should call extract_moldenhauer_number with entry ID
-        self.mock_extract_moldenhauer.assert_called_once_with("M_143_TF1")
+        self.mock_extract_moldenhauer.assert_called_once_with("M143_TF1")
 
         # Should call find_relevant_svg_files with correct parameters
         self.mock_find_relevant_svgs.assert_called_once_with(
-            "M_143_TF1", self.all_svg_files, "143"
+            "M143_TF1", self.all_svg_files, "143"
         )
 
         # Should extract svg group IDs from entry
@@ -337,22 +337,22 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
         self.assertEqual(self.mock_process_single.call_count, 2)
         call_args = self.mock_process_single.call_args_list
 
-        # First call with new_id="g-tkk-m_143_tf1-001"
+        # First call with new_id="awg-tkk-m143_tf1-001"
         self.assertEqual(
-            call_args[0][0][4], "g-tkk-m_143_tf1-001"
+            call_args[0][0][4], "awg-tkk-m143_tf1-001"
         )  # new_id parameter
-        # Second call with new_id="g-tkk-m_143_tf1-002"
+        # Second call with new_id="awg-tkk-m143_tf1-002"
         self.assertEqual(
-            call_args[1][0][4], "g-tkk-m_143_tf1-002"
+            call_args[1][0][4], "awg-tkk-m143_tf1-002"
         )  # new_id parameter
 
         # Should print processing messages
-        mock_print.assert_any_call("\nProcessing textcritics entry ID: M_143_TF1")
-        mock_print.assert_any_call(" Standard anchor: M_143_TF1")
+        mock_print.assert_any_call("\nProcessing textcritics entry ID: M143_TF1")
+        mock_print.assert_any_call(" Standard anchor: M143_TF1")
 
     def test_process_textcritics_entry_with_skrt_detection(self):
         """Test SkRT entry detection"""
-        skrt_entry = {"id": "M_144_SkRT", "commentary": {"comments": []}}
+        skrt_entry = {"id": "M144_SkRT", "commentary": {"comments": []}}
 
         # Mock to return no svgGroupIds
         self.mock_extract_svg_ids.return_value = ([], [])
@@ -364,7 +364,7 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
             )
 
         # Should detect SkRT and print appropriate message
-        mock_print.assert_any_call(" SkRT anchor detected: M_144_SkRT")
+        mock_print.assert_any_call(" SkRT anchor detected: M144_SkRT")
 
     def test_process_textcritics_entry_with_no_svg_group_ids(self):
         """Test textcritics entry with no svgGroupIds to process"""
@@ -444,13 +444,13 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
 
         # Counter should increment only on success: 001, 002 (skipped), 002
         self.assertEqual(
-            call_args[0][0][4], "g-tkk-m_143_tf1-001"
-        )  # First call: new_id="g-tkk-m_143_tf1-001"
+            call_args[0][0][4], "awg-tkk-m143_tf1-001"
+        )  # First call: new_id="awg-tkk-m143_tf1-001"
         self.assertEqual(
-            call_args[1][0][4], "g-tkk-m_143_tf1-002"
-        )  # Second call: new_id="g-tkk-m_143_tf1-002"
+            call_args[1][0][4], "awg-tkk-m143_tf1-002"
+        )  # Second call: new_id="awg-tkk-m143_tf1-002"
         self.assertEqual(
-            call_args[2][0][4], "g-tkk-m_143_tf1-002"
+            call_args[2][0][4], "awg-tkk-m143_tf1-002"
         )  # Third call: no increment after failure
 
     def test_process_textcritics_entry_prints_relevant_svgs(self):
@@ -476,10 +476,10 @@ class TestProcessTextcriticsEntry(unittest.TestCase):  # pylint: disable=too-man
         )
 
         # Verify each helper function call
-        self.mock_extract_moldenhauer.assert_called_once_with("M_143_TF1")
+        self.mock_extract_moldenhauer.assert_called_once_with("M143_TF1")
 
         self.mock_find_relevant_svgs.assert_called_once_with(
-            "M_143_TF1", self.all_svg_files, "143"
+            "M143_TF1", self.all_svg_files, "143"
         )
 
         self.mock_extract_svg_ids.assert_called_once_with(self.test_textcritics_entry)
@@ -531,9 +531,9 @@ class TestIdGeneration(unittest.TestCase):
         """Test ID generation with various basic entry IDs"""
         test_cases = [
             # (entry_id, prefix, counter, expected_result)
-            ("M_143_TF1", "g-tkk-", 1, "g-tkk-m_143_tf1-001"),
-            ("M_144_SkRT", "g-tkv-", 2, "g-tkv-m_144_skrt-002"),
-            ("M_34_Sk1_1", "g-tkk-", 5, "g-tkk-m_34_sk1_1-005"),
+            ("M143_TF1", "awg-tkk-", 1, "awg-tkk-m143_tf1-001"),
+            ("M144_SkRT", "g-tkv-", 2, "g-tkv-m144_skrt-002"),
+            ("M34_Sk1_1", "awg-tkk-", 5, "awg-tkk-m34_sk1_1-005"),
             ("Test_Entry", "prefix-", 42, "prefix-test_entry-042"),
         ]
 
@@ -547,14 +547,14 @@ class TestIdGeneration(unittest.TestCase):
     def test_id_generation_case_conversion(self):
         """Test that entry IDs are properly converted to lowercase"""
         test_cases = [
-            ("UPPERCASE", "g-tkk-uppercase-001"),
-            ("MixedCase", "g-tkk-mixedcase-001"),
-            ("M_143_TF1", "g-tkk-m_143_tf1-001"),
-            ("m_already_lowercase", "g-tkk-m_already_lowercase-001"),
-            ("Numbers123AndText", "g-tkk-numbers123andtext-001"),
+            ("UPPERCASE", "awg-tkk-uppercase-001"),
+            ("MixedCase", "awg-tkk-mixedcase-001"),
+            ("M143_TF1", "awg-tkk-m143_tf1-001"),
+            ("m_already_lowercase", "awg-tkk-m_already_lowercase-001"),
+            ("Numbers123AndText", "awg-tkk-numbers123andtext-001"),
         ]
 
-        prefix = "g-tkk-"
+        prefix = "awg-tkk-"
         counter = 1
 
         for entry_id, expected in test_cases:
@@ -566,15 +566,15 @@ class TestIdGeneration(unittest.TestCase):
     def test_id_generation_underscore_preservation(self):
         """Test that underscores are preserved in entry IDs"""
         test_cases = [
-            ("M_143_Sk1_1_Extra", "g-tkk-m_143_sk1_1_extra-001"),
-            ("Single_Underscore", "g-tkk-single_underscore-001"),
-            ("Multiple_Under_Scores", "g-tkk-multiple_under_scores-001"),
-            ("_Leading_Underscore", "g-tkk-_leading_underscore-001"),
-            ("Trailing_Underscore_", "g-tkk-trailing_underscore_-001"),
-            ("No_Underscores_Here", "g-tkk-no_underscores_here-001"),
+            ("M143_Sk1_1_Extra", "awg-tkk-m143_sk1_1_extra-001"),
+            ("Single_Underscore", "awg-tkk-single_underscore-001"),
+            ("Multiple_Under_Scores", "awg-tkk-multiple_under_scores-001"),
+            ("_Leading_Underscore", "awg-tkk-_leading_underscore-001"),
+            ("Trailing_Underscore_", "awg-tkk-trailing_underscore_-001"),
+            ("No_Underscores_Here", "awg-tkk-no_underscores_here-001"),
         ]
 
-        prefix = "g-tkk-"
+        prefix = "awg-tkk-"
         counter = 1
 
         for entry_id, expected in test_cases:
@@ -585,14 +585,14 @@ class TestIdGeneration(unittest.TestCase):
 
     def test_id_generation_counter_values(self):
         """Test ID generation with various counter values"""
-        entry_id = "M_143_TF1"
-        prefix = "g-tkk-"
+        entry_id = "M143_TF1"
+        prefix = "awg-tkk-"
 
         test_cases = [
-            (1, "g-tkk-m_143_tf1-001"),
-            (10, "g-tkk-m_143_tf1-010"),
-            (999, "g-tkk-m_143_tf1-999"),
-            (0, "g-tkk-m_143_tf1-000"),  # Edge case
+            (1, "awg-tkk-m143_tf1-001"),
+            (10, "awg-tkk-m143_tf1-010"),
+            (999, "awg-tkk-m143_tf1-999"),
+            (0, "awg-tkk-m143_tf1-000"),  # Edge case
         ]
 
         for counter, expected in test_cases:
@@ -603,15 +603,15 @@ class TestIdGeneration(unittest.TestCase):
 
     def test_id_generation_different_prefixes(self):
         """Test ID generation with different prefix values"""
-        entry_id = "M_143_TF1"
+        entry_id = "M143_TF1"
         counter = 1
 
         test_cases = [
-            ("g-tkk-", "g-tkk-m_143_tf1-1"),
-            ("g-lb-", "g-lb-m_143_tf1-1"),
-            ("custom-", "custom-m_143_tf1-1"),
-            ("", "m_143_tf1-1"),  # Empty prefix
-            ("prefix_with_underscore_", "prefix_with_underscore_m_143_tf1-1"),
+            ("awg-tkk-", "awg-tkk-m143_tf1-001"),
+            ("awg-lb-", "awg-lb-m143_tf1-001"),
+            ("custom-", "custom-m143_tf1-001"),
+            ("", "m143_tf1-001"),  # Empty prefix
+            ("prefix_with_underscore_", "prefix_with_underscore_m143_tf1-001"),
         ]
 
         for prefix, expected in test_cases:
@@ -623,13 +623,13 @@ class TestIdGeneration(unittest.TestCase):
     def test_id_generation_special_characters(self):
         """Test ID generation with special characters in entry IDs"""
         test_cases = [
-            ("M-143-TF1", "g-tkk-m-143-tf1-1"),  # Hyphens preserved
-            ("M.143.TF1", "g-tkk-m.143.tf1-1"),  # Dots preserved
-            ("M143TF1", "g-tkk-m143tf1-1"),      # No separators
-            ("M_143_SkRT_1", "g-tkk-m_143_skrt_1-1"),  # SkRT case
+            ("M-143-TF1", "awg-tkk-m-143-tf1-001"),  # Hyphens preserved
+            ("M.143.TF1", "awg-tkk-m.143.tf1-001"),  # Dots preserved
+            ("M143TF1", "awg-tkk-m143tf1-001"),      # No separators
+            ("M143_SkRT_1", "awg-tkk-m143_skrt_1-001"),  # SkRT case
         ]
 
-        prefix = "g-tkk-"
+        prefix = "awg-tkk-"
         counter = 1
 
         for entry_id, expected in test_cases:
@@ -642,11 +642,11 @@ class TestIdGeneration(unittest.TestCase):
         """Test ID generation with real-world entry ID examples"""
         test_cases = [
             # Based on your actual data structure
-            ("M_34_Mn1a", "g-tkk-", 1, "g-tkk-m_34_mn1a-1"),
-            ("M_34_Sk1", "g-tkk-", 7, "g-tkk-m_34_sk1-7"),
-            ("M_34_Sk1_1", "g-tkk-", 3, "g-tkk-m_34_sk1_1-3"),
-            ("M_34_TF1", "g-tkk-", 1, "g-tkk-m_34_tf1-1"),
-            ("M_144_SkRT", "g-tkk-", 1, "g-tkk-m_144_skrt-1"),
+            ("M34_Mn1a", "awg-tkk-", 1, "awg-tkk-m34_mn1a-001"),
+            ("M34_Sk1", "awg-tkk-", 7, "awg-tkk-m34_sk1-007"),
+            ("M34_Sk1_1", "awg-tkk-", 3, "awg-tkk-m34_sk1_1-003"),
+            ("M34_TF1", "awg-tkk-", 1, "awg-tkk-m34_tf1-001"),
+            ("M144_SkRT", "awg-tkk-", 1, "awg-tkk-m144_skrt-001"),
         ]
 
         for entry_id, prefix, counter, expected in test_cases:
@@ -671,7 +671,7 @@ class TestUnifyTkkIds(unittest.TestCase):
         self.test_json = {
             "textcritics": [
                 {
-                    "id": "M_143",
+                    "id": "M143",
                     "commentary": {
                         "comments": [{
                             "blockComments": [
@@ -687,7 +687,7 @@ class TestUnifyTkkIds(unittest.TestCase):
             json.dump(self.test_json, f)
 
         # Create test SVG
-        self.svg_path = os.path.join(self.svg_dir, "M_143_test.svg")
+        self.svg_path = os.path.join(self.svg_dir, "M143_test.svg")
         with open(self.svg_path, 'w', encoding='utf-8') as f:
             f.write('<g class="tkk" id="old-id-1">content</g>')
 
@@ -699,7 +699,7 @@ class TestUnifyTkkIds(unittest.TestCase):
     def test_unify_tkk_ids_success(self, _mock_stdout):
         """Test successful processing of TKK IDs returns True"""
         success = unify_tkk_ids(
-            self.json_path, self.svg_dir, "g-tkk-"
+            self.json_path, self.svg_dir, "awg-tkk-"
         )
 
         self.assertTrue(success)
@@ -724,7 +724,7 @@ class TestUnifyTkkIds(unittest.TestCase):
             svg_before = f.read()
 
         success = unify_tkk_ids(
-            self.json_path, self.svg_dir, "g-tkk-", dry_run=True
+            self.json_path, self.svg_dir, "awg-tkk-", dry_run=True
         )
         self.assertTrue(success)
 
@@ -739,14 +739,14 @@ class TestUnifyTkkIds(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
     def test_unify_tkk_ids_second_run_is_noop(self, _mock_stdout):
         """Second run should be idempotent."""
-        self.assertTrue(unify_tkk_ids(self.json_path, self.svg_dir, "g-tkk-"))
+        self.assertTrue(unify_tkk_ids(self.json_path, self.svg_dir, "awg-tkk-"))
 
         with open(self.json_path, 'r', encoding='utf-8') as f:
             json_after_first = f.read()
         with open(self.svg_path, 'r', encoding='utf-8') as f:
             svg_after_first = f.read()
 
-        self.assertTrue(unify_tkk_ids(self.json_path, self.svg_dir, "g-tkk-"))
+        self.assertTrue(unify_tkk_ids(self.json_path, self.svg_dir, "awg-tkk-"))
 
         with open(self.json_path, 'r', encoding='utf-8') as f:
             json_after_second = f.read()
@@ -776,7 +776,7 @@ class TestIntegration(unittest.TestCase):
             json.dump(self.test_json, f)
 
         # Create test SVG files
-        self.svg_143 = os.path.join(self.svg_dir, "M_143_test.svg")
+        self.svg_143 = os.path.join(self.svg_dir, "M143_test.svg")
         with open(self.svg_143, 'w', encoding='utf-8') as f:
             f.write('''<svg>
     <g class="tkk" id="old-id-1">content1</g>
@@ -784,7 +784,7 @@ class TestIntegration(unittest.TestCase):
     <g class="other" id="other-id">other</g>
 </svg>''')
 
-        self.svg_144 = os.path.join(self.svg_dir, "M_144_Reihentabelle.svg")
+        self.svg_144 = os.path.join(self.svg_dir, "M144_Reihentabelle.svg")
         with open(self.svg_144, 'w', encoding='utf-8') as f:
             f.write('''<svg>
     <g class="tkk" id="skrt-old-1">SkRT content</g>
@@ -808,15 +808,15 @@ class TestIntegration(unittest.TestCase):
 
         self.assertIn('textcritics', data)
         self.assertEqual(len(data['textcritics']), 2)
-        self.assertEqual(data['textcritics'][0]['id'], 'M_143')
-        self.assertEqual(data['textcritics'][1]['id'], 'M_144_SkRT')
+        self.assertEqual(data['textcritics'][0]['id'], 'M143')
+        self.assertEqual(data['textcritics'][1]['id'], 'M144_SkRT')
 
     def test_svg_file_detection(self):
         """Test SVG file detection and filtering"""
         svg_files = [f for f in os.listdir(self.svg_dir) if f.endswith('.svg')]
         self.assertEqual(len(svg_files), 2)
-        self.assertIn('M_143_test.svg', svg_files)
-        self.assertIn('M_144_Reihentabelle.svg', svg_files)
+        self.assertIn('M143_test.svg', svg_files)
+        self.assertIn('M144_Reihentabelle.svg', svg_files)
 
 
 @pytest.mark.unit
@@ -850,7 +850,7 @@ class TestMain(unittest.TestCase):
         self.mock_unify_tkk_ids.assert_called_once_with(
             './tests/data/textcritics.json',
             './tests/img/',
-            "g-tkk-"
+            "awg-tkk-"
         )
 
         # Should print success message
@@ -871,7 +871,7 @@ class TestMain(unittest.TestCase):
         self.mock_unify_tkk_ids.assert_called_once_with(
             './tests/data/textcritics.json',
             './tests/img/',
-            "g-tkk-"
+            "awg-tkk-"
         )
 
         # Should print warning message
@@ -920,7 +920,7 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual(json_path, './tests/data/textcritics.json')
         self.assertEqual(svg_folder, './tests/img/')
-        self.assertEqual(prefix, "g-tkk-")
+        self.assertEqual(prefix, "awg-tkk-")
 
     def test_main_with_different_exception_types(self):
         """Test main function with various exception types"""
@@ -971,7 +971,7 @@ class TestMain(unittest.TestCase):
         mock_process.assert_called_once_with(
             './tests/data/textcritics.json',
             './tests/img/',
-            "g-tkk-"
+            "awg-tkk-"
         )
 
         # Verify success message

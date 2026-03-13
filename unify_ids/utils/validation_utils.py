@@ -112,7 +112,7 @@ def display_validation_report(data, id_prefix, loaded_svgs, required_class="tkk"
         data (dict): The processed JSON textcritics data structure containing
                     textcritics entries with commentary and blockComments.
         id_prefix (str): The target prefix that all updated IDs should start with
-                     (e.g., "g-tkk-").
+                     (e.g., "awg-tkk-").
         loaded_svgs (dict): Dictionary mapping SVG filenames to their content
                            and path information from the processing cache.
         required_class (str): The required class name for SVG elements to be

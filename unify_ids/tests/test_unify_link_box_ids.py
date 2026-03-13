@@ -25,7 +25,7 @@ class TestProcessSingleLinkBox:
     def test_process_single_link_box_with_success(
         self, mocker, capsys, sample_svg_data
     ):
-        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M_317_Sk2"}}
+        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M317_Sk2"}}
         get_svg_data = mocker.Mock(return_value=sample_svg_data)
         update_mock = mocker.patch.object(
             module_under_test,
@@ -37,7 +37,7 @@ class TestProcessSingleLinkBox:
             "g6407", link_box, "op25_WE", ["sheet.svg"], get_svg_data
         )
 
-        expected_new_id = "g-lb-op25_we-to-m_317_sk2"
+        expected_new_id = "awg-lb-op25_we-to-m317_sk2"
 
         assert result is True
         assert link_box["svgGroupId"] == expected_new_id
@@ -55,7 +55,7 @@ class TestProcessSingleLinkBox:
         assert f"[SVG] Changing 'g6407' -> '{expected_new_id}' in sheet.svg" in output
 
     def test_process_single_link_box_with_no_matching_files(self, mocker, capsys):
-        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M_317_Sk2"}}
+        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M317_Sk2"}}
         get_svg_data = mocker.Mock()
 
         result = process_single_link_box("g6407", link_box, "op25_WE", [], get_svg_data)
@@ -67,7 +67,7 @@ class TestProcessSingleLinkBox:
         assert "not found in any relevant SVG files" in output
 
     def test_process_single_link_box_with_multiple_matching_files(self, mocker, capsys):
-        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M_317_Sk2"}}
+        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M317_Sk2"}}
         get_svg_data = mocker.Mock()
 
         result = process_single_link_box(
@@ -102,7 +102,7 @@ class TestProcessSingleLinkBox:
     def test_process_single_link_box_with_svg_update_error(
         self, mocker, capsys, sample_svg_data
     ):
-        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M_317_Sk2"}}
+        link_box = {"svgGroupId": "g6407", "linkTo": {"sheetId": "M317_Sk2"}}
         get_svg_data = mocker.Mock(return_value=sample_svg_data)
         mocker.patch.object(
             module_under_test,
@@ -114,7 +114,7 @@ class TestProcessSingleLinkBox:
             "g6407", link_box, "op25_WE", ["sheet.svg"], get_svg_data
         )
 
-        expected_new_id = "g-lb-op25_we-to-m_317_sk2"
+        expected_new_id = "awg-lb-op25_we-to-m317_sk2"
 
         assert result is False
         # Current behavior: JSON id changes before SVG update failure is returned.
@@ -145,11 +145,11 @@ class TestProcessTextcriticsEntry:
         extract_number_mock.assert_not_called()
 
     def test_process_textcritics_entry_success_basic(self, mocker, capsys):
-        entry = {"id": "M_143_TF1"}
+        entry = {"id": "M143_TF1"}
         all_svg_files = ["test1.svg", "test2.svg"]
         link_boxes = [
-            {"svgGroupId": "g1", "linkTo": {"sheetId": "M_143_Sk1"}},
-            {"svgGroupId": "g2", "linkTo": {"sheetId": "M_143_Sk2"}},
+            {"svgGroupId": "g1", "linkTo": {"sheetId": "M143_Sk1"}},
+            {"svgGroupId": "g2", "linkTo": {"sheetId": "M143_Sk2"}},
         ]
         get_svg_data = mocker.Mock()
 
@@ -175,28 +175,28 @@ class TestProcessTextcriticsEntry:
 
         process_textcritics_entry(entry, all_svg_files, get_svg_data)
 
-        extract_number_mock.assert_called_once_with("M_143_TF1")
-        find_relevant_mock.assert_called_once_with("M_143_TF1", all_svg_files, "143")
+        extract_number_mock.assert_called_once_with("M143_TF1")
+        find_relevant_mock.assert_called_once_with("M143_TF1", all_svg_files, "143")
         extract_link_boxes_mock.assert_called_once_with(entry)
         assert find_matching_mock.call_args_list == [
             call("g1", ["test1.svg", "test2.svg"], get_svg_data, "link-box"),
             call("g2", ["test1.svg", "test2.svg"], get_svg_data, "link-box"),
         ]
         assert process_single_mock.call_args_list == [
-            call("g1", link_boxes[0], "M_143_TF1", ["test1.svg"], get_svg_data),
-            call("g2", link_boxes[1], "M_143_TF1", ["test2.svg"], get_svg_data),
+            call("g1", link_boxes[0], "M143_TF1", ["test1.svg"], get_svg_data),
+            call("g2", link_boxes[1], "M143_TF1", ["test2.svg"], get_svg_data),
         ]
 
         output = capsys.readouterr().out
-        assert "Processing textcritics entry ID: M_143_TF1" in output
-        assert "Standard anchor: M_143_TF1" in output
+        assert "Processing textcritics entry ID: M143_TF1" in output
+        assert "Standard anchor: M143_TF1" in output
         assert "Relevant SVGs (2): ['test1.svg', 'test2.svg']" in output
         assert "Found 2 linkBox(es)" in output
 
     def test_process_textcritics_entry_prints_skrt_anchor_and_no_link_boxes(
         self, mocker, capsys
     ):
-        entry = {"id": "M_143_SkRT1"}
+        entry = {"id": "M143_SkRT1"}
         all_svg_files = ["test1.svg"]
         get_svg_data = mocker.Mock()
 
@@ -221,17 +221,17 @@ class TestProcessTextcriticsEntry:
         find_matching_mock.assert_not_called()
         process_single_mock.assert_not_called()
         output = capsys.readouterr().out
-        assert "SkRT anchor detected: M_143_SkRT1" in output
+        assert "SkRT anchor detected: M143_SkRT1" in output
         assert "No linkBoxes to process" in output
 
     def test_process_textcritics_entry_skips_link_box_without_svg_group_id(
         self, mocker, capsys
     ):
-        entry = {"id": "M_143_TF1"}
+        entry = {"id": "M143_TF1"}
         all_svg_files = ["sheet.svg"]
         link_boxes = [
-            {"linkTo": {"sheetId": "M_143_Sk1"}},
-            {"svgGroupId": "g2", "linkTo": {"sheetId": "M_143_Sk2"}},
+            {"linkTo": {"sheetId": "M143_Sk1"}},
+            {"svgGroupId": "g2", "linkTo": {"sheetId": "M143_Sk2"}},
         ]
         get_svg_data = mocker.Mock()
 
@@ -259,7 +259,7 @@ class TestProcessTextcriticsEntry:
             "g2", ["sheet.svg"], get_svg_data, "link-box"
         )
         process_single_mock.assert_called_once_with(
-            "g2", link_boxes[1], "M_143_TF1", ["sheet.svg"], get_svg_data
+            "g2", link_boxes[1], "M143_TF1", ["sheet.svg"], get_svg_data
         )
         output = capsys.readouterr().out
         assert "ERROR: linkBox without svgGroupId" in output

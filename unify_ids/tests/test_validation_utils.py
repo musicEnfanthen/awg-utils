@@ -57,7 +57,7 @@ class TestDisplayValidationReport(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures"""
-        self.prefix = "g-tkk-"
+        self.prefix = "awg-tkk-"
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_display_validation_report_with_single_file_single_entry_no_errors(
@@ -159,7 +159,7 @@ class TestDisplayValidationReport(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
     def test_display_validation_report_with_empty_data(self, mock_stdout):
         """Empty JSON data and empty SVG data (should report success)"""
-        display_validation_report({}, "g-tkk-", {})
+        display_validation_report({}, "awg-tkk-", {})
         output = mock_stdout.getvalue()
         self.assertIn("All JSON and SVG 'tkk' IDs successfully updated", output)
 
@@ -169,7 +169,7 @@ class TestDisplayValidationReport(unittest.TestCase):
         (should report success since validation should be skipped)"""
         data = JSON_DATA_MALFORMED.copy()
 
-        display_validation_report(data, "g-tkk-", {})
+        display_validation_report(data, "awg-tkk-", {})
         output = mock_stdout.getvalue()
         self.assertIn("All JSON and SVG 'tkk' IDs successfully updated", output)
 
@@ -180,7 +180,7 @@ class TestValidateJsonEntries(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures"""
-        self.prefix = "g-tkk-"
+        self.prefix = "awg-tkk-"
 
     def test_validate_json_entries_with_single_entry_no_errors(self):
         """Test json data with a single ID correctly prefixed"""
@@ -254,7 +254,7 @@ class TestValidateSvgEntries(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures"""
-        self.prefix = "g-tkk-"
+        self.prefix = "awg-tkk-"
 
     def test_validate_single_svg_entry_with_no_errors(self):
         """Test with a single SVG ID correctly prefixed"""
@@ -332,7 +332,7 @@ def _call_validate_svg_entries(loaded_svgs, prefix, required_class):
 
 @pytest.mark.parametrize(
     "prefix,required_class",
-    [("g-tkk-", "tkk"), ("g-lb-", "link-box")],
+    [("awg-tkk-", "tkk"), ("awg-lb-", "link-box")],
     ids=["tkk", "linkbox"],
 )
 def test_shared_validate_json_and_svg_support_both_unifiers(prefix, required_class):

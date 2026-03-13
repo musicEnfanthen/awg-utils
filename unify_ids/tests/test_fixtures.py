@@ -65,33 +65,33 @@ def _create_json_data(textcritic_entries):
 # INDIVIDUAL TEXTCRITIC SAMPLES
 # =============================================================================
 
-# Basic textcritic entry with valid g-tkk prefixed IDs
+# Basic textcritic entry with valid awg-tkk prefixed IDs
 SAMPLE_TEXTCRITICS_WITH_SINGLE_PREFIXED_ID = _create_textcritic_entry(
-    "M_142_Sk1", ["g-tkk-1"]
+    "M_142_Sk1", ["awg-tkk-m142_sk1-001"]
 )
 SAMPLE_TEXTCRITICS_WITH_2_PREFIXED_IDS = _create_textcritic_entry(
-    "M_142_Sk1", ["g-tkk-1", "g-tkk-2"]
+    "M_142_Sk1", ["awg-tkk-m142_sk1-001", "awg-tkk-m142_sk1-002"]
 )
 SAMPLE_TEXTCRITICS_WITH_4_PREFIXED_IDS = _create_textcritic_entry(
-    "M_142_Sk1", ["g-tkk-1", "g-tkk-2", "g-tkk-3", "g-tkk-4"]
+    "M_142_Sk1", ["awg-tkk-m142_sk1-001", "awg-tkk-m142_sk1-002", "awg-tkk-m142_sk1-003", "awg-tkk-m142_sk1-004"]
 )
 
 # Textcritic entry with single unprefixed ID
 SAMPLE_TEXTCRITICS_WITH_MIXED_IDS = _create_textcritic_entry(
-    "M_145_TF1", ["old-id-1", "g-tkk-1"]
+    "M_145_TF1", ["old-id-1", "awg-tkk-m145_tf1-001"]
 )
 
 # Textcritic entry with multiple mixed IDs (some prefixed, some old/unprefixed)
 SAMPLE_TEXTCRITICS_WITH_MULTIPLE_MIXED_IDS = _create_textcritic_entry(
-    "M_150_Sk2_1", ["g-tkk-1", "old-id-2", "old-id-3", "g-tkk-2"]
+    "M_150_Sk2_1", ["awg-tkk-m150_sk2_1-001", "old-id-2", "old-id-3", "awg-tkk-m150_sk2_1-002"]
 )
 
 # Textcritic entry with TODO svgGroupId (should be ignored)
 SAMPLE_TEXTCRITICS_WITH_TODO = _create_textcritic_entry(
-    "M_146_TF2", ["TODO", "g-tkk-1"]
+    "M_146_TF2", ["TODO", "awg-tkk-m146_tf2-001"]
 )
 SAMPLE_TEXTCRITICS_WITH_TODO_AND_MIXED_IDS = _create_textcritic_entry(
-    "M_146_TF2", ["TODO", "g-tkk-1", "old-id-1"]
+    "M_146_TF2", ["TODO", "awg-tkk-m146_tf2-001", "old-id-1"]
 )
 
 # Integration test samples (matches test_unify_tkk_ids.py structure)
@@ -146,10 +146,10 @@ JSON_DATA_MALFORMED = {
     "textcritics": [
         {
             # Missing commentary structure
-            "id": "M_147"
+            "id": "M147"
         },
         {
-            "id": "M_148",
+            "id": "M148",
             "commentary": {
                 # Missing comments
             }
@@ -162,10 +162,10 @@ JSON_DATA_MALFORMED = {
 # SVG CONTENT SAMPLES
 # =============================================================================
 
-# Single SVG file with prefixed g-tkk ID
+# Single SVG file with prefixed awg-tkk ID
 SAMPLE_SVG_WITH_SINGLE_PREFIXED_ID = {
     "test.svg": {
-        "content": '<g class="tkk" id="g-tkk-1">content</g>'
+        "content": '<g class="tkk" id="awg-tkk-m142_sk1-001">content</g>'
     }
 }
 
@@ -176,12 +176,12 @@ SAMPLE_SVG_WITH_SINGLE_UNPREFIXED_ID = {
     }
 }
 
-# Single SVG file with multiple prefixed g-tkk IDs
+# Single SVG file with multiple prefixed awg-tkk IDs
 SAMPLE_SVG_WITH_MULTIPLE_PREFIXED_IDS = {
     "test1.svg": {
         "content": (
-            '<g class="tkk" id="g-tkk-1">content</g>'
-            '<g class="tkk" id="g-tkk-2">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk1-001">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk2-002">content</g>'
         )
     },
 }
@@ -201,7 +201,7 @@ SAMPLE_SVG_WITH_MIXED_IDS = {
     "test.svg": {
         "content": (
             '<g class="tkk" id="old-id-1">content</g>'
-            '<g class="tkk" id="g-tkk-1">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk1-001">content</g>'
         )
     }
 }
@@ -210,14 +210,14 @@ SAMPLE_SVG_WITH_MIXED_IDS = {
 SAMPLE_MULTIPLE_SVG_WITH_PREFIXED_IDS = {
     "test1.svg": {
         "content": (
-            '<g class="tkk" id="g-tkk-1">content</g>'
-            '<g class="tkk" id="g-tkk-2">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk1-001">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk2-002">content</g>'
         )
     },
     "test2.svg": {
         "content": (
-            '<g class="tkk" id="g-tkk-3">content</g>'
-            '<g class="tkk" id="g-tkk-4">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk3-003">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk4-004">content</g>'
         )
     }
 }
@@ -242,14 +242,14 @@ SAMPLE_MULTIPLE_SVG_WITH_UNPREFIXED_IDS = {
 SAMPLE_MULTIPLE_SVG_WITH_MIXED_IDS = {
     "test1.svg": {
         "content": (
-            '<g class="tkk" id="g-tkk-1">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk1-001">content</g>'
             '<g class="tkk" id="old-id-2">content</g>'
         )
     },
     "test2.svg": {
         "content": (
             '<g class="tkk" id="old-id-3">content</g>'
-            '<g class="tkk" id="g-tkk-2">content</g>'
+            '<g class="tkk" id="awg-tkk-m142_sk2-002">content</g>'
         )
     }
 }
