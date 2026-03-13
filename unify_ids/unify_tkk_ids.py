@@ -18,8 +18,10 @@ from utils.svg_utils import (
 )
 from utils.validation_utils import display_validation_report
 
-_G_TAG_RE = re.compile(r"<g\b[^>]*>", re.IGNORECASE | re.DOTALL)
-_ATTR_RE = re.compile(r"([:\w-]+)\s*=\s*(\"[^\"]*\"|'[^']*')", re.DOTALL)
+# Global regex patterns and constants
+G_TAG_RE = re.compile(r"<g\b[^>]*>", re.IGNORECASE | re.DOTALL)
+ATTR_RE = re.compile(r"([:\w-]+)\s*=\s*(\"[^\"]*\"|'[^']*')", re.DOTALL)
+TKK_PREFIX = "awg-tkk-"
 
 
 def _init_stats():
@@ -40,7 +42,7 @@ def _bump(stats, key, amount=1):
 
 def _extract_attrs(tag_text):
     attrs = {}
-    for name, value in _ATTR_RE.findall(tag_text):
+    for name, value in ATTR_RE.findall(tag_text):
         attrs[name.lower()] = value[1:-1]
     return attrs
 
@@ -89,7 +91,7 @@ def _build_tkk_id_index(relevant_svgs, get_svg_data):
         content = svg_data.get("content", "")
         seen_ids_in_file = set()
 
-        for g_tag in _G_TAG_RE.findall(content):
+        for g_tag in G_TAG_RE.findall(content):
             attrs = _extract_attrs(g_tag)
             svg_id = attrs.get("id")
             class_attr = attrs.get("class", "")
@@ -178,7 +180,7 @@ def process_single_svg_group_id(svg_group_id, block_comment, matching_files,
 
 
 def process_textcritics_entry(
-        textcritics_entry, all_svg_files, get_svg_data, tkk_prefix,
+        textcritics_entry, all_svg_files, get_svg_data,
         dry_run=False, stats=None, verbose=True, use_index=False):
     """Process a single textcritics entry and all its block comments."""
     if not isinstance(textcritics_entry, dict):
@@ -241,7 +243,7 @@ def process_textcritics_entry(
                     svg_group_id, relevant_svgs, get_svg_data
                 )
 
-        new_id = f"{tkk_prefix}{entry_id_formatted}-{counter:03d}"
+        new_id = f"{TKK_PREFIX}{entry_id_formatted}-{counter:03d}"
 
         # Keep old call shape when defaults are used (test compatibility)
         if use_index or dry_run or stats is not None or not verbose:
@@ -261,7 +263,7 @@ def process_textcritics_entry(
             counter += 1
 
 
-def unify_tkk_ids(json_path, svg_folder, tkk_prefix="awg-tkk-",
+def unify_tkk_ids(json_path, svg_folder,
                   dry_run=False, verbose=True):
     """Unify TKK IDs in JSON and SVG files."""
     if verbose:
@@ -287,7 +289,7 @@ def unify_tkk_ids(json_path, svg_folder, tkk_prefix="awg-tkk-",
 
     for textcritics_entry in all_textcritics_entries:
         process_textcritics_entry(
-            textcritics_entry, all_svg_files, get_svg_data, tkk_prefix,
+            textcritics_entry, all_svg_files, get_svg_data,
             dry_run=dry_run, stats=stats, verbose=verbose, use_index=True
         )
 
@@ -297,7 +299,7 @@ def unify_tkk_ids(json_path, svg_folder, tkk_prefix="awg-tkk-",
         elif verbose:
             print(" No changes detected; skipping writes.")
 
-        display_validation_report(json_data, tkk_prefix, loaded_svg_texts)
+        display_validation_report(json_data, TKK_PREFIX, loaded_svg_texts)
     elif verbose:
         print(" [DRY-RUN] Skipping write + validation report.")
 
@@ -326,10 +328,8 @@ def main():
     ##### fill in:
     svg_folder = './tests/img/'
 
-    tkk_prefix = "awg-tkk-"
-
     try:
-        success = unify_tkk_ids(json_path, svg_folder, tkk_prefix)
+        success = unify_tkk_ids(json_path, svg_folder)
         if success:
             print("\n Finished!")
         else:
