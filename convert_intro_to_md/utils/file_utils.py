@@ -1,4 +1,4 @@
-"""Utility functions for file operations. This includes reading from JSON and writing to MD."""
+"""Utility functions for file operations. This includes reading from JSON and writing to files."""
 
 import json
 import sys
@@ -36,12 +36,12 @@ class FileUtils:
         return data
 
     @staticmethod
-    def write_md(file_path: Path, content: str) -> None:
-        """Write Markdown content to a file, creating parent directories as needed.
+    def write_file(file_path: Path, content: str) -> None:
+        """Write text content to a file, creating parent directories as needed.
 
         Args:
-            file_path (Path): Path to the output Markdown file.
-            content (str): The Markdown string to write.
+            file_path (Path): Path to the output file.
+            content (str): The text string to write.
         """
         file_path.parent.mkdir(parents=True, exist_ok=True)
         with open(file_path, "w", encoding="utf-8") as f:

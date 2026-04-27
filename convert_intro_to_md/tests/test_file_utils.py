@@ -67,37 +67,37 @@ class TestReadJson:
         assert "Error reading" in capsys.readouterr().err
 
 
-class TestWriteMd:
-    """Tests for the write_md function."""
+class TestWriteFile:
+    """Tests for the write_file function."""
 
     def test_writes_content_to_file(self, tmp_path):
         """Test that the given content is written to the specified file."""
         file = tmp_path / "output.md"
-        FileUtils.write_md(file, "# Hello")
+        FileUtils.write_file(file, "# Hello")
         assert file.read_text(encoding="utf-8") == "# Hello"
 
     def test_creates_parent_directories(self, tmp_path):
         """Test that missing parent directories are created automatically."""
         file = tmp_path / "a" / "b" / "output.md"
-        FileUtils.write_md(file, "content")
+        FileUtils.write_file(file, "content")
         assert file.exists()
 
     def test_overwrites_existing_file(self, tmp_path):
         """Test that writing to an existing file overwrites its content."""
         file = tmp_path / "output.md"
         file.write_text("old content", encoding="utf-8")
-        FileUtils.write_md(file, "new content")
+        FileUtils.write_file(file, "new content")
         assert file.read_text(encoding="utf-8") == "new content"
 
     def test_writes_empty_string(self, tmp_path):
         """Test that an empty string can be written to a file."""
         file = tmp_path / "empty.md"
-        FileUtils.write_md(file, "")
+        FileUtils.write_file(file, "")
         assert file.read_text(encoding="utf-8") == ""
 
     def test_writes_multiline_content(self, tmp_path):
-        """Test that multiline Markdown content is written correctly."""
+        """Test that multiline content is written correctly."""
         content = "# Title\n\nParagraph one.\n\nParagraph two.\n"
         file = tmp_path / "multi.md"
-        FileUtils.write_md(file, content)
+        FileUtils.write_file(file, content)
         assert file.read_text(encoding="utf-8") == content

@@ -7,7 +7,8 @@ from unittest.mock import patch
 import pytest
 
 from convert_intro_to_md import convert_intro_to_md, get_intro_context, main
-from utils.processing_utils import ProcessingUtils
+from utils import md_renderer
+from utils.html_parser import parse_intro
 
 
 class TestConvertIntroToMd:
@@ -47,44 +48,46 @@ class TestConvertIntroToMd:
         result = convert_intro_to_md(intro, "en")
         assert "##" not in result
 
-    def test_delegates_process_block_content(self):
-        """Test that blockContent is routed through ProcessingUtils.process_block_content."""
-        intro = {"content": [{"blockContent": ["<p>Text</p>"], "blockNotes": []}]}
-        with patch.object(
-            ProcessingUtils, "process_block_content", return_value=[]
-        ) as mock:
-            convert_intro_to_md(intro, "en")
-        mock.assert_called_once_with(["<p>Text</p>"])
+    def test_block_content_rendered(self):
+        """Test that blockContent HTML paragraphs appear in the output."""
+        intro = {"content": [{"blockContent": ["<p>Hello</p>"], "blockNotes": []}]}
+        result = convert_intro_to_md(intro, "en")
+        assert "Hello" in result
 
-    def test_delegates_process_block_notes(self):
-        """Test that blockNotes are routed through ProcessingUtils.process_block_notes."""
+    def test_footnote_section_uses_en_header(self):
+        """Test that the footnote section header is 'Notes' for locale 'en'."""
+        note_html = '<p id="note-1"><a class="note-backlink" href="#note-ref-1">1</a> | Text</p>'
         intro = {
-            "content": [{"blockContent": [], "blockNotes": ["<p id='note-1'>N</p>"]}]
+            "content": [
+                {
+                    "blockContent": [],
+                    "blockNotes": [note_html],
+                }
+            ]
         }
-        with patch.object(
-            ProcessingUtils, "process_block_notes", return_value=None
-        ) as mock:
-            convert_intro_to_md(intro, "en")
-        mock.assert_called_once()
-        assert mock.call_args[0][0] == ["<p id='note-1'>N</p>"]
+        result = convert_intro_to_md(intro, "en")
+        assert "## Notes" in result
 
-    def test_delegates_process_end_notes(self):
-        """Test that collected notes are passed through ProcessingUtils.process_end_notes."""
-        intro = {"content": [{"blockContent": [], "blockNotes": []}]}
-        with patch.object(
-            ProcessingUtils, "process_end_notes", return_value=[]
-        ) as mock:
-            convert_intro_to_md(intro, "de")
-        mock.assert_called_once_with({}, "de")
+    def test_footnote_section_uses_de_header(self):
+        """Test that the footnote section header is 'Anmerkungen' for locale 'de'."""
+        note_html = '<p id="note-1"><a class="note-backlink" href="#note-ref-1">1</a> | Text</p>'
+        intro = {
+            "content": [
+                {
+                    "blockContent": [],
+                    "blockNotes": [note_html],
+                }
+            ]
+        }
+        result = convert_intro_to_md(intro, "de")
+        assert "## Anmerkungen" in result
 
-    def test_delegates_assemble_markdown(self):
-        """Test that the final lines are assembled via ProcessingUtils.assemble_markdown."""
+    def test_delegates_to_md_renderer(self):
+        """Test that convert_intro_to_md delegates to md_renderer.render."""
         intro = {"content": []}
-        with patch.object(
-            ProcessingUtils, "assemble_markdown", return_value="done\n"
-        ) as mock:
+        with patch.object(md_renderer, "render", return_value="done\n") as mock:
             result = convert_intro_to_md(intro, "en")
-        mock.assert_called_once()
+        mock.assert_called_once_with(parse_intro(intro), "en")
         assert result == "done\n"
 
     def test_missing_content_key(self):

@@ -126,15 +126,15 @@ Tests for `read_json(file_path)`:
 - An error message is printed to stderr on invalid JSON.
 - An error message is printed to stderr when the JSON is not a dict.
 
-#### `TestWriteMd`
+#### `TestWriteFile`
 
-Tests for `write_md(file_path, content)`:
+Tests for `write_file(file_path, content)`:
 
 - The given content is written to the specified file.
 - Missing parent directories are created automatically.
 - Writing to an existing file overwrites its content.
 - An empty string can be written without error.
-- Multiline Markdown content is written correctly.
+- Multiline content is written correctly.
 
 ---
 
