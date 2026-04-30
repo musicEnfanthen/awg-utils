@@ -2,7 +2,6 @@
 
 import io
 import xml.etree.ElementTree as ET
-from typing import List
 
 from utils.nodes import (
     Block,
@@ -12,6 +11,7 @@ from utils.nodes import (
     CrossRef,
     FootnoteRef,
     Italic,
+    ListBlock,
     Node,
     Note,
     Paragraph,
@@ -21,20 +21,24 @@ from utils.nodes import (
     Superscript,
     Table,
     Text,
+    Underline,
 )
 
 _TEI_NS = "http://www.tei-c.org/ns/1.0"
 _XML_NS = "http://www.w3.org/XML/1998/namespace"
 
+# Module-level notes lookup; populated by render() before walking the tree.
+_notes_lookup: dict[int, Note] = {}
 
-def render(blocks: List[Block], intro_id: str, intro_locale: str) -> str:
+
+def render(blocks: list[Block], intro_id: str, intro_locale: str) -> str:
     """Render a list of Block IR nodes to a stand-alone TEI XML string.
 
     Produces a minimal TEI document with:
 
     - A ``<teiHeader>`` carrying the intro id and language.
     - A ``<text><body>`` where each block becomes a ``<div>``.
-    - A ``<back><div type="notes">`` section with stand-off ``<note>`` elements.
+    - Footnotes rendered inline as ``<note place="end" n="N">`` elements.
 
     Args:
         blocks (List[Block]): The parsed IR blocks (from
@@ -45,34 +49,41 @@ def render(blocks: List[Block], intro_id: str, intro_locale: str) -> str:
     Returns:
         str: A serialized TEI XML string with an XML declaration, UTF-8 encoded.
     """
+    global _notes_lookup  # pylint: disable=global-statement
     ET.register_namespace("", _TEI_NS)
     ET.register_namespace("xml", _XML_NS)
 
-    root = ET.Element(_q("TEI"))
+    _notes_lookup = {}
+    for block in blocks:
+        for note in block.notes:
+            try:
+                _notes_lookup[int(note.id.split("-")[-1])] = note
+            except (ValueError, IndexError):
+                pass
+
+    root = ET.Element(_tei("TEI"))
 
     _build_tei_header(root, intro_id, intro_locale)
 
-    text_el = ET.SubElement(root, _q("text"))
+    text_el = ET.SubElement(root, _tei("text"))
     text_el.set(_xml("lang"), intro_locale)
-    body = ET.SubElement(text_el, _q("body"))
-    back = ET.SubElement(text_el, _q("back"))
-    notes_div = ET.SubElement(back, _q("div"))
-    notes_div.set("type", "notes")
+    body = ET.SubElement(text_el, _tei("body"))
 
     for block in blocks:
-        div = ET.SubElement(body, _q("div"))
+        div = ET.SubElement(body, _tei("div"))
         if block.id:
             div.set(_xml("id"), block.id)
         if block.heading:
-            head_el = ET.SubElement(div, _q("head"))
+            head_el = ET.SubElement(div, _tei("head"))
             for node in block.heading:
                 _render_node(node, head_el)
         for node in block.content:
             _render_node(node, div)
-        for note in block.notes:
-            notes_div.append(_render_note(note))
+
+    _notes_lookup = {}
 
     ET.indent(root, space="  ")
+    _fix_mixed_content_indent(root)
     buf = io.BytesIO()
     ET.ElementTree(root).write(buf, encoding="utf-8", xml_declaration=True)
     return buf.getvalue().decode("utf-8")
@@ -82,6 +93,7 @@ def render(blocks: List[Block], intro_id: str, intro_locale: str) -> str:
 # teiHeader builder
 # ---------------------------------------------------------------------------
 
+
 def _build_tei_header(root: ET.Element, intro_id: str, intro_locale: str) -> None:
     """Append a minimal ``<teiHeader>`` to *root*.
 
@@ -90,24 +102,25 @@ def _build_tei_header(root: ET.Element, intro_id: str, intro_locale: str) -> Non
         intro_id (str): Used as the document title.
         intro_locale (str): Used as the ``ident`` of the ``<language>`` element.
     """
-    header = ET.SubElement(root, _q("teiHeader"))
-    file_desc = ET.SubElement(header, _q("fileDesc"))
-    title_stmt = ET.SubElement(file_desc, _q("titleStmt"))
-    ET.SubElement(title_stmt, _q("title")).text = intro_id
-    pub_stmt = ET.SubElement(file_desc, _q("publicationStmt"))
-    ET.SubElement(pub_stmt, _q("p")).text = "AWG Online Edition"
-    src_desc = ET.SubElement(file_desc, _q("sourceDesc"))
-    ET.SubElement(src_desc, _q("p")).text = "Converted from AWG intro JSON"
-    profile = ET.SubElement(header, _q("profileDesc"))
-    lang_usage = ET.SubElement(profile, _q("langUsage"))
-    ET.SubElement(lang_usage, _q("language")).set("ident", intro_locale)
+    header = ET.SubElement(root, _tei("teiHeader"))
+    file_desc = ET.SubElement(header, _tei("fileDesc"))
+    title_stmt = ET.SubElement(file_desc, _tei("titleStmt"))
+    ET.SubElement(title_stmt, _tei("title")).text = intro_id
+    pub_stmt = ET.SubElement(file_desc, _tei("publicationStmt"))
+    ET.SubElement(pub_stmt, _tei("p")).text = "AWG Online Edition"
+    src_desc = ET.SubElement(file_desc, _tei("sourceDesc"))
+    ET.SubElement(src_desc, _tei("p")).text = "Converted from AWG intro JSON"
+    profile = ET.SubElement(header, _tei("profileDesc"))
+    lang_usage = ET.SubElement(profile, _tei("langUsage"))
+    ET.SubElement(lang_usage, _tei("language")).set("ident", intro_locale)
 
 
 # ---------------------------------------------------------------------------
 # Node renderers
 # ---------------------------------------------------------------------------
 
-def _render_node(node: Node, parent: ET.Element) -> None:  # pylint: disable=too-many-branches
+
+def _render_node(node: Node, parent: ET.Element) -> None:  # pylint: disable=too-many-branches,too-many-statements
     """Render a single IR node as a child of *parent*.
 
     Args:
@@ -117,45 +130,64 @@ def _render_node(node: Node, parent: ET.Element) -> None:  # pylint: disable=too
     if isinstance(node, Text):
         _append_text(parent, node.value)
     elif isinstance(node, FootnoteRef):
-        ptr = ET.SubElement(parent, _q("ptr"))
-        ptr.set("target", f"#note-{node.n}")
+        note_el = ET.SubElement(parent, _tei("note"))
+        note_el.set("place", "end")
+        note_el.set("n", str(node.n))
+        note = _notes_lookup.get(node.n)
+        if note:
+            for child in note.children:
+                _render_node(child, note_el)
     elif isinstance(node, CrossRef):
-        el = ET.SubElement(parent, _q("ref"))
+        el = ET.SubElement(parent, _tei("ref"))
         el.set("target", f"#note-{node.n}")
         el.text = str(node.n)
     elif isinstance(node, Ref):
-        el = ET.SubElement(parent, _q("ref"))
+        el = ET.SubElement(parent, _tei("ref"))
         el.set("target", node.target)
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Italic):
-        el = ET.SubElement(parent, _q("hi"))
+        el = ET.SubElement(parent, _tei("hi"))
         el.set("rend", "italic")
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Bold):
-        el = ET.SubElement(parent, _q("hi"))
+        el = ET.SubElement(parent, _tei("hi"))
         el.set("rend", "bold")
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Strikethrough):
-        el = ET.SubElement(parent, _q("del"))
+        el = ET.SubElement(parent, _tei("del"))
+        for child in node.children:
+            _render_node(child, el)
+    elif isinstance(node, Underline):
+        el = ET.SubElement(parent, _tei("hi"))
+        el.set("rend", "underline")
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Superscript):
-        el = ET.SubElement(parent, _q("hi"))
-        el.set("rend", "super")
+        el = ET.SubElement(parent, _tei("hi"))
+        el.set("rend", "sup")
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Paragraph):
-        el = ET.SubElement(parent, _q("p"))
+        el = ET.SubElement(parent, _tei("p"))
         for child in node.children:
             _render_node(child, el)
     elif isinstance(node, Blockquote):
+        quote_el = ET.SubElement(parent, _tei("quote"))
         for para in node.paragraphs:
-            el = ET.SubElement(parent, _q("p"))
+            el = ET.SubElement(quote_el, _tei("l"))
             for child in para.children:
                 _render_node(child, el)
+    elif isinstance(node, ListBlock):
+        list_el = ET.SubElement(parent, _tei("list"))
+        if node.ordered:
+            list_el.set("rend", "ordered")
+        for item in node.items:
+            item_el = ET.SubElement(list_el, _tei("item"))
+            for child in item.children:
+                _render_node(child, item_el)
     elif isinstance(node, Table):
         _render_table(node, parent)
 
@@ -167,7 +199,7 @@ def _render_table(node: Table, parent: ET.Element) -> None:
         node (Table): The table IR node.
         parent (ET.Element): The ET element to attach the ``<table>`` to.
     """
-    table_el = ET.SubElement(parent, _q("table"))
+    table_el = ET.SubElement(parent, _tei("table"))
     for row in node.rows:
         _render_row(row, table_el)
 
@@ -179,7 +211,7 @@ def _render_row(node: Row, parent: ET.Element) -> None:
         node (Row): The row IR node.
         parent (ET.Element): The ET element to attach the ``<row>`` to.
     """
-    row_el = ET.SubElement(parent, _q("row"))
+    row_el = ET.SubElement(parent, _tei("row"))
     if node.is_header:
         row_el.set("role", "label")
     for cell in node.cells:
@@ -193,34 +225,46 @@ def _render_cell(node: Cell, parent: ET.Element) -> None:
         node (Cell): The cell IR node.
         parent (ET.Element): The ET element to attach the ``<cell>`` to.
     """
-    cell_el = ET.SubElement(parent, _q("cell"))
+    cell_el = ET.SubElement(parent, _tei("cell"))
     if node.colspan is not None:
         cell_el.set("cols", str(node.colspan))
     for child in node.children:
         _render_node(child, cell_el)
 
 
-def _render_note(note: Note) -> ET.Element:
-    """Render a :class:`~utils.nodes.Note` IR node as a TEI ``<note>`` element.
-
-    Args:
-        note (Note): The note IR node.
-
-    Returns:
-        ET.Element: A ``<note xml:id="...">`` element with rendered children.
-    """
-    note_el = ET.Element(_q("note"))
-    note_el.set(_xml("id"), note.id)
-    for child in note.children:
-        _render_node(child, note_el)
-    return note_el
-
-
 # ---------------------------------------------------------------------------
 # ET helpers
 # ---------------------------------------------------------------------------
 
-def _q(tag: str) -> str:
+
+def _fix_mixed_content_indent(elem: ET.Element) -> None:
+    """Remove spurious whitespace-only text added by ET.indent() to inline elements.
+
+    ET.indent() unconditionally adds newline + spaces as the ``.tail`` of
+    every element, including inline ones (e.g. ``<hi>``, ``<ref>``, ``<ptr>``),
+    and as the ``.text`` of elements whose first child is an element rather than
+    text.  Inside mixed-content parents those injected newlines become visible
+    text.  This function walks the tree and resets whitespace-only ``.tail``
+    values from children, and the whitespace-only ``.text`` of the element
+    itself, for any element that contains mixed content.
+
+    Args:
+        elem (ET.Element): The root of the element tree to fix.
+    """
+    children = list(elem)
+    has_real_text = bool(elem.text and elem.text.strip())
+    has_tailed_child = any(c.tail and c.tail.strip() for c in children)
+    if has_real_text or has_tailed_child:
+        if elem.text and not elem.text.strip():
+            elem.text = None
+        for child in children:
+            if child.tail and not child.tail.strip():
+                child.tail = None
+    for child in children:
+        _fix_mixed_content_indent(child)
+
+
+def _tei(tag: str) -> str:
     """Return a Clark-notation qualified name in the TEI namespace.
 
     Args:

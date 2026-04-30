@@ -1,17 +1,18 @@
-"""Utility functions for replacing or detokenizing special tokens in text,
-such as footnote references and pipes."""
+"""Utility functions for string replacement operations."""
 
 import re
 
 
 class ReplacementUtils:
-    """A class that contains utility functions for replacing or detokenizing special tokens in text,
-    such as footnote references and pipes."""
+    """A class that contains utility functions for string replacement operations."""
 
-    _TOKEN_PIPE = "@@PIPE@@"
-    _TOKEN_FNREF = "@@FNREF"
-    _TOKEN_FNCROSSREF = "@@FNCROSSREF"
-    _TOKEN_SUFFIX = "@@"
+    _ANG_RE = re.compile(r"""\s*\(\w+\)=(?:"[^"]*"|'[^']*')""")
+    _CROSSREF_RE = re.compile(
+        r"<a\b(?![^>]*\bid=['\"]note-ref-)[^>]*fragmentId:\s*'note-(\d+)'[^>]*>\s*\d+\s*</a>",
+        re.IGNORECASE,
+    )
+    _NOTE_REF_ID_RE = re.compile(r"^note-ref-(\d+)$")
+    _ADJACENT_TABLES_RE = re.compile(r"(\|[^\n]*)\n\n(\|)")
 
     @staticmethod
     def normalize_whitespace(text: str) -> str:
@@ -31,180 +32,61 @@ class ReplacementUtils:
         return text.strip()
 
     @staticmethod
-    def detokenize(text: str) -> str:
-        """Restore all tokens in Markdown text after HTML-to-Markdown conversion.
-
-        Applies detokenization for footnote references, cross-references, pipes,
-        and markdownify-escaped brackets.
+    def parse_note_ref_id(id_str: str) -> int | None:
+        """Return the note number if *id_str* matches the pattern ``note-ref-N``.
 
         Args:
-            text (str): The Markdown string containing tokens to restore.
+            id_str (str): The value of an HTML ``id`` attribute.
 
         Returns:
-            str: The string with all tokens replaced by their Markdown equivalents.
+            int | None: The note number, or ``None`` if the string does not match.
         """
-        text = ReplacementUtils._detokenize_footnote_refs(text)
-        text = ReplacementUtils._detokenize_footnote_crossrefs(text)
-        text = ReplacementUtils._detokenize_pipes(text)
-        text = ReplacementUtils._unescape_brackets(text)
-        return text
+        m = ReplacementUtils._NOTE_REF_ID_RE.match(id_str)
+        return int(m.group(1)) if m else None
 
     @staticmethod
-    def tokenize(html: str) -> str:
-        """Replace special HTML constructs with placeholder tokens before Markdown conversion.
+    def replace_crossrefs(html: str) -> str:
+        """Replace cross-reference anchors with a synthetic ``<awg-crossref n="N"/>`` tag.
 
-        Tokenizes footnote reference anchors, internal cross-reference anchors,
-        and literal pipe characters so they survive HTML-to-Markdown conversion intact.
-
-        Args:
-            html (str): The HTML string to tokenize.
-
-        Returns:
-            str: The HTML string with special constructs replaced by tokens.
-        """
-        html = ReplacementUtils._tokenize_footnote_refs(html)
-        html = ReplacementUtils._tokenize_footnote_crossrefs(html)
-        html = ReplacementUtils._tokenize_pipes(html)
-        return html
-
-    @staticmethod
-    def _detokenize_footnote_refs(text: str) -> str:
-        """Replace ``@@FNREF_N@@`` tokens with Markdown footnote references ``[^N]``.
+        Must be applied BEFORE :meth:`strip_angular_bindings` so that ``fragmentId: 'note-N'`` is
+        still present in the attribute string.
 
         Args:
-            text (str): The string containing FNREF tokens.
+            html (str): The raw HTML string possibly containing Angular cross-reference anchors.
 
         Returns:
-            str: The string with FNREF tokens replaced.
+            str: The HTML string with cross-reference anchors replaced by synthetic tags.
         """
-        return re.sub(
-            ReplacementUtils._make_token_pattern(ReplacementUtils._TOKEN_FNREF),
-            r"[^\1]",
-            text,
+        return ReplacementUtils._CROSSREF_RE.sub(
+            lambda m: f'<awg-crossref n="{m.group(1)}"/>', html
         )
 
     @staticmethod
-    def _detokenize_footnote_crossrefs(text: str) -> str:
-        """Replace ``@@FNCROSSREF_N@@`` tokens with inline links ``[N](#fnN)``.
+    def separate_adjacent_tables(text: str) -> str:
+        """Insert a blank line between two consecutive Markdown tables.
+
+        After whitespace normalization two back-to-back GFM tables are separated
+        by only one blank line (``\\n\\n``).  This method restores the two blank
+        lines (``\\n\\n\\n``) required to visually separate them by matching any
+        line ending with ``|`` followed immediately by another line starting
+        with ``|``.
 
         Args:
-            text (str): The string containing FNCROSSREF tokens.
+            text (str): The normalized Markdown string.
 
         Returns:
-            str: The string with FNCROSSREF tokens replaced.
+            str: The string with an extra blank line inserted between adjacent tables.
         """
-        return re.sub(
-            ReplacementUtils._make_token_pattern(ReplacementUtils._TOKEN_FNCROSSREF),
-            lambda m: f"[{m.group(1)}](#fn{m.group(1)})",
-            text,
-        )
+        return ReplacementUtils._ADJACENT_TABLES_RE.sub(r"\1\n\n\n\2", text)
 
     @staticmethod
-    def _detokenize_pipes(text: str) -> str:
-        """Replace ``@@PIPE@@`` tokens with escaped Markdown pipes ``\\|``.
+    def strip_angular_bindings(html: str) -> str:
+        """Remove Angular event-binding attributes from an HTML string.
 
         Args:
-            text (str): The string containing PIPE tokens.
+            html (str): The HTML string to clean.
 
         Returns:
-            str: The string with PIPE tokens replaced.
+            str: The HTML string with all ``(eventName)="..."`` attributes removed.
         """
-        return text.replace(ReplacementUtils._TOKEN_PIPE, r"\|")
-
-    @staticmethod
-    def _tokenize_footnote_crossrefs(html: str) -> str:
-        """Replace internal cross-reference anchors with ``@@FNCROSSREF_N@@`` tokens.
-
-        Matches anchors like::
-
-            <a (click)="ref.navigateToIntroFragment({..., fragmentId: 'note-18'})">18</a>
-
-        Args:
-            html (str): The HTML string to tokenize.
-
-        Returns:
-            str: The HTML string with cross-reference anchors replaced by tokens.
-        """
-        return re.sub(
-            r"<a\b[^>]*fragmentId:\s*'note-(\d+)'[^>]*>\s*\d+\s*</a>",
-            lambda m: ReplacementUtils._make_token(
-                ReplacementUtils._TOKEN_FNCROSSREF, m.group(1)
-            ),
-            html,
-            flags=re.IGNORECASE,
-        )
-
-    @staticmethod
-    def _tokenize_footnote_refs(html: str) -> str:
-        """Replace footnote ``<sup><a id='note-ref-N'>`` anchors with ``@@FNREF_N@@`` tokens.
-
-        Args:
-            html (str): The HTML string to tokenize.
-
-        Returns:
-            str: The HTML string with footnote ref anchors replaced by tokens.
-        """
-        return re.sub(
-            r"<sup>\s*<a\b[^>]*\bid=(['\"])note-ref-(\d+)\1[^>]*>[\s\S]*?</a>\s*</sup>",
-            lambda m: ReplacementUtils._make_token(
-                ReplacementUtils._TOKEN_FNREF, m.group(2)
-            ),
-            html,
-            flags=re.IGNORECASE,
-        )
-
-    @staticmethod
-    def _tokenize_pipes(html: str) -> str:
-        """Replace literal pipe characters in text content with ``@@PIPE@@`` tokens.
-
-        Uses a negative lookahead to skip pipes inside HTML tag attributes.
-        Tokens are restored as ``\\|`` after Markdown conversion to prevent
-        them from being interpreted as Markdown table cell separators.
-
-        Args:
-            html (str): The HTML string to tokenize.
-
-        Returns:
-            str: The HTML string with bare pipe characters replaced by tokens.
-        """
-        return re.sub(r"\|(?![^<>]*>)", ReplacementUtils._TOKEN_PIPE, html)
-
-    @staticmethod
-    def _unescape_brackets(text: str) -> str:
-        """Unescape ``\\[`` and ``\\]`` that markdownify over-escapes in body text.
-
-        Args:
-            text (str): The string to unescape.
-
-        Returns:
-            str: The string with escaped brackets replaced by literal brackets.
-        """
-        return text.replace(r"\[", "[").replace(r"\]", "]")
-
-    @staticmethod
-    def _make_token(prefix: str, number: str) -> str:
-        """Build a numbered token string, e.g. ``@@FNREF_5@@``.
-
-        Args:
-            prefix (str): The token prefix constant (e.g. ``@@FNREF``).
-            number (str): The note number as a string.
-
-        Returns:
-            str: The assembled token string.
-        """
-        return f"{prefix}_{number}{ReplacementUtils._TOKEN_SUFFIX}"
-
-    @staticmethod
-    def _make_token_pattern(prefix: str) -> str:
-        """Build a regex pattern that matches a numbered token for the given prefix.
-
-        Tolerates markdownify-escaped underscores (``\\_``) between the prefix
-        and the digit group.
-
-        Args:
-            prefix (str): The token prefix constant (e.g. ``@@FNREF``).
-
-        Returns:
-            str: A regex pattern string with one capturing group for the note number.
-        """
-        return prefix + r"\\?_(\d+)" + ReplacementUtils._TOKEN_SUFFIX
+        return ReplacementUtils._ANG_RE.sub("", html)

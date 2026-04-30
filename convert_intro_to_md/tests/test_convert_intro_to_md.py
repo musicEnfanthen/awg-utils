@@ -6,93 +6,44 @@ from unittest.mock import patch
 
 import pytest
 
-from convert_intro_to_md import convert_intro_to_md, get_intro_context, main
-from utils import md_renderer
-from utils.html_parser import parse_intro
+from convert_intro_to_md import convert_intro_to_md, convert_intro_to_tei, get_intro_context, main
+from utils import md_renderer, tei_renderer
 
 
 class TestConvertIntroToMd:
     """Tests for the convert_intro_to_md function."""
 
-    def test_returns_string(self):
-        """Test that the function returns a string."""
-        assert isinstance(convert_intro_to_md({"content": []}, "en"), str)
-
-    def test_empty_content_returns_newline(self):
-        """Test that an intro with no content blocks produces a bare newline."""
-        assert convert_intro_to_md({"content": []}, "en") == "\n"
-
-    def test_block_header_included(self):
-        """Test that a block header is rendered as an h2."""
-        intro = {
-            "content": [
-                {"blockHeader": "My Section", "blockContent": [], "blockNotes": []}
-            ]
-        }
-        result = convert_intro_to_md(intro, "en")
-        assert "## My Section" in result
-
-    def test_null_block_header_skipped(self):
-        """Test that a null blockHeader does not produce an h2 line."""
-        intro = {
-            "content": [{"blockHeader": None, "blockContent": [], "blockNotes": []}]
-        }
-        result = convert_intro_to_md(intro, "en")
-        assert "##" not in result
-
-    def test_empty_block_header_skipped(self):
-        """Test that a whitespace-only blockHeader does not produce an h2 line."""
-        intro = {
-            "content": [{"blockHeader": "   ", "blockContent": [], "blockNotes": []}]
-        }
-        result = convert_intro_to_md(intro, "en")
-        assert "##" not in result
-
-    def test_block_content_rendered(self):
-        """Test that blockContent HTML paragraphs appear in the output."""
-        intro = {"content": [{"blockContent": ["<p>Hello</p>"], "blockNotes": []}]}
-        result = convert_intro_to_md(intro, "en")
-        assert "Hello" in result
-
-    def test_footnote_section_uses_en_header(self):
-        """Test that the footnote section header is 'Notes' for locale 'en'."""
-        note_html = '<p id="note-1"><a class="note-backlink" href="#note-ref-1">1</a> | Text</p>'
-        intro = {
-            "content": [
-                {
-                    "blockContent": [],
-                    "blockNotes": [note_html],
-                }
-            ]
-        }
-        result = convert_intro_to_md(intro, "en")
-        assert "## Notes" in result
-
-    def test_footnote_section_uses_de_header(self):
-        """Test that the footnote section header is 'Anmerkungen' for locale 'de'."""
-        note_html = '<p id="note-1"><a class="note-backlink" href="#note-ref-1">1</a> | Text</p>'
-        intro = {
-            "content": [
-                {
-                    "blockContent": [],
-                    "blockNotes": [note_html],
-                }
-            ]
-        }
-        result = convert_intro_to_md(intro, "de")
-        assert "## Anmerkungen" in result
-
     def test_delegates_to_md_renderer(self):
         """Test that convert_intro_to_md delegates to md_renderer.render."""
-        intro = {"content": []}
+        blocks = []
         with patch.object(md_renderer, "render", return_value="done\n") as mock:
-            result = convert_intro_to_md(intro, "en")
-        mock.assert_called_once_with(parse_intro(intro), "en")
+            result = convert_intro_to_md(blocks, "en")
+        mock.assert_called_once_with(blocks, "en")
         assert result == "done\n"
 
-    def test_missing_content_key(self):
-        """Test that an intro dict without a 'content' key is handled gracefully."""
-        assert convert_intro_to_md({}, "en") == "\n"
+    def test_passes_locale_to_renderer(self):
+        """Test that the locale argument is forwarded unchanged to md_renderer.render."""
+        with patch.object(md_renderer, "render", return_value="\n") as mock:
+            convert_intro_to_md([], "de")
+        mock.assert_called_once_with([], "de")
+
+
+class TestConvertIntroToTei:
+    """Tests for the convert_intro_to_tei function."""
+
+    def test_delegates_to_tei_renderer(self):
+        """Test that convert_intro_to_tei delegates to tei_renderer.render."""
+        blocks = []
+        with patch.object(tei_renderer, "render", return_value="<xml/>") as mock:
+            result = convert_intro_to_tei(blocks, "de-1", "de")
+        mock.assert_called_once_with(blocks, "de-1", "de")
+        assert result == "<xml/>"
+
+    def test_passes_all_args_to_renderer(self):
+        """Test that blocks, intro_id and locale are all forwarded to tei_renderer.render."""
+        with patch.object(tei_renderer, "render", return_value="<xml/>") as mock:
+            convert_intro_to_tei([], "en-2", "en")
+        mock.assert_called_once_with([], "en-2", "en")
 
 
 class TestGetIntroContext:

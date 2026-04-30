@@ -58,13 +58,13 @@ Die [Uraufführung von sechs George-Liedern fand am 8. Februar 1910 in Wien](htt
 |  |  |
 | --- | --- |
 | Aus dem siebenten Ring | |
-| *Eingang* M 138 | (Textfassung 1) |
-| „Dies ist ein Lied“ M 133 | (Textfassung 2) |
-| „Im Windesweben“ M 134 | (Textfassung 2) |
-| „Kahl reckt der Baum“ M 137 | (Textfassung 1) |
+| &ensp;&ensp;*Eingang* M 138 | (Textfassung 1) |
+| &ensp;&ensp;„Dies ist ein Lied“ M 133 | (Textfassung 2) |
+| &ensp;&ensp;„Im Windesweben“ M 134 | (Textfassung 2) |
+| &ensp;&ensp;„Kahl reckt der Baum“ M 137 | (Textfassung 1) |
 | Aus dem Jahr der Seele | |
-| „Noch zwingt mich Treue“ M 139 | (Textfassung 1) |
-| „Ihr tratet zu dem Herde“ M 142 | (unbekannte Textfassung) |
+| &ensp;&ensp;„Noch zwingt mich Treue“ M 139 | (Textfassung 1) |
+| &ensp;&ensp;„Ihr tratet zu dem Herde“ M 142 | (unbekannte Textfassung) |
 
 Von nahezu allen diesen Liedern sind Abschriften fremder Hand in **F** (in Quellenübersicht zu op. 3) und **D** (in Quellenübersicht zu op. 4) überliefert, die sehr wahrscheinlich für diese Aufführung angefertigt worden waren: Nummerierungen der Lieder mit Bleistift von „I“ bis „V“ in den beiden genannten Quellen entsprechen der Reihenfolge der Texte im Programmheft. (Die nicht überlieferte Abschrift von „Ihr tratet zu dem Herde“ M 142 [**E**] dürfte vermutlich mit der Ziffer „VI“ bezeichnet gewesen sein.) Die Kopisten-Handschrift wirkt in einigen musikalisch-orthographischen Details sehr unbeholfen und weist in der Textunterlegung Ähnlichkeit mit der Schrift von [Wilhelmine (Minna) Mörtl](https://ark.dasch.swiss/ark:/72163/1/0806/H8K9PrKCTemdX5K7OH=TIAa.20230526T190059710647045Z), Weberns späterer Ehefrau, auf. Die Abschriften zeigen in der Regel zahlreiche Eintragungen Weberns, die zum Teil (vor allem bei „Dies ist ein Lied“ M 133) Überarbeitungen zu späteren Textfassungen betreffen. Einige der Eintragungen mit rotem Buntstift dürften aber von der Vorbereitung zur Uraufführung im Februar 1910 stammen, wobei die genannten Abschriften vermutlich von der Sängerin benutzt worden waren. Mit Blick auf die mutmaßlich bei der Aufführung zugrundeliegenden Textfassungen hätte Webern die Klavierbegleitung wahrscheinlich aus den folgenden Quellen im Zustand der entsprechenden Korrekturschicht spielen können:
 
@@ -87,20 +87,27 @@ Die sechs 1910 uraufgeführten Lieder stellen lediglich eine Auswahl aus den zu 
 
 |  |  |  |
 | --- | --- | --- |
-| *Sieben Lieder* | | |
-| *nach Gedichten von Stefan George* | | |
-| *op. 2* | | |
+| | *Sieben Lieder* | |
+| | *nach Gedichten von Stefan George* | |
+| | *op. 2* | |
+| | | |
 | [b] | *1. Eingang.* | *(„VII. Ring“)* |
 | [b + r] | *2. „Dies ist ein Lied...“* | *(„VII. Ring“)* |
 | | *3. „Erwachen aus dem tiefsten traumesschoße....“* \| | |
 | | | *(„Jahr der Seele“)* |
 | [b + r] | *4. „Im windes-weben.....“* | *(„VII. Ring“)* |
-| | *5. Kunfttag 1.* | *–* |
-| [b + r] | *6. „Kahl reckt der baum..“* | *–* |
-| [b] | *7.* [„]*Im morgentaun....“ * | *–* |
-| *Anton von Webern* | | |
-| *Sieben Lieder        op. 4* | | |
-| *nach Gedichten von Stefan George* | | |
+| | *5. Kunfttag 1.* | &ensp;&ensp;*–* |
+| [b + r] | *6. „Kahl reckt der baum..“* | &ensp;&ensp;*–* |
+| [b] | *7.* [„]*Im morgentaun....“ * | &ensp;&ensp;*–* |
+| | | |
+| &ensp;&ensp;*Anton von Webern* | | |
+
+
+|  |  |  |
+| --- | --- | --- |
+| | *Sieben Lieder        op. 4* | |
+| | *nach Gedichten von Stefan George* | |
+| | | |
 | | *~~1.~~ Trauer I („Maximin“)* | *aus dem „VII. Ring“* |
 | | *2. „Ja heil und dank dir....“* | * („Nach der Lese“) aus „Jahr der Seele“* |
 | [b + r] | *3. „Noch zwingt mich treue....“* | („Waller im Schnee“) aus „Jahr der Seele“ |
@@ -146,9 +153,9 @@ Wenige Tage vor Kriegsausbruch ergab sich durch die Vermittlung von Alban Berg u
 
 Auf eine Auswahl von neun George-Liedern verweist eine in ihrer Grundschicht mit roter Tinte geschriebene autographe Titelseite (Bl. 8<sup>r</sup> in **H**): [^44] 
 
-> *Neun Lieder | op*[.] *6* [„6“ korrigiert aus: „5“; die gesamte Zeile nachträglich mit Bleistift ergänzt] | *nach Gedichten von Stefan George | komponiert | von | Anton von Webern.*
+> *Neun Lieder* | *op*[.] *6* [„6“ korrigiert aus: „5“; die gesamte Zeile nachträglich mit Bleistift ergänzt] | *nach Gedichten von Stefan George* | *komponiert* | *von* | *Anton von Webern.*
 
-Die Änderung der Opuszahl der „Neun Lieder“ von „op. 2“ zu zunächst „op. 5“ erfolgte vermutlich 1914, als der Chor [„Entflieht auf leichten Kähnen“ M 129](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) in die Werkzählung als op. 2 aufgenommen wurde. Die Lieder rückten somit hinter die als „op. 3“ bezeichneten Streichquartett-Kompositionen [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 und M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z) sowie die inzwischen tatsächlich im Privatdruck als „op. 4“ erschienenen [Orchesterstücke M 152–157](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z). Eine solche Neuordnung der Opuszahlen könnte Webern während der „Revision“ seiner kompositorischen Arbeiten Ende 1914 / Anfang 1915 durchgeführt haben[^45] – möglicherweise auch noch mit Blick auf die in Aussicht gestellte Publikation einiger seiner Werke in der zweiten Jahreshälfte 1915 bei der Universal Edition. Dieser Sammlung von „Neun Liedern op. 5“ gehörte zu einem bestimmten Zeitpunkt vermutlich „Erwachen aus dem tiefsten Traumesschoße“ M 143 an, das in **A** die nachträgliche Bezeichnung „op[.] 5 N<sup>o</sup> 2“ erhielt. Wann und warum auf der zitierten Titelseite in **H** die erneute Modifizierung der Zählung von „op. 5“ zu „op. 6“ vorgenommen wurde, ist unklar. (1914 wurden vermutlich zunächst die [*Vier Stücke für Geige und Klavier* M 161–164](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z) als „op. 6“ gezählt.) Inwieweit sich die Zusammenstellungen der „ungefähr 10 Lieder“ oder „9 Lieder“ bzw. „Neun Lieder“ zwischen 1911 und 1914 darüber hinaus im Einzelnen veränderten, ist nicht dokumentiert.
+Die Änderung der Opuszahl der „Neun Lieder“ von „op. 2“ zu zunächst „op. 5“ erfolgte vermutlich 1914, als der Chor [„Entflieht auf leichten Kähnen“ M 129](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) in die Werkzählung als op. 2 aufgenommen wurde. Die Lieder rückten somit hinter die als „op. 3“ bezeichneten Streichquartett-Kompositionen [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 und M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z) sowie die inzwischen tatsächlich im Privatdruck als „op. 4“ erschienenen [Orchesterstücke M 152–157](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z). Eine solche Neuordnung der Opuszahlen könnte Webern während der „Revision“ seiner kompositorischen Arbeiten Ende 1914 / Anfang 1915 durchgeführt haben[^45] – möglicherweise auch noch mit Blick auf die in Aussicht gestellte Publikation einiger seiner Werke in der zweiten Jahreshälfte 1915 bei der Universal Edition. Dieser Sammlung von „Neun Liedern op. 5“ gehörte zu einem bestimmten Zeitpunkt vermutlich „Erwachen aus dem tiefsten Traumesschoße“ M 143 an, das in **A** die nachträgliche Bezeichnung „op[.] 5 N<sup><u>o</u></sup> 2“ erhielt. Wann und warum auf der zitierten Titelseite in **H** die erneute Modifizierung der Zählung von „op. 5“ zu „op. 6“ vorgenommen wurde, ist unklar. (1914 wurden vermutlich zunächst die [*Vier Stücke für Geige und Klavier* M 161–164](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z) als „op. 6“ gezählt.) Inwieweit sich die Zusammenstellungen der „ungefähr 10 Lieder“ oder „9 Lieder“ bzw. „Neun Lieder“ zwischen 1911 und 1914 darüber hinaus im Einzelnen veränderten, ist nicht dokumentiert.
 
 Neben Weberns Bestrebungen, eine Auswahl seiner George-Lieder zu drucken, gab es nach der oben genannten [Uraufführung von sechs Liedern im Februar 1910](https://ark.dasch.swiss/ark:/72163/1/0806/BaY0I9oeTqakiebhj7ruugD.20230526T132843454394681Z) auch immer wieder Pläne zu weiteren Aufführungen. So war für ein [Konzert am 24. April 1911 in Wien](https://ark.dasch.swiss/ark:/72163/1/0806/2fxIGhdRTAyjU4cRCjD8ugS.20230526T133158574514834Z) zunächst auch an nicht näher genannte Lieder Weberns gedacht worden, was aber aus verschiedenen Erwägungen fallen gelassen wurde.[^46] Im Zusammenhang einer [Aufführung der Violinstücke M 161–164 am 29. Juni 1912 in Wien](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z) überlegte Webern zeitweise, diese durch „4 Lieder“ zu ersetzen.[^47] Und für eine von Schönberg im Herbst 1913 aufgeworfene Idee eines gemeinschaftlichen „Kompositionsabends“ von Berg und Webern in Berlin dachte letzterer neben seinen Streichquartettkompositionen [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 und M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z) auch an Lieder:
 
@@ -158,55 +165,41 @@ Tatsächlich stammt eine der überlieferten Quellen von „Dies ist ein Lied“ 
 
 Zu tatsächlichen Aufführungen von George-Liedern Weberns – nach der Uraufführung von sechs Liedern 1910 – kam es vermutlich erst nach Kriegsende. Diese standen in einem engen Zusammenhang mit der Publikation der *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3 im Verlag des Vereins für musikalische Privataufführungen (**L**): In einem Vereinskonzert sang [Felicie Hüni-Mihacsek](https://ark.dasch.swiss/ark:/72163/1/0806/229V7vNzQVKQVVyHDWfBqAg.20130201T141419Z) begleitet von [Eduard Steuermann](https://ark.dasch.swiss/ark:/72163/1/0806/dO0nWhTqSmm5q6TSYpbkAQs.20230526T201818690082467Z) [am 6. April 1919](https://ark.dasch.swiss/ark:/72163/1/0806/sZ9JzyC_SAy3unJ4gzsndg0.20230526T200336467265224Z) zunächst „Vier Lieder Op. 3“, wobei im Vergleich zu den zwei Monate später gedruckten *Fünf Liedern* op. 3 das dort dritte Lied „An Bachesranft“ M 135 noch fehlte.[^53] [Am 6. Juni 1919 erfolgte dann durch dieselben Ausführenden die Uraufführung der vollständigen Sammlung](https://ark.dasch.swiss/ark:/72163/1/0806/oNFEV2IsQ5WXX2YjTn0DoQO.20230526T133409619659697Z), deren Partitur beim Konzert auch zum Verkauf auslag.[^54] Über die Herstellung dieses Drucks ist kaum etwas bekannt,[^55] eine Stichvorlage [**K**], die für einige der Lieder neue, in anderen Quellen nicht dokumentierte Textfassungen geboten haben muss, ist nicht überliefert. Die beiden Vereins-Aufführungen im April und Juni dürften auf der Grundlage von handschriftlichen Quellen mit früheren Textfassungen erfolgt sein, oder das verwendete Material ist ebenfalls nicht erhalten.[^56] Der Druck **L** war erst einige Tage vor der zweiten Aufführung im Juni fertiggestellt worden[^57] und enthält folgende Lieder:
 
-> I    „Dies ist ein Lied“ M 133 (Textfassung 4)
->
-> II   „Im Windesweben“ M 134 (Textfassung 3)
->
-> III  „An Bachesranft“ M 135 (Textfassung 3)
->
-> IV  „Im Morgentaun“ M 136 (Textfassung 3)
->
-> V   „Kahl reckt der Baum“ M 137 (Textfassung 5)
+|  |  |
+| --- | --- |
+| I | „Dies ist ein Lied“ M 133 (Textfassung 4) |
+| II | „Im Windesweben“ M 134 (Textfassung 3) |
+| III | „An Bachesranft“ M 135 (Textfassung 3) |
+| IV | „Im Morgentaun“ M 136 (Textfassung 3) |
+| V | „Kahl reckt der Baum“ M 137 (Textfassung 5) |
 
 Nachdem Webern im August 1920 schließlich einen Vertrag mit der Universal Edition über die Abtretung des Urheberrechts zunächst von [op. 1](https://ark.dasch.swiss/ark:/72163/1/0806/fcgOtGhnQMW3cH0Ddrd_Og_.20240706T164225097044107Z) (Passacaglia M 127), [op. 2](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) („Entflieht auf leichten Kähnen“ M 129), op. 3 (George-Lieder M 133–137) und [op. 6](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z) (Orchesterstücke M 152–157) abgeschlossen hatte, wurden die verbliebenen Exemplare der 1919 vom Verein gedruckten Auflage der *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3 von der Universal Edition übernommen.[^58]
 
 Für die Drucklegung der *Fünf Lieder nach Gedichten von Stefan George* op. 4 ließ Webern eine Abschrift **I** der in seiner autographen Reinschrift **H** enthaltenen Textfassungen anfertigen. Wann dies genau geschah, ist unklar, vermutlich in zeitlicher Nähe zum Vertragsabschluss über das Werk im April 1923.[^59] Der Druck **J** erschien im August 1923 und enthält folgende Lieder:
 
-> I     *Eingang* („Welt der Gestalten“) M 138 (Textfassung 3)
->
-> II   „Noch zwingt mich Treue“ M 139 (Textfassung 3)
->
-> III  „Ja Heil und Dank dir“ M 140 (Textfassung 2)
->
-> IV  „So ich traurig bin“ M 141 (Textfassung 2)
->
-> V   „Ihr tratet zu dem Herde“ M 142 (Textfassung 3)
+|  |  |
+| --- | --- |
+| I | *Eingang* („Welt der Gestalten“) M 138 (Textfassung 3) |
+| II | „Noch zwingt mich Treue“ M 139 (Textfassung 3) |
+| III | „Ja Heil und Dank dir“ M 140 (Textfassung 2) |
+| IV | „So ich traurig bin“ M 141 (Textfassung 2) |
+| V | „Ihr tratet zu dem Herde“ M 142 (Textfassung 3) |
 
 Die [Uraufführung der *Fünf Lieder nach Gedichten von Stefan George* op. 4 erfolgte bereits am 23. November 1923 in Hamburg](https://ark.dasch.swiss/ark:/72163/1/0806/zA8MiJSxTNC8NjavQyFXtQh.20240507T15252944409618Z) mit [Jenny Jungbauer](https://ark.dasch.swiss/ark:/72163/1/0806/5evNWSVVRV=eFl2Dw6x1EwY.20240507T152904817631725Z) und [Ilse Fromm-Michaels](https://ark.dasch.swiss/ark:/72163/1/0806/MSetm2ihRkyKb_GpCwVDEAx.20240507T153730821948699Z), im Rahmen des von [Josef Rufer](https://ark.dasch.swiss/ark:/72163/1/0806/0PDraSNuT8=_WT6C8tpZ5gp.20240507T134915656624186Z) und [Hans Heinz Stuckenschmidt](https://ark.dasch.swiss/ark:/72163/1/0806/BcK4HDnpToSxFrCrJBSUnA3.20240808T1346055010363Z) organisierten Konzert-Zyklus „Neue Musik“. Webern war wohl nicht anwesend und auch nicht in die Vorbereitung eingebunden gewesen.[^60] Eine [Aufführung der vollständigen Sammlung von op. 4 in Weberns Anwesenheit fand dagegen erst am 10. Februar 1940 in Basel](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) in einem Konzert der Internationalen Gesellschaft für Neue Musik (im Folgenden: IGNM) mit [Maguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) und [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z) statt, bei dem diese von Webern auch noch drei aus den *Vier Liedern* op. 12 sowie Lieder von Schönberg und Berg interpretierten.[^61]
 
 Wie bei dieser zuletzt genannten fanden weitere Aufführungen von George-Liedern zu Lebzeiten Weberns häufig in verschiedenen Kombinationen statt, in denen aus den Sammlungen der gedruckten Opera 3 und 4 sowie den *Vier Liedern* op. 12 ausgewählt wurde. Folgende Aufführungen lassen sich neben den bereits erwähnten von 1910, 1919 (Uraufführung op. 3) und 1923 (Uraufführung op. 4) derzeit nachweisen:
 
-–  [20. November 1922, Prag, Verein für musikalische Privataufführungen](https://ark.dasch.swiss/ark:/72163/1/0806/MTckoKrlQjuo63pcfXMiIAT.20230526T214750265461303Z), Felicie Hüni-Mihacsek und Eduard Steuermann: *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^62]
-
-–  [17. Januar 1925, Paris, Revue musicale](https://ark.dasch.swiss/ark:/72163/1/0806/0tjlVh0tT=a3jTOBe1_DywV.20201029T101142Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) und [Ernst Bachrich](https://ark.dasch.swiss/ark:/72163/1/0806/tnrPEmghRZejLt6n_YZ3Xw1.20150427T123034Z): op. 3/1, 3/2, 3/3.[^63]
-
-–  [26. Oktober 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), Ruzena Herlinger und Eduard Steuermann: op. 3/1, 3/2, 3/5, 12/1 und 12/4.[^64]
-
-–  [25. Oktober 1929, Brüssel, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger und [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): Lieder aus op. 4 und op. 12.[^65]
-
-–  [13. April 1931, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) und Eduard Steuermann: op. 4/1, 3/1, 3/2, 3/5, 12/1 und 12/4.[^66]
-
-–  [18. November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) und [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): op. 3/1, 3/3, 12/2.[^67]
-
-–  [2. Dezember 1933, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Konzert der IGNM zu Weberns 60. Geburtstag), Aenne Michalsky und Eduard Steuermann: Lieder aus op. 3, 4 und 12.[^68]
-
-–  [17. Dezember 1934, Wien, Ehrbar-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/IlPYvEQiRweaMnNsyUfkCwn.20111118T235102Z), Felicie Hüni-Mihacsek und Eduard Steuermann: *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^69]
-
-–  [10. Februar 1940, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Konzert der IGNM, Ortsgruppe Basel), Marguerite Gradmann-Lüscher und Erich Schmid: *Fünf Lieder nach Gedichten von Stefan George* op. 4 sowie op. 12/2, 12/4 und 12/1.[^70]
-
-–  [28. März 1941, Zürich, Zunfthaus „Zur Saffran“](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (Konzert der IGNM, Pro Musica, Ortsgruppe Zürich), Marguerite Gradmann-Lüscher und Erich Schmid: Fünf George-Lieder sowie drei Lieder aus op. 12.[^71]
-
-–  [5. Dezember 1943, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/YqAC8rgdQf6Egg=G6XpAaAt.20230526T154815742910429Z), Marguerite Gradmann-Lüscher und [Paul Baumgartner](https://ark.dasch.swiss/ark:/72163/1/0806/IHAK7=ESSKmigjTWgDhmhwa.20171124T083908Z): *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^72]
+- [20. November 1922, Prag, Verein für musikalische Privataufführungen](https://ark.dasch.swiss/ark:/72163/1/0806/MTckoKrlQjuo63pcfXMiIAT.20230526T214750265461303Z), Felicie Hüni-Mihacsek und Eduard Steuermann: *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^62]
+- [17. Januar 1925, Paris, Revue musicale](https://ark.dasch.swiss/ark:/72163/1/0806/0tjlVh0tT=a3jTOBe1_DywV.20201029T101142Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) und [Ernst Bachrich](https://ark.dasch.swiss/ark:/72163/1/0806/tnrPEmghRZejLt6n_YZ3Xw1.20150427T123034Z): op. 3/1, 3/2, 3/3.[^63]
+- [26. Oktober 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), Ruzena Herlinger und Eduard Steuermann: op. 3/1, 3/2, 3/5, 12/1 und 12/4.[^64]
+- [25. Oktober 1929, Brüssel, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger und [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): Lieder aus op. 4 und op. 12.[^65]
+- [13. April 1931, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) und Eduard Steuermann: op. 4/1, 3/1, 3/2, 3/5, 12/1 und 12/4.[^66]
+- [18. November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) und [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): op. 3/1, 3/3, 12/2.[^67]
+- [2. Dezember 1933, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Konzert der IGNM zu Weberns 60. Geburtstag), Aenne Michalsky und Eduard Steuermann: Lieder aus op. 3, 4 und 12.[^68]
+- [17. Dezember 1934, Wien, Ehrbar-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/IlPYvEQiRweaMnNsyUfkCwn.20111118T235102Z), Felicie Hüni-Mihacsek und Eduard Steuermann: *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^69]
+- [10. Februar 1940, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Konzert der IGNM, Ortsgruppe Basel), Marguerite Gradmann-Lüscher und Erich Schmid: *Fünf Lieder nach Gedichten von Stefan George* op. 4 sowie op. 12/2, 12/4 und 12/1.[^70]
+- [28. März 1941, Zürich, Zunfthaus „Zur Saffran“](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (Konzert der IGNM, Pro Musica, Ortsgruppe Zürich), Marguerite Gradmann-Lüscher und Erich Schmid: Fünf George-Lieder sowie drei Lieder aus op. 12.[^71]
+- [5. Dezember 1943, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/YqAC8rgdQf6Egg=G6XpAaAt.20230526T154815742910429Z), Marguerite Gradmann-Lüscher und [Paul Baumgartner](https://ark.dasch.swiss/ark:/72163/1/0806/IHAK7=ESSKmigjTWgDhmhwa.20171124T083908Z): *Fünf Lieder aus* Der siebente Ring *von Stefan George* op. 3.[^72]
 
 Zu den meisten der Ausführenden hatte Webern persönlichen Kontakt und in einigen Fällen bei der Einstudierung mitgewirkt. In seinem Handexemplar der *Fünf Lieder nach Gedichten von Stefan George* op. 4 (**J<sup>H</sup>**) finden sich verschiedene aufführungsrelevante Eintragungen und Zeitangaben. Ob diese im Zusammenhang mit einer der genannten Aufführungen stehen (möglicherweise mit der Aufführung der gesamten Sammlung 1940 in Basel), ist nicht nachweisbar.
 
@@ -246,7 +239,7 @@ Die Zusammenstellung der vier Klavierlieder zu einer mit Opuszahl versehenen Sam
 
 Eine begeisterte Reaktion erhielt Webern von Alban Berg, der ihm wenige Tage nach dem Erscheinen der Lieder schrieb:
 
-> Was für eine große Freude hast Du mir, mein Lieber, mit Deinem Op. 12 gemacht! Das ist wiederum – so wie ja alles von Dir – ein echter Webern. Schon die Zusammenstellung der wundervollen Texte u. die Zusammenziehung zu einem&ngspGanzen! Und gar erst die Musik! Ja es erscheint mir, als sähe ich Dich auf ganz neue Weise. Welch ein Ton in dem Strindberg-lied. Und überhaupt welch eine Vielfalt in den 4 Liedern. Das letzte z. Bsp[.]: eine solche Anmuth. Man kann ruhig sagen: die findet sich sonst in der ganzen Musikliteratur nicht wieder –; so ein Lied von Dir ist für mich geradezu ein Freudenspender, ein Spender einer mein ganzes Sein überstrahlenden Freude. Wie wenn an trüben Tagen plötzlich die Sonne hervorbricht u. man gar nicht weiß, warum man plötzlich froh wird.[^98]
+> Was für eine große Freude hast Du mir, mein Lieber, mit Deinem Op. 12 gemacht! Das ist wiederum – so wie ja alles von Dir – ein <u>echter</u> Webern. Schon die Zusammenstellung der wundervollen Texte u. die Zusammenziehung zu <u>einem</u>&ngsp<u>Ganzen</u>! Und gar erst die Musik! Ja es erscheint mir, als sähe ich Dich auf ganz neue Weise. Welch ein Ton in dem Strindberg-lied. Und überhaupt welch eine <u>Vielfalt</u> in den 4 Liedern. Das <u>letzte</u> z. Bsp[.]: eine solche Anmuth. Man kann ruhig sagen: die findet sich sonst in der ganzen Musikliteratur nicht wieder –; so ein Lied von Dir ist für mich geradezu ein Freudenspender, ein Spender einer mein ganzes Sein überstrahlenden Freude. Wie wenn an trüben Tagen plötzlich die Sonne hervorbricht u. man gar nicht weiß, warum man plötzlich froh wird.[^98]
 
 Die [Uraufführung des gesamten Opus 12 fand am 8. Januar 1927 im kleinen Saal des Musikvereins Wien](https://ark.dasch.swiss/ark:/72163/1/0806/ncab0O0TQdeKs=MKDFoX=Qc.20230602T093729719873208Z) mit der niederländischen Sängerin [Co van Geuns](https://ark.dasch.swiss/ark:/72163/1/0806/m21nVGTUTNGuSUU0YmciYQc.20130201T141421Z) und [Eduard Steuermann](https://ark.dasch.swiss/ark:/72163/1/0806/dO0nWhTqSmm5q6TSYpbkAQs.20230526T201818690082467Z) am Klavier statt. Im selben Konzert wurde Alban Bergs *Lyrische Suite* durch das Wiener Streichquartett ([Kolisch-Quartett](https://ark.dasch.swiss/ark:/72163/1/0806/hSBoov15RAWBZtHvXtFpfgv.20250130T132308295626946Z)) uraufgeführt sowie [Johann Sebastian Bachs](https://ark.dasch.swiss/ark:/72163/1/0806/awxdbT2CRNOgsVZxQEu9Jgt.20200902T070155Z) Konzert für vier Klaviere BWV 1065 unter Weberns Dirigat gespielt.[^99] Zur Uraufführung seiner Lieder schrieb Webern an Schönberg einige Tage später lapidar: „Am selben Abend wie das Quartett Bergs wurde auch ein Lieder-Opus von mir uraufgeführt. Das gelang sehr gut.“[^100] Auch in einer positiven Besprechung des Konzerts der *Arbeiter-Zeitung* steht die Komposition Bergs im Vordergrund, über die *Vier Lieder* op. 12 heißt es vergleichsweise kurz:
 
@@ -254,23 +247,15 @@ Die [Uraufführung des gesamten Opus 12 fand am 8. Januar 1927 im kleinen Saal d
 
 Laut einem Tagebucheintrag Weberns war *Gleich und Gleich* M 216 bereits im Oktober 1926 von einer holl.[ändischen] Sängerin“ gesungen worden,[^102] vermutlich ebenfalls von van Geuns, die einige Zeit nach der Uraufführung der *Vier Lieder* op. 12 Anfang Januar 1927 auch in Köln mit Liedern von Webern (also wahrscheinlich auch aus op. 12) und von [Alexander Zemlinsky](https://ark.dasch.swiss/ark:/72163/1/0806/GwIvlipuTGuJsf1rj=YEhgw.20150427T094535Z) auftrat.[^103] Wie bei den George-Liedern wurde bei mehreren Aufführungen zu Weberns Lebzeiten (und wohl mit dessen Einverständnis bzw. auf seine Anregung hin) wiederholt nur eine Auswahl der *Vier Lieder* op. 12 gesungen bzw. wurden einzelne Lieder mit solchen aus den George-Liedern op. 3 und op. 4 kombiniert. Nachweisbar sind, neben den erwähnten Aufführungen mit van Geuns, Konzerte an folgenden Daten:
 
-–  [26. Oktober 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) und Eduard Steuermann: op. 3/1, 3/2, 3/5, 12/1 und 12/4.[^104]
-
-–  [25. Oktober 1929, Brüssel, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger und [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): Lieder aus op. 4 und op. 12.[^105]
-
-–  [13. April 1931, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) und Eduard Steuermann: op. 4/1, 3/1, 3/2, 3/5, 12/1 und 12/4.[^106]
-
-–  [18. November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) und [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): op. 3/1, 3/3, 12/2.[^107]
-
-–  [2. Dezember 1933, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Konzert der IGNM zu Weberns 60. Geburtstag), Aenne Michalsky und Eduard Steuermann: Lieder aus op. 3, 4 und 12.[^108]
-
-–  [9. Mai 1935, Wien, Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/Yxolmc8HSzKnQEbhXk3W9QE.20111118T235102Z) (Konzert der Hertzka-Gedächtnis-Stiftung), [Julia Nessy](https://ark.dasch.swiss/ark:/72163/1/0806/uyYCI5XISOCTnLbb1aMNQQM.20200520T095844Z) (Gesang): *Vier Lieder* op. 12.[^109]
-
-–  [21. November 1935, Wien, Hagenbund](https://ark.dasch.swiss/ark:/72163/1/0806/YlmTAzngTI2LKQAim6yIlwn.20230526T150250683807671Z) (Konzert des Vereins für neue Musik), Julia Nessy (Gesang): *Vier Lieder* op. 12.[^110]
-
-–  [10. Februar 1940, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Konzert der IGNM, Ortsgruppe Basel), [Marguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) und [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z): *Fünf Lieder nach Gedichten von Stefan George* op. 4 sowie op. 12/2, 12/4 und 12/1.[^111]
-
-–  [28. März 1941, Zürich, Zunfthaus „Zur Saffran“](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (Konzert der IGNM, Pro Musica, Ortsgruppe Zürich), Marguerite Gradmann-Lüscher und Erich Schmid: Fünf George-Lieder sowie drei Lieder aus op. 12.[^112]
+- [26. Oktober 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) und Eduard Steuermann: op. 3/1, 3/2, 3/5, 12/1 und 12/4.[^104]
+- [25. Oktober 1929, Brüssel, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger und [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): Lieder aus op. 4 und op. 12.[^105]
+- [13. April 1931, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) und Eduard Steuermann: op. 4/1, 3/1, 3/2, 3/5, 12/1 und 12/4.[^106]
+- [18. November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) und [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): op. 3/1, 3/3, 12/2.[^107]
+- [2. Dezember 1933, Wien, Kleiner Musikvereins-Saal](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Konzert der IGNM zu Weberns 60. Geburtstag), Aenne Michalsky und Eduard Steuermann: Lieder aus op. 3, 4 und 12.[^108]
+- [9. Mai 1935, Wien, Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/Yxolmc8HSzKnQEbhXk3W9QE.20111118T235102Z) (Konzert der Hertzka-Gedächtnis-Stiftung), [Julia Nessy](https://ark.dasch.swiss/ark:/72163/1/0806/uyYCI5XISOCTnLbb1aMNQQM.20200520T095844Z) (Gesang): *Vier Lieder* op. 12.[^109]
+- [21. November 1935, Wien, Hagenbund](https://ark.dasch.swiss/ark:/72163/1/0806/YlmTAzngTI2LKQAim6yIlwn.20230526T150250683807671Z) (Konzert des Vereins für neue Musik), Julia Nessy (Gesang): *Vier Lieder* op. 12.[^110]
+- [10. Februar 1940, Basel, Konservatorium](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Konzert der IGNM, Ortsgruppe Basel), [Marguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) und [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z): *Fünf Lieder nach Gedichten von Stefan George* op. 4 sowie op. 12/2, 12/4 und 12/1.[^111]
+- [28. März 1941, Zürich, Zunfthaus „Zur Saffran“](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (Konzert der IGNM, Pro Musica, Ortsgruppe Zürich), Marguerite Gradmann-Lüscher und Erich Schmid: Fünf George-Lieder sowie drei Lieder aus op. 12.[^112]
 
 Zu den meisten der Ausführenden hatte Webern persönlichen Kontakt und in einigen Fällen bei der Einstudierung mitgewirkt. In seinem Handexemplar der *Vier Lieder* op. 12 (**G<sup>H</sup>**) finden sich verschiedene Zeitangaben zu den einzelnen Liedern. Ob diese im Zusammenhang mit einer der genannten Aufführungen stehen, ist nicht nachweisbar.
 
@@ -280,7 +265,7 @@ Die Anfang 1933 begonnenen und im März 1934 fertiggestellten *Drei Gesänge aus
 
 Webern lernte Jone und ihren Ehemann, den Bildhauer [Josef Humplik](https://ark.dasch.swiss/ark:/72163/1/0806/HCLb8JygShOaXx_p9FTU0gE.20130201T141418Z), vermutlich im Herbst 1926 bei einer Ausstellung des Hagenbundes in Wien kennen. Aus der Bekanntschaft entwickelten sich spätestens 1928 Pläne für eine Zusammenarbeit zwischen Jone und Webern,[^113] die zu „drei Operntexte[n]“ Jones führten.[^114] Ob sich Weberns über ein Jahr später erfolgte briefliche Äußerung an Jone, „[ü]ber ihre Bühnendichtungen“ sprechen zu wollen,[^115] auf diese oder andere Texte der Dichterin bezieht, ist unklar; Jone hatte aber wohl nach wie vor die Absicht, für Webern „ein ‚Opernbuch‘ […] zu schreiben“.[^116] Im September 1930 entschuldigte sich Webern jedenfalls dafür,
 
-> dass Ihre so schönen Bühnendichtungen mich offenbar, trotzdem ich damals sehr ernstlich damit umgegangen war, Derartiges zu komponieren, doch nicht in richtiger Bereitschaft für eine solche Arbeit angetroffen hatten.[^117]
+> dass Ihre so schönen Bühnendichtungen mich offenbar, trotzdem ich damals sehr ernstlich damit umgegangen war, Derartiges zu komponieren, doch nicht in <u>richtiger Bereitschaft</u> für eine solche Arbeit angetroffen hatten.[^117]
 
 Stattdessen bittet er sie im selben Brief darum, einen Kantatentext für ihn zu schreiben.[^118] Gedichte Jones, die sich zeitnah auf diese Aufforderung beziehen, sind jedoch nicht bekannt. („Kantaten“ auf Texte Jones komponierte Webern dann bekanntlich erst zwischen 1935 und 1943 in [*Das Augenlicht* op. 26](https://ark.dasch.swiss/ark:/72163/1/0806/wE1RDgEzSqSszu7eLv3EMwc.20240706T164229302542901Z) sowie in der [Kantate Nr. 1 op. 29](https://ark.dasch.swiss/ark:/72163/1/0806/xypqVOTnRuCzxu2YxF4chwc.20240706T164229579022199Z) und der [Kantate Nr. 2 op. 31](https://ark.dasch.swiss/ark:/72163/1/0806/wFuGrX48QMWW=DjOObGI0QO.20130310T105428Z).) Unabhängig von derart konkreten Überlegungen zu möglicher Zusammenarbeit schickte die Lyrikerin Webern immer wieder Manuskripte ihrer Gedichte.[^119]
 
@@ -342,7 +327,7 @@ Am 20. Februar berichtete Webern dann in einem Brief an Humplik, dass er gleichw
 
 An Alban Berg führte er in einem eine Woche später geschriebenen Brief die formale Disposition auch der anderen Gesänge näher aus:
 
-> Ich habe gerade ein drittes Lied (nach Jone-Texten) fertig gestellt. Eigentlich ist es eine Arie, bestehend aus einem langsamen Teil u. einem schnelleren. Es wird das erste sein.
+> Ich habe gerade ein drittes Lied (nach Jone-Texten) fertig gestellt. Eigentlich ist es eine <u>Arie</u>, bestehend aus einem langsamen Teil u. einem schnelleren. Es wird das erste sein.
 >
 > Und ich habe bemerkt, dass auch die beiden früher entstandenen eigentlich was anderes sind als Lieder (der Form nach): das eine ist direkt ein Recitativ mit einem Arioso, das andere (in der Folge jetzt letzte) ein Rondo.
 >
@@ -372,11 +357,9 @@ Immerhin bedeutete die zunehmende Isolation auch: „Ich habe jetzt doch etwas Z
 
 Nach dem Abschluss der *Drei Gesänge* op. 23 im März 1934 und parallel zur weiteren Arbeit am [*Konzert für Flöte, Oboe, Klarinette, Horn, Trompete, Posaune, Geige, Bratsche und Klavier* op. 24](https://ark.dasch.swiss/ark:/72163/1/0806/_7zTHDH9ROmZdNRhCkwqyQl.20130308T135219Z) begann Webern im Juli desselben Jahres mit der Komposition zunächst eines Liedes aus Jones insgesamt 29 (nicht nummerierte) Gedichte umfassenden Sammlung *Die Freude*. Dieser im Herbst 1933 in der katholischen Zweimonatsschrift *Die Schildgenossen* publizierte Zyklus ist untergliedert in
 
-–  5 ‚Frühlings‘-Gedichte (hieraus der Text zu „Wie bin ich froh!“ M 317 [op. 25/1]),
-
-–  8 ‚Stern‘-Gedichte (hieraus „Sterne, ihr silbernen Bienen“ M 321 [op. 25/3]) und
-
-–  16 ‚Todes‘-Gedichte (hieraus „Des Herzens Purpurvogel“ M 322 [op. 25/2]).[^158]
+- 5 ‚Frühlings‘-Gedichte (hieraus der Text zu „Wie bin ich froh!“ M 317 [op. 25/1]),
+- 8 ‚Stern‘-Gedichte (hieraus „Sterne, ihr silbernen Bienen“ M 321 [op. 25/3]) und
+- 16 ‚Todes‘-Gedichte (hieraus „Des Herzens Purpurvogel“ M 322 [op. 25/2]).[^158]
 
 Ob Webern die später insgesamt drei von ihm zur Komposition herangezogenen Gedichte auch unabhängig von (vor oder nach) dieser Veröffentlichung von Jone als Manuskript erhalten hatte, ist nicht nachweisbar. Die genannte Ausgabe von *Die Schildgenossen* war Webern jedenfalls noch Ende November 1933 nicht bekannt.[^159]
 
@@ -524,7 +507,7 @@ Basel, den 14. Mai 2024 Thomas Ahrend
 
 [^40]: | Vgl. [Bungardt, „Einleitung“](https://ark.dasch.swiss/ark:/72163/1/0806/O3BK7rlhSZKFEQRUOYDgrwq.20201104T095539Z) (Anm. [22](#fn22)), S. 25 f.: „[A]ufgrund der neuen Situation verschoben sich die Prioritäten des Verlags, wie die vorhandenen Kapazitäten für erfolgversprechende und ‚zeitgemäße‘ Projekte und Produkte zu nutzen seien: Das waren in erster Linie ‚Kriegsmusik‘ und Musiktheater. Dafür schloss man sowohl 1915 als auch in den folgenden Kriegsjahren durchaus mit ‚für unseren Verlag neuen Komponisten‘ erstmals ab. In den genannten Genres waren Beiträge von Webern aber weder vorhanden noch zu erwarten.“
 
-[^41]: | *Das moderne Lied. Eine Sammlung von 50 Gesängen für mittlere Stimme*, hg. von Josef V. v. Wöss, Wien: Universal Edition, 1915. Vgl. auch Berg an Schönberg, 20. Juli 1914 (zitiert nach *Briefwechsel Arnold Schönberg – Alban Berg*, hg. von Juliane Brand, Christopher Hailey und Andreas Mayer [Briefwechsel der Wiener Schule 3], Band 1, S. 492): „Jedenfalls wird aber dem Webern um ein Lied geschrieben. Ich denke, daß er eins aus seinen Georgeliedern schicken wird.“
+[^41]: | *Das moderne Lied. Eine Sammlung von 50 Gesängen für mittlere Stimme*, hg. von Josef V. v. Wöss, Wien: Universal Edition, 1915. Vgl. auch Berg an Schönberg, 20. Juli 1914 (zitiert nach *Briefwechsel Arnold Schönberg – Alban Berg*, hg. von Juliane Brand, Christopher Hailey und Andreas Mayer [Briefwechsel der Wiener Schule 3], Band 1, S. 492): „Jedenfalls wird aber dem Webern um ein Lied geschrieben. Ich denke, daß er eins aus <u>seinen</u> Georgeliedern schicken wird.“
 
 [^42]: | Vgl. [Webern an Hertzka, 23. Juli 1914](https://ark.dasch.swiss/ark:/72163/1/0806/Ok_dyBNxS_C_WG0sP0QkXQs.20240706T16412645977271Z) (zitiert nach [Webern, *Briefwechsel mit der Universal-Edition*](https://ark.dasch.swiss/ark:/72163/1/0806/RlzKk20zRJePbPN9xleTjgl.20201027T135553Z) [Anm. [22](#fn22)], S. 87): „Auf Ihre Zuschrift vom 20. Juli hin schicke ich Ihnen 3 Lieder von mir zur Auswahl. Ich hoffe, dass die Lieder kurz genug sind.“ Vgl. auch [Webern an Hertzka, 29. September 1914](https://ark.dasch.swiss/ark:/72163/1/0806/YD0xFXLJSz6nIeLEKiEBrQG.20240706T164140207716027Z) (ebd., S. 87 f.): „Ich bitte mich wissen zu lassen, ob die zwei Lieder von mir, die ich der Universal-Edition über deren Aufforderung im Juli zur eventuellen Aufnahme in die Sammlung das „moderne Lied“ einsandte, noch benötigt werden. Wenn nicht, bitte ich mir die Lieder ehestens zurückzuschicken. Ich habe keine anderen Exemplare davon.“ Warum Webern hier nur noch zwei, statt drei Lieder erwähnt, ist nicht klar.
 
@@ -550,7 +533,7 @@ Basel, den 14. Mai 2024 Thomas Ahrend
 
 [^53]: | Verein für musikalische Privataufführungen in Wien, „Mitteilungen Nr. 5“, 16. März 1919 (A-Was, Resource ID 4957), S. 2 und 7 (Programm-Nummer 45): „Vier Lieder Op. 3 aus ‚Der siebente Ring‘ von Stefan George“. Über den Grund der Auslassung des späteren dritten Liedes ist nichts bekannt: Möglicherweise umfasste Weberns Konzeption der Sammlung zu diesem Zeitpunkt tatsächlich nur vier Lieder, die er dann für die wiederholte Aufführung und den – erst zu diesem Zeitpunkt anvisierten? – Druck änderte.
 
-[^54]: | Vgl. Gottfried Kassowitz an Berg, 7. Juni 1919 (A-Wn, F21.Berg.920/15 Mus Mag): „Die Aufführung der Webern-Lieder war wieder ganz wundervoll […]. […] Hätte ich Ihnen die Webern-Lieder senden sollen? […] Dieselben lagen gestern pünktlich zur Aufführung zum Verkauf aus u. sind dieselben sowohl was den überaus deutlichen u. schönen Stich, als auch die sonstige sehr schöne äußere Ausstattung betrifft sehr gut herausgegeben.“ Vgl. auch [Berg an Webern, 18. Juni 1919](https://ark.dasch.swiss/ark:/72163/1/0806/v1QYcbTXQayQ2G7OTDD3wAT.20111119T000729Z) (zitiert nach *Briefwechsel Anton Webern – Alban Berg* [Anm. [31](#fn31)]): „Die gestochenen Lieder hab’ ich nun endlich auch! Sie sind sehr schön ausgefallen. Ich freu mich sehr darüber. Diese Lieder u. Pierrot sind nun die einzigen Noten, die ich hier habe.“
+[^54]: | Vgl. Gottfried Kassowitz an Berg, 7. Juni 1919 (A-Wn, F21.Berg.920/15 Mus Mag): „Die Aufführung der Webern-Lieder war wieder ganz wundervoll […]. […] Hätte ich Ihnen die Webern-Lieder senden sollen? […] Dieselben lagen gestern pünktlich zur Aufführung zum Verkauf aus u. sind dieselben sowohl was den überaus deutlichen u. schönen Stich, als auch die sonstige sehr schöne äußere Ausstattung betrifft sehr gut herausgegeben.“ Vgl. auch [Berg an Webern, 18. Juni 1919](https://ark.dasch.swiss/ark:/72163/1/0806/v1QYcbTXQayQ2G7OTDD3wAT.20111119T000729Z) (zitiert nach *Briefwechsel Anton Webern – Alban Berg* [Anm. [31](#fn31)]): „Die gestochenen Lieder hab’ ich nun endlich auch! Sie sind sehr schön ausgefallen. Ich freu mich <u>sehr</u> darüber. Diese Lieder u. Pierrot sind nun die einzigen Noten, die ich hier habe.“
 
 [^55]: | Vgl. [Bungardt, „Einleitung“](https://ark.dasch.swiss/ark:/72163/1/0806/O3BK7rlhSZKFEQRUOYDgrwq.20201104T095539Z) (Anm. [22](#fn22)), S. 26: „[D]ie Lieder […] waren auf Initiative Schönbergs und auf Kosten des Vereins bei Waldheim-Eberle gestochen und gedruckt worden.“
 
@@ -770,7 +753,7 @@ Basel, den 14. Mai 2024 Thomas Ahrend
 
 [^163]: | [Webern an Jone, 18. Juli 1934](https://ark.dasch.swiss/ark:/72163/1/0806/h04nEVYNRQGZoBao5m31qQC.20111119T000740Z) (A-Wn, HS 431/1–132). Im selben Brief, in dem ebenfalls Bachs bevorstehender Geburtstag angesprochen wird, deutet eine Bemerkung Weberns („Sie wissen ja, was ich ihm zugedenke“) an, dass er Jone inzwischen die „Gründe“ für die Komposition des Liedes mitgeteilt hatte.
 
-[^164]: | Auch in einer [Postkarte vom 8. August](https://ark.dasch.swiss/ark:/72163/1/0806/ZLlccjzUTQC3J5XSK8PyHgs.20111119T000740Z) steht das Lied für sich allein (A-Wn, HS 431/1–134): „Ich hoffe, Ihnen u. Pepo [lies: Humplik] das alles bald nach meiner Rückkehr zeigen zu können! und freue mich darauf schon sehr. Das Lied ‚Wie bin ich froh‘[.]“
+[^164]: | Auch in einer [Postkarte vom 8. August](https://ark.dasch.swiss/ark:/72163/1/0806/ZLlccjzUTQC3J5XSK8PyHgs.20111119T000740Z) steht das Lied für sich allein (A-Wn, HS 431/1–134): „Ich hoffe, Ihnen u. Pepo [lies: Humplik] das alles bald nach meiner Rückkehr zeigen zu können! und freue mich darauf schon sehr. Das Lied ‚<u>Wie bin ich froh</u>‘[.]“
 
 [^165]: | Vgl. [Moldenhauer, *Anton von Webern*](https://ark.dasch.swiss/ark:/72163/1/0806/OQuMlQB_QYCZA5wgvzmThAw.20230526T231228092746021Z) (Anm. [18](#fn18)), S. 378, der allerdings irrtümlich schreibt, dass Webern Bach zu diesem Anlass eine Reinschrift der *Zwei Lieder* op. 19 gewidmet und überreicht hätte. (Moldenhauer lag vermutlich **B** nicht vor.) Webern hatte die *Zwei Lieder* op. 19 Bach bereits zur Drucklegung des Werkes 1928 gewidmet.
 

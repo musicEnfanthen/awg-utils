@@ -1,7 +1,6 @@
 """Render a list of Block IR nodes to a Markdown string."""
 
 import sys
-from typing import Dict, List
 
 from utils.nodes import (
     Block,
@@ -11,6 +10,7 @@ from utils.nodes import (
     CrossRef,
     FootnoteRef,
     Italic,
+    ListBlock,
     Node,
     Note,
     Paragraph,
@@ -20,11 +20,21 @@ from utils.nodes import (
     Superscript,
     Table,
     Text,
+    Underline,
 )
 from utils.replacement_utils import ReplacementUtils
 
+_INLINE_WRAP: dict[type, tuple[str, str]] = {
+    Italic: ("*", "*"),
+    Bold: ("**", "**"),
+    Strikethrough: ("~~", "~~"),
+    Underline: ("<u>", "</u>"),
+    Superscript: ("<sup>", "</sup>"),
+    Paragraph: ("", ""),
+}
 
-def render(blocks: List[Block], intro_locale: str) -> str:
+
+def render(blocks: list[Block], intro_locale: str) -> str:
     """Render a list of Block IR nodes to a Markdown string.
 
     Args:
@@ -35,8 +45,8 @@ def render(blocks: List[Block], intro_locale: str) -> str:
     Returns:
         str: The fully normalized Markdown string with a trailing newline.
     """
-    lines: List[str] = []
-    all_notes: Dict[int, Note] = {}
+    lines: list[str] = []
+    all_notes: dict[int, Note] = {}
     for block in blocks:
         if block.heading:
             lines.append("## " + _render_inline_children(block.heading))
@@ -49,15 +59,17 @@ def render(blocks: List[Block], intro_locale: str) -> str:
         for note in block.notes:
             _collect_note(note, all_notes)
     lines.extend(_render_notes(all_notes, intro_locale))
-    return ReplacementUtils.normalize_whitespace("\n".join(lines)) + "\n"
+    text = ReplacementUtils.normalize_whitespace("\n".join(lines))
+    text = ReplacementUtils.separate_adjacent_tables(text)
+    return text + "\n"
 
 
-def _collect_note(note: Note, notes: Dict[int, Note]) -> None:
+def _collect_note(note: Note, notes: dict[int, Note]) -> None:
     """Insert a note into the accumulator dict, warning on duplicates.
 
     Args:
         note (Note): The note node to collect.
-        notes (Dict[int, Note]): The accumulator mapping note number to Note.
+        notes (dict[int, Note]): The accumulator mapping note number to Note.
     """
     n = int(note.id.split("-")[-1])
     if n in notes:
@@ -69,11 +81,11 @@ def _collect_note(note: Note, notes: Dict[int, Note]) -> None:
         notes[n] = note
 
 
-def _render_notes(notes: Dict[int, Note], locale: str) -> List[str]:
+def _render_notes(notes: dict[int, Note], locale: str) -> list[str]:
     """Build the footnotes section lines from the collected notes.
 
     Args:
-        notes (Dict[int, Note]): A mapping of note number to Note node.
+        notes (dict[int, Note]): A mapping of note number to Note node.
         locale (str): The locale string used to select the section header.
 
     Returns:
@@ -83,7 +95,7 @@ def _render_notes(notes: Dict[int, Note], locale: str) -> List[str]:
     if not notes:
         return []
     header = "Notes" if locale == "en" else "Anmerkungen"
-    lines: List[str] = ["---", "", f"## {header}", ""]
+    lines: list[str] = ["---", "", f"## {header}", ""]
     for n in sorted(notes):
         content = _render_inline_children(notes[n].children)
         lines.append(f"[^{n}]: | {content}")
@@ -103,23 +115,12 @@ def _render_block(node: Node) -> str:
     if isinstance(node, Paragraph):
         return _render_inline_children(node.children)
     if isinstance(node, Blockquote):
-        parts = ["> " + _render_inline_children(p.children) for p in node.paragraphs]
-        return "\n>\n".join(parts)
+        return _render_blockquote(node)
+    if isinstance(node, ListBlock):
+        return _render_list(node)
     if isinstance(node, Table):
         return _render_table(node)
     return _render_inline(node)
-
-
-def _render_inline_children(children: List[Node]) -> str:
-    """Render a sequence of inline IR nodes to a concatenated Markdown string.
-
-    Args:
-        children (List[Node]): The child nodes to render.
-
-    Returns:
-        str: The concatenated Markdown string.
-    """
-    return "".join(_render_inline(n) for n in children)
 
 
 def _render_inline(node: Node) -> str:  # pylint: disable=too-many-return-statements
@@ -131,6 +132,10 @@ def _render_inline(node: Node) -> str:  # pylint: disable=too-many-return-statem
     Returns:
         str: The rendered inline Markdown string.
     """
+    wrap = _INLINE_WRAP.get(type(node))
+    if wrap is not None:
+        pre, suf = wrap
+        return f"{pre}{_render_inline_children(node.children)}{suf}"
     if isinstance(node, Text):
         return node.value.replace("\xa0", " ")
     if isinstance(node, FootnoteRef):
@@ -139,19 +144,56 @@ def _render_inline(node: Node) -> str:  # pylint: disable=too-many-return-statem
         return f"[{node.n}](#fn{node.n})"
     if isinstance(node, Ref):
         return f"[{_render_inline_children(node.children)}]({node.target})"
-    if isinstance(node, Italic):
-        return f"*{_render_inline_children(node.children)}*"
-    if isinstance(node, Bold):
-        return f"**{_render_inline_children(node.children)}**"
-    if isinstance(node, Strikethrough):
-        return f"~~{_render_inline_children(node.children)}~~"
-    if isinstance(node, Superscript):
-        return f"<sup>{_render_inline_children(node.children)}</sup>"
-    if isinstance(node, Paragraph):
-        return _render_inline_children(node.children)
+
     if isinstance(node, Blockquote):
         return " ".join(_render_inline_children(p.children) for p in node.paragraphs)
+    if isinstance(node, ListBlock):
+        return " ".join(_render_inline_children(item.children) for item in node.items)
     return ""  # Table inline → empty
+
+
+def _render_inline_children(children: list[Node]) -> str:
+    """Render a sequence of inline IR nodes to a concatenated Markdown string.
+
+    Args:
+        children (List[Node]): The child nodes to render.
+
+    Returns:
+        str: The concatenated Markdown string.
+    """
+    return "".join(_render_inline(n) for n in children)
+
+
+def _render_blockquote(node: Blockquote) -> str:
+    """Render a Blockquote IR node to a Markdown string.
+
+    Args:
+        node (Blockquote): The blockquote node to render.
+
+    Returns:
+        str: The rendered Markdown string.
+    """
+    parts = ["> " + _render_inline_children(p.children) for p in node.paragraphs]
+    return "\n>\n".join(parts)
+
+
+def _render_list(node: ListBlock) -> str:
+    """Render a ListBlock IR node to a Markdown string.
+
+    Args:
+        node (ListBlock): The list node to render.
+
+    Returns:
+        str: The rendered Markdown string.
+    """
+    if node.ordered:
+        lines = [
+            f"{i + 1}. {_render_inline_children(item.children)}"
+            for i, item in enumerate(node.items)
+        ]
+    else:
+        lines = ["- " + _render_inline_children(item.children) for item in node.items]
+    return "\n".join(lines)
 
 
 def _render_table(node: Table) -> str:
@@ -170,11 +212,17 @@ def _render_table(node: Table) -> str:
     if num_cols == 0:
         return ""
     rendered_rows = [_render_table_row(r, num_cols) for r in rows]
+    empty_row = "|" + "|".join(" " for _ in range(num_cols)) + "|"
+    output_rows: list[str] = []
+    for row, rendered in zip(rows, rendered_rows):
+        if row.gap_before:
+            output_rows.append(empty_row)
+        output_rows.append(rendered)
     separator = "|" + "|".join(f" {'---'} " for _ in range(num_cols)) + "|"
     if rows[0].is_header:
-        return "\n".join([rendered_rows[0], separator] + rendered_rows[1:])
+        return "\n".join([output_rows[0], separator] + output_rows[1:])
     blank_header = "|" + "|".join("  " for _ in range(num_cols)) + "|"
-    return "\n".join([blank_header, separator] + rendered_rows)
+    return "\n".join([blank_header, separator] + output_rows)
 
 
 def _render_table_row(row: Row, num_cols: int) -> str:
@@ -187,7 +235,13 @@ def _render_table_row(row: Row, num_cols: int) -> str:
     Returns:
         str: The rendered Markdown table row string.
     """
-    cells: List[str] = []
+    cells: list[str] = []
+    # Single full-width cell: center only when text-center AND odd col count, else first col
+    if len(row.cells) == 1 and (row.cells[0].colspan or 1) == num_cols:
+        content = _render_cell_content(row.cells[0])
+        mid = num_cols // 2 if (row.text_center and num_cols % 2 != 0) else 0
+        cells = [""] * mid + [content] + [""] * (num_cols - mid - 1)
+        return "|" + "|".join(f" {c} " if c else " " for c in cells) + "|"
     for cell in row.cells:
         cells.append(_render_cell_content(cell))
         for _ in range((cell.colspan or 1) - 1):
@@ -206,4 +260,5 @@ def _render_cell_content(cell: Cell) -> str:
     Returns:
         str: The rendered cell content with ``|`` escaped as ``\\|``.
     """
-    return _render_inline_children(cell.children).replace("|", r"\|")
+    prefix = "&ensp;&ensp;" if cell.indent else ""
+    return prefix + _render_inline_children(cell.children).replace("|", r"\|")

@@ -10,14 +10,19 @@ Inline nodes (may appear inside block nodes):
     Italic        — *italic* / <em>
     Bold          — **bold** / <strong>
     Strikethrough — ~~strike~~ / <s>
+    Underline     — <u>underline</u> / <hi rend="underline">
     Superscript   — regular <sup>
     FootnoteRef   — footnote reference <sup><a id="note-ref-N">
     Ref           — hyperlink <a href="...">
 
 Block nodes (top-level children of Block.content):
     Paragraph     — <p>
-    Blockquote    — run of consecutive small paragraphs (<p class="small">)
+    Blockquote    — <blockquote>
+    List          — <ul> / <ol>
     Table         — <table>
+
+Helper nodes (nested inside List, not part of the Node union):
+    ListItem      — <li>
 
 Helper nodes (nested inside Table/Row, not part of the Node union):
     Row           — <tr>  (is_header=True when all cells are <th>)
@@ -68,6 +73,13 @@ class Strikethrough:
 
 
 @dataclass
+class Underline:
+    """Underlined text — from <u>."""
+
+    children: list[Node] = field(default_factory=list)
+
+
+@dataclass
 class Superscript:
     """Regular superscript — from <sup> that is *not* a footnote reference."""
 
@@ -113,9 +125,29 @@ class Paragraph:
 
 @dataclass
 class Blockquote:
-    """A run of consecutive small paragraphs (<p class="small">) merged into one block."""
+    """A blockquote block — from <blockquote>."""
 
     paragraphs: list[Paragraph] = field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# List nodes
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class ListItem:
+    """A list item — from <li>."""
+
+    children: list[Node] = field(default_factory=list)
+
+
+@dataclass
+class ListBlock:
+    """A list block — from <ul> (ordered=False) or <ol> (ordered=True)."""
+
+    items: list[ListItem] = field(default_factory=list)
+    ordered: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -125,18 +157,24 @@ class Blockquote:
 
 @dataclass
 class Cell:
-    """A table cell — from <td> or <th>."""
+    """A table cell — from <td> or <th>.  ``indent=True`` when the cell carries
+    ``class="tab"`` (visually indented row in a hierarchical table)."""
 
     children: list[Node] = field(default_factory=list)
     colspan: int | None = None
+    indent: bool = False
 
 
 @dataclass
 class Row:
-    """A table row — from <tr>.  ``is_header=True`` when all cells are <th>."""
+    """A table row — from <tr>.  ``is_header=True`` when all cells are <th>.
+    ``gap_before=True`` when the row carries ``class="row-gap"``.
+    ``text_center=True`` when the row carries ``class="text-center"``."""
 
     cells: list[Cell] = field(default_factory=list)
     is_header: bool = False
+    gap_before: bool = False
+    text_center: bool = False
 
 
 @dataclass
@@ -156,12 +194,14 @@ Node = Union[
     Italic,
     Bold,
     Strikethrough,
+    Underline,
     Superscript,
     FootnoteRef,
     CrossRef,
     Ref,
     Paragraph,
     Blockquote,
+    ListBlock,
     Table,
 ]
 

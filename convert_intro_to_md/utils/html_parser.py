@@ -1,10 +1,8 @@
 """Parse AWG intro JSON blocks into format-neutral IR nodes (see utils/nodes.py)."""
 
-import re
-from typing import Dict, List
-
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+from utils.replacement_utils import ReplacementUtils
 from utils.nodes import (
     Block,
     Blockquote,
@@ -13,6 +11,8 @@ from utils.nodes import (
     CrossRef,
     FootnoteRef,
     Italic,
+    ListBlock,
+    ListItem,
     Node,
     Note,
     Paragraph,
@@ -22,21 +22,22 @@ from utils.nodes import (
     Superscript,
     Table,
     Text,
+    Underline,
 )
 
-# \w+ (not [^)]+) prevents the pattern from matching across "(<a (click)=" text content
-_ANG_RE = re.compile(r"""\s*\(\w+\)=(?:"[^"]*"|'[^']*')""")
-_CROSSREF_RE = re.compile(
-    r"<a\b(?![^>]*\bid=['\"]note-ref-)[^>]*fragmentId:\s*'note-(\d+)'[^>]*>\s*\d+\s*</a>",
-    re.IGNORECASE,
-)
-_NOTE_REF_ID_RE = re.compile(r"^note-ref-(\d+)$")
-_SMALL_PARA_RE = re.compile(
-    r"<p\b(?=[^>]*\bsmall\b)(?![^>]*\blist\b)[^>]*>", re.IGNORECASE
-)
+_SIMPLE_TAG_MAP: dict[str, type] = {
+    "b": Bold,
+    "em": Italic,
+    "i": Italic,
+    "li": ListItem,
+    "p": Paragraph,
+    "s": Strikethrough,
+    "strong": Bold,
+    "u": Underline,
+}
 
 
-def parse_intro(intro: Dict) -> List[Block]:
+def parse_intro(intro: dict) -> list[Block]:
     """Parse a single intro JSON object into a list of Block IR nodes.
 
     Args:
@@ -57,14 +58,12 @@ def parse_intro(intro: Dict) -> List[Block]:
 
 
 # ---------------------------------------------------------------------------
-# Block-content parsing
+# Block-content and note parsing
 # ---------------------------------------------------------------------------
 
-def _parse_block_content(block_content: List[str]) -> List[Node]:
-    """Parse a list of HTML fragment strings into IR nodes.
 
-    Consecutive small paragraphs (``<p class="small">``) are grouped into a
-    single :class:`Blockquote` node.
+def _parse_block_content(block_content: list[str]) -> list[Node]:
+    """Parse a list of HTML fragment strings into IR nodes.
 
     Args:
         block_content (List[str]): Raw HTML fragment strings from ``blockContent``.
@@ -72,28 +71,13 @@ def _parse_block_content(block_content: List[str]) -> List[Node]:
     Returns:
         List[Node]: The parsed IR nodes in document order.
     """
-    nodes: List[Node] = []
-    i = 0
-    while i < len(block_content):
-        html = block_content[i]
-        if _is_small_para(html):
-            group = [html]
-            while i + 1 < len(block_content) and _is_small_para(block_content[i + 1]):
-                i += 1
-                group.append(block_content[i])
-            paras: List[Paragraph] = []
-            for small_html in group:
-                for node in _parse_fragment(small_html):
-                    if isinstance(node, Paragraph):
-                        paras.append(node)
-            nodes.append(Blockquote(paragraphs=paras))
-        else:
-            nodes.extend(_parse_fragment(html))
-        i += 1
+    nodes: list[Node] = []
+    for html in block_content:
+        nodes.extend(_parse_fragment(html))
     return nodes
 
 
-def _parse_fragment(html: str) -> List[Node]:
+def _parse_fragment(html: str) -> list[Node]:
     """Parse a single HTML fragment string into a list of IR nodes.
 
     Args:
@@ -102,18 +86,57 @@ def _parse_fragment(html: str) -> List[Node]:
     Returns:
         List[Node]: The top-level IR nodes produced from the fragment.
     """
-    soup = BeautifulSoup(_strip_angular(_preprocess_crossrefs(html)), "html.parser")
-    nodes: List[Node] = []
+    soup = BeautifulSoup(_prepare_html(html), "html.parser")
+    nodes: list[Node] = []
     for child in soup.children:
         nodes.extend(_convert_node(child))
     return nodes
+
+
+def _parse_block_notes(block_notes: list[str]) -> list[Note]:
+    """Parse a list of blockNote HTML strings into :class:`Note` IR nodes.
+
+    Args:
+        block_notes (List[str]): Raw blockNote HTML strings from ``blockNotes``.
+
+    Returns:
+        List[Note]: The successfully parsed notes in source order.
+    """
+    notes: list[Note] = []
+    for note_html in block_notes:
+        note = _parse_note(note_html)
+        if note:
+            notes.append(note)
+    return notes
+
+
+def _parse_note(note_html: str) -> Note | None:
+    """Parse a single blockNote HTML string into a :class:`Note` IR node.
+
+    Strips the backlink anchor and the ``" | "`` separator that follows it.
+
+    Args:
+        note_html (str): A raw blockNote HTML string.
+
+    Returns:
+        Note | None: The parsed note, or ``None`` if no note id was found.
+    """
+    soup = BeautifulSoup(_prepare_html(note_html), "html.parser")
+    p = soup.find("p")
+    if not p:
+        return None
+    note_id = p.get("id")
+    if not note_id:
+        return None
+    return _convert_note_p(p, note_id)
 
 
 # ---------------------------------------------------------------------------
 # Node conversion
 # ---------------------------------------------------------------------------
 
-def _convert_node(bs_node) -> List[Node]:  # pylint: disable=too-many-return-statements,too-many-branches
+
+def _convert_node(bs_node) -> list[Node]:  # pylint: disable=too-many-return-statements
     """Recursively convert a BeautifulSoup node to a list of IR nodes.
 
     Transparent tags (``div``, ``span``, ``tbody``, unknown) pass their
@@ -133,42 +156,25 @@ def _convert_node(bs_node) -> List[Node]:  # pylint: disable=too-many-return-sta
 
     tag = bs_node.name
 
-    if tag == "awg-crossref":
-        n_str = bs_node.get("n", "")
-        if n_str.isdigit():
-            return [CrossRef(n=int(n_str))]
-        return []
-
-    # Footnote reference: <sup><a id="note-ref-N">N</a></sup>
-    if tag == "sup":
-        a_tag = bs_node.find("a", id=_NOTE_REF_ID_RE)
-        if a_tag:
-            m = _NOTE_REF_ID_RE.match(a_tag.get("id", ""))
-            if m:
-                return [FootnoteRef(n=int(m.group(1)))]
-        return [Superscript(children=_convert_children(bs_node))]
-
-    if tag == "p":
-        return [Paragraph(children=_convert_children(bs_node))]
-    if tag in ("em", "i"):
-        return [Italic(children=_convert_children(bs_node))]
-    if tag in ("strong", "b"):
-        return [Bold(children=_convert_children(bs_node))]
+    if tag in _SIMPLE_TAG_MAP:
+        return [_SIMPLE_TAG_MAP[tag](children=_convert_children(bs_node))]
     if tag == "a":
-        href = bs_node.get("href")
-        if href:
-            return [Ref(target=href, children=_convert_children(bs_node))]
-        # Angular-only anchor — transparent, keep content
-        return _convert_children(bs_node)
-    if tag == "s":
-        return [Strikethrough(children=_convert_children(bs_node))]
+        return _convert_a(bs_node)
+    if tag == "awg-crossref":
+        return _convert_crossref(bs_node)
+    if tag == "blockquote":
+        return _convert_blockquote(bs_node)
+    if tag == "sup":
+        return _convert_sup(bs_node)
     if tag == "table":
-        return [_parse_table(bs_node)]
-    # tbody is transparent; also div, span, blockquote, and unknown tags
+        return [_convert_table(bs_node)]
+    if tag in ("ul", "ol"):
+        return _convert_list(bs_node)
+    # tbody is transparent; also div, span, and unknown tags
     return _convert_children(bs_node)
 
 
-def _convert_children(bs_node: Tag) -> List[Node]:
+def _convert_children(bs_node: Tag) -> list[Node]:
     """Convert all children of a BeautifulSoup tag to IR nodes.
 
     Args:
@@ -177,77 +183,91 @@ def _convert_children(bs_node: Tag) -> List[Node]:
     Returns:
         List[Node]: The concatenated IR nodes from all children.
     """
-    nodes: List[Node] = []
+    nodes: list[Node] = []
     for child in bs_node.children:
         nodes.extend(_convert_node(child))
     return nodes
 
 
-def _parse_table(bs_tag: Tag) -> Table:
-    """Convert a ``<table>`` BeautifulSoup tag to a :class:`Table` IR node.
+def _convert_a(tag: Tag) -> list[Node]:
+    """Convert an ``<a>`` tag to a :class:`Ref` node or transparent children.
 
-    Handles an optional intermediate ``<tbody>`` element.
-
-    Args:
-        bs_tag (Tag): The ``<table>`` BeautifulSoup tag.
-
-    Returns:
-        Table: The parsed table IR node.
-    """
-    container = bs_tag.find("tbody") or bs_tag
-    rows: List[Row] = []
-    for tr in container.find_all("tr", recursive=False):
-        cells: List[Cell] = []
-        header_cells = tr.find_all("th", recursive=False)
-        data_cells = tr.find_all("td", recursive=False)
-        is_header = bool(header_cells) and not data_cells
-        for cell_tag in (header_cells if is_header else data_cells):
-            colspan_str = cell_tag.get("colspan")
-            colspan = int(colspan_str) if colspan_str else None
-            cells.append(Cell(children=_convert_children(cell_tag), colspan=colspan))
-        rows.append(Row(cells=cells, is_header=is_header))
-    return Table(rows=rows)
-
-
-# ---------------------------------------------------------------------------
-# Note parsing
-# ---------------------------------------------------------------------------
-
-def _parse_block_notes(block_notes: List[str]) -> List[Note]:
-    """Parse a list of blockNote HTML strings into :class:`Note` IR nodes.
+    If the anchor has an ``href`` attribute it becomes a :class:`Ref`; otherwise
+    (e.g. Angular-only anchors) it is transparent and its children are returned
+    directly.
 
     Args:
-        block_notes (List[str]): Raw blockNote HTML strings from ``blockNotes``.
+        tag (Tag): The ``<a>`` BeautifulSoup tag.
 
     Returns:
-        List[Note]: The successfully parsed notes in source order.
+        List[Node]: A :class:`Ref` node, or the children of the anchor.
     """
-    notes: List[Note] = []
-    for note_html in block_notes:
-        note = _parse_note(note_html)
-        if note:
-            notes.append(note)
-    return notes
+    href = tag.get("href")
+    if href:
+        return [Ref(target=href, children=_convert_children(tag))]
+    return _convert_children(tag)
 
 
-def _parse_note(note_html: str) -> Note | None:
-    """Parse a single blockNote HTML string into a :class:`Note` IR node.
+def _convert_blockquote(tag: Tag) -> list[Node]:
+    """Convert a ``<blockquote>`` tag to a :class:`Blockquote` node.
 
-    Strips the backlink anchor and the ``" | "`` separator that follows it.
+    Only :class:`Paragraph` children are kept; other nodes are filtered out.
 
     Args:
-        note_html (str): A raw blockNote HTML string.
+        tag (Tag): The ``<blockquote>`` BeautifulSoup tag.
 
     Returns:
-        Note | None: The parsed note, or ``None`` if no note id was found.
+        List[Node]: A single-element list containing a :class:`Blockquote` node.
     """
-    soup = BeautifulSoup(_strip_angular(_preprocess_crossrefs(note_html)), "html.parser")
-    p = soup.find("p")
-    if not p:
-        return None
-    note_id = p.get("id")
-    if not note_id:
-        return None
+    paras = [n for n in _convert_children(tag) if isinstance(n, Paragraph)]
+    return [Blockquote(paragraphs=paras)]
+
+
+def _convert_crossref(tag: Tag) -> list[Node]:
+    """Convert an ``<awg-crossref>`` tag to a :class:`CrossRef` node.
+
+    Returns an empty list if the ``n`` attribute is missing or non-numeric.
+
+    Args:
+        tag (Tag): The ``<awg-crossref>`` BeautifulSoup tag.
+
+    Returns:
+        List[Node]: A single :class:`CrossRef` node, or an empty list.
+    """
+    n_str = tag.get("n", "")
+    if n_str.isdigit():
+        return [CrossRef(n=int(n_str))]
+    return []
+
+
+def _convert_list(tag: Tag) -> list[Node]:
+    """Convert a ``<ul>`` or ``<ol>`` tag to a :class:`ListBlock` node.
+
+    Only :class:`ListItem` children are kept; other nodes are filtered out.
+
+    Args:
+        tag (Tag): The ``<ul>`` or ``<ol>`` BeautifulSoup tag.
+
+    Returns:
+        List[Node]: A single-element list containing a :class:`ListBlock` node.
+    """
+    items = [n for n in _convert_children(tag) if isinstance(n, ListItem)]
+    return [ListBlock(items=items, ordered=tag.name == "ol")]
+
+
+def _convert_note_p(p: Tag, note_id: str) -> Note:
+    """Strip the backlink anchor and separator from a note ``<p>`` and convert it.
+
+    Removes the ``<a class="note-backlink">`` anchor and the ``" | "`` separator
+    that follows it, then returns a :class:`Note` built from the remaining children.
+
+    Args:
+        p (Tag): The ``<p>`` BeautifulSoup tag of the note.
+        note_id (str): The ``id`` attribute value of *p*.
+
+    Returns:
+        Note: The converted note IR node.
+    """
     backlink = p.find("a", class_="note-backlink")
     if backlink:
         backlink.decompose()
@@ -257,45 +277,88 @@ def _parse_note(note_html: str) -> Note | None:
     return Note(id=note_id, children=_convert_children(p))
 
 
+def _convert_sup(tag: Tag) -> list[Node]:
+    """Convert a ``<sup>`` tag to a :class:`FootnoteRef` or :class:`Superscript` node.
+
+    If the ``<sup>`` contains an ``<a id="note-ref-N">`` anchor it is treated as
+    a footnote reference; otherwise it becomes a plain superscript.
+
+    Args:
+        tag (Tag): The ``<sup>`` BeautifulSoup tag.
+
+    Returns:
+        List[Node]: A single-element list containing either a
+            :class:`FootnoteRef` or a :class:`Superscript` node.
+    """
+    for a_tag in tag.find_all("a", id=True):
+        n = ReplacementUtils.parse_note_ref_id(a_tag.get("id", ""))
+        if n is not None:
+            return [FootnoteRef(n=n)]
+    return [Superscript(children=_convert_children(tag))]
+
+
+def _convert_table(bs_tag: Tag) -> Table:
+    """Convert a ``<table>`` BeautifulSoup tag to a :class:`Table` IR node.
+
+    Handles optional ``<thead>`` and ``<tbody>`` elements.  Rows inside
+    ``<thead>`` are marked ``is_header=True``; rows inside ``<tbody>`` (or
+    directly in the table when there is no ``<tbody>``) are data rows.
+
+    Args:
+        bs_tag (Tag): The ``<table>`` BeautifulSoup tag.
+
+    Returns:
+        Table: The parsed table IR node.
+    """
+    rows: list[Row] = []
+    for tr in bs_tag.find_all("tr"):
+        in_thead = tr.parent and tr.parent.name == "thead"
+        cells: list[Cell] = []
+        header_cells = tr.find_all("th", recursive=False)
+        data_cells = tr.find_all("td", recursive=False)
+        is_header = not in_thead and bool(header_cells) and not data_cells
+        gap_before = "row-gap" in (tr.get("class") or [])
+        text_center = "text-center" in (tr.get("class") or [])
+        all_cells = (
+            header_cells if is_header else tr.find_all(["th", "td"], recursive=False)
+        )
+        for cell_tag in all_cells:
+            colspan_str = cell_tag.get("colspan")
+            colspan = int(colspan_str) if colspan_str else None
+            indent = "tab" in (cell_tag.get("class") or [])
+            cells.append(
+                Cell(
+                    children=_convert_children(cell_tag), colspan=colspan, indent=indent
+                )
+            )
+        rows.append(
+            Row(
+                cells=cells,
+                is_header=is_header,
+                gap_before=gap_before,
+                text_center=text_center,
+            )
+        )
+    return Table(rows=rows)
+
+
 # ---------------------------------------------------------------------------
-# Helpers
+# Helper functions
 # ---------------------------------------------------------------------------
 
-def _preprocess_crossrefs(html: str) -> str:
-    """Replace cross-reference anchors with a synthetic ``<awg-crossref n="N"/>`` tag.
 
-    Must be applied BEFORE :func:`_strip_angular` so that ``fragmentId: 'note-N'`` is
-    still present in the attribute string.
+def _prepare_html(html: str) -> str:
+    """Prepare a raw HTML string for BeautifulSoup parsing.
 
-    Args:
-        html (str): The raw HTML string possibly containing Angular cross-reference anchors.
-
-    Returns:
-        str: The HTML string with cross-reference anchors replaced by synthetic tags.
-    """
-    return _CROSSREF_RE.sub(lambda m: f'<awg-crossref n="{m.group(1)}"/>', html)
-
-
-def _strip_angular(html: str) -> str:
-    """Remove Angular event-binding attributes from an HTML string.
+    Applies :func:`~utils.replacement_utils.ReplacementUtils.replace_crossrefs`
+    followed by :func:`~utils.replacement_utils.ReplacementUtils.strip_angular_bindings`.
 
     Args:
-        html (str): The HTML string to clean.
+        html (str): The raw HTML string.
 
     Returns:
-        str: The HTML string with all ``(eventName)="..."`` attributes removed.
+        str: The cleaned HTML string ready for parsing.
     """
-    return _ANG_RE.sub("", html)
-
-
-def _is_small_para(html: str) -> bool:
-    """Return True if the HTML string is a small (non-list) paragraph.
-
-    Args:
-        html (str): An HTML fragment string.
-
-    Returns:
-        bool: True if the fragment opens with ``<p class="... small ...">``
-        but does not also carry the ``list`` class.
-    """
-    return bool(_SMALL_PARA_RE.match(html.lstrip()))
+    return ReplacementUtils.strip_angular_bindings(
+        ReplacementUtils.replace_crossrefs(html)
+    )

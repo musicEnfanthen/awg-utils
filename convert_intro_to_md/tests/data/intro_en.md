@@ -58,13 +58,13 @@ In contrast to Webern’s compositions from before 1908 and after 1914, no conce
 |  |  |
 | --- | --- |
 | From *Der siebente Ring* | |
-| *Eingang* M 138 | (version 1) |
-| “Dies ist ein Lied” M 133 | (version 2) |
-| “Im Windesweben” M 134 | (version 2) |
-| “Kahl reckt der Baum” M 137 | (version 1) |
+| &ensp;&ensp;*Eingang* M 138 | (version 1) |
+| &ensp;&ensp;“Dies ist ein Lied” M 133 | (version 2) |
+| &ensp;&ensp;“Im Windesweben” M 134 | (version 2) |
+| &ensp;&ensp;“Kahl reckt der Baum” M 137 | (version 1) |
 | From *Das Jahr der Seele* | |
-| “Noch zwingt mich Treue” M 139 | (version 1) |
-| “Ihr tratet zu dem Herde” M 142 | (unknown version) |
+| &ensp;&ensp;“Noch zwingt mich Treue” M 139 | (version 1) |
+| &ensp;&ensp;“Ihr tratet zu dem Herde” M 142 | (unknown version) |
 
 Manuscript copies in other hands have survived of almost all these songs in **F** (see the List of Sources [*Quellenübersicht*] for Op. 3) and **D** (see the List of Sources for Op. 4) that were most likely made for this specific performance. These songs are numbered in pencil from “I” to “V” in these two sources; the numberings correspond to the order of the texts as given in the programme booklet (while no copy of “Ihr tratet zu dem Herde” M 142 [**E**] has survived, it no doubt existed and was presumably given the number “VI”). Certain musical and orthographic details in the copyist’s manuscripts seem especially clumsy, while their text underlay reveals similarities with the handwriting of [Wilhelmine (Minna) Mörtl](https://ark.dasch.swiss/ark:/72163/1/0806/H8K9PrKCTemdX5K7OH=TIAa.20230526T190059710647045Z), who later became Webern’s wife. These manuscript copies generally contain numerous annotations by Webern himself, some of which (in “Dies ist ein Lied” M 133 most of all) entail a process of revision resulting in later versions of the song. However, some of the annotations in red crayon were probably made in the context of preparations for the first performances in February 1910, when the abovementioned copies were presumably used by the singer. When we consider the versions of the musical text that were most likely performed on that occasion, we can surmise that Webern probably played the piano accompaniment from the following sources:
 
@@ -87,20 +87,27 @@ The six songs that were given their first performance in 1910 were merely a sele
 
 |  |  |  |
 | --- | --- | --- |
-| *Sieben Lieder* | | |
-| *nach Gedichten von Stefan George* | | |
-| *op. 2* | | |
+| | *Sieben Lieder* | |
+| | *nach Gedichten von Stefan George* | |
+| | *op. 2* | |
+| | | |
 | [p] | *1. Eingang.* | *(„VII. Ring“)* |
 | [p + r] | *2. „Dies ist ein Lied...“* | *(„VII. Ring“)* |
 | | *3. „Erwachen aus dem tiefsten traumesschoße....“* \| | |
 | | | *(„Jahr der Seele“)* |
 | [p + r] | *4. „Im windes-weben.....“* | *(„VII. Ring“)* |
-| | *5. Kunfttag 1.* | *–* |
-| [p + r] | *6. „Kahl reckt der baum..“* | *–* |
-| [p] | *7.* [„]*Im morgentaun....“ * | *–* |
-| *Anton von Webern* | | |
-| *Sieben Lieder        op. 4* | | |
-| *nach Gedichten von Stefan George* | | |
+| | *5. Kunfttag 1.* | &ensp;&ensp;*–* |
+| [p + r] | *6. „Kahl reckt der baum..“* | &ensp;&ensp;*–* |
+| [p] | *7.* [„]*Im morgentaun....“ * | &ensp;&ensp;*–* |
+| | | |
+| &ensp;&ensp;*Anton von Webern* | | |
+
+
+|  |  |  |
+| --- | --- | --- |
+| | *Sieben Lieder        op. 4* | |
+| | *nach Gedichten von Stefan George* | |
+| | | |
 | | *~~1.~~ Trauer I („Maximin“)* | *aus dem „VII. Ring“* |
 | | *2. „Ja heil und dank dir....“* | * („Nach der Lese“) aus „Jahr der Seele“* |
 | [p + r] | *3. „Noch zwingt mich treue....“* | („Waller im Schnee“) aus „Jahr der Seele“ |
@@ -146,9 +153,9 @@ A few days before the outbreak of war, thanks to the mediation of Alban Berg and
 
 An autograph title page by Webern, whose base layer was written in red ink, refers to a selection of nine George songs (fol. 8<sup>r</sup> in [**H**](https://edition.anton-webern.ch/dev/edition/complex/op4/report#source_H)): [^44] 
 
-> *Neun Lieder | op*[.]* 6* [“6” corrected from: “5”; the whole line has been added subsequently in pencil] | *nach Gedichten von Stefan George | komponiert | von | Anton von Webern.*
+> *Neun Lieder* | *op*[.] *6* [“6” corrected from: “5”; the whole line has been added subsequently in pencil] | *nach Gedichten von Stefan George* | *komponiert* | *von* | *Anton von Webern.*
 
-The change of opus number for the “Nine Songs” (“Neun Lieder”) from “Op. 2” to “Op. 5” (for the moment) was presumably made in 1914, when the chorus [“Entflieht auf leichten Kähnen” M 129](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) was given the opus number “2” in Webern’s list of works. These songs were thus moved after both the string quartet compositions designated as “Op. 3”, namely [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 and M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z), and the [orchestral pieces M 152–157](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z), which in the meantime actually appeared in a private print as “Op. 4”. Webern might have reordered these opus numbers when revising his compositions in late 1914 / early 1915[^45] – possibly also with a view to the prospective publication of some of his works by Universal Edition in the second half of 1915. At some point, this collection of “Nine Songs, Op. 5” presumably included “Erwachen aus dem tiefsten Traumesschoße” M 143, which was subsequently given the designation “op[.] 5 N<sup>o</sup> 2” in [**A**](https://edition.anton-webern.ch/dev/edition/complex/m143/report#source_A). It is unclear when and why the number “Op. 5” was changed to “Op. 6” on the abovementioned title page in [**H**](https://edition.anton-webern.ch/dev/edition/complex/op4/report#source_H) (in 1914, the [*Four Pieces for Violin and Piano* M 161–164](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z) were presumably initially counted as “Op. 6”.) To what extent Webern might have altered the precise content of “some 10 songs” or his “9 songs” or “Nine songs” between 1911 and 1914 remains undocumented.
+The change of opus number for the “Nine Songs” (“Neun Lieder”) from “Op. 2” to “Op. 5” (for the moment) was presumably made in 1914, when the chorus [“Entflieht auf leichten Kähnen” M 129](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) was given the opus number “2” in Webern’s list of works. These songs were thus moved after both the string quartet compositions designated as “Op. 3”, namely [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 and M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z), and the [orchestral pieces M 152–157](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z), which in the meantime actually appeared in a private print as “Op. 4”. Webern might have reordered these opus numbers when revising his compositions in late 1914 / early 1915[^45] – possibly also with a view to the prospective publication of some of his works by Universal Edition in the second half of 1915. At some point, this collection of “Nine Songs, Op. 5” presumably included “Erwachen aus dem tiefsten Traumesschoße” M 143, which was subsequently given the designation “op[.] 5 N<sup><u>o</u></sup> 2” in [**A**](https://edition.anton-webern.ch/dev/edition/complex/m143/report#source_A). It is unclear when and why the number “Op. 5” was changed to “Op. 6” on the abovementioned title page in [**H**](https://edition.anton-webern.ch/dev/edition/complex/op4/report#source_H) (in 1914, the [*Four Pieces for Violin and Piano* M 161–164](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z) were presumably initially counted as “Op. 6”.) To what extent Webern might have altered the precise content of “some 10 songs” or his “9 songs” or “Nine songs” between 1911 and 1914 remains undocumented.
 
 In addition to Webern’s efforts to get a selection of his George songs into print, there were also repeated plans for further performances of them, after the abovementioned [first performance of six songs in February 1910](https://ark.dasch.swiss/ark:/72163/1/0806/BaY0I9oeTqakiebhj7ruugD.20230526T132843454394681Z). An unspecified number of Webern’s songs was initially planned for inclusion in a [concert in Vienna on 24 April 1911](https://ark.dasch.swiss/ark:/72163/1/0806/2fxIGhdRTAyjU4cRCjD8ugS.20230526T133158574514834Z), for example, though they were dropped for various reasons.[^46] Webern temporarily considered replacing a [performance of his Pieces for Violin M 161–164, planned for 29 June 1912 in Vienna](https://ark.dasch.swiss/ark:/72163/1/0806/hc0oIJblRH64d9of5jT0nQP.20240706T164226449599508Z), with “4 songs” instead.[^47] And when Schoenberg had the idea of a joint “evening of compositions” by Berg and Webern in Berlin in autumn 1913, Webern thought of including several songs alongside his string quartet compositions [M 147–151](https://ark.dasch.swiss/ark:/72163/1/0806/Yh91U7HQRr=tS9=AvZ6=FgL.20240706T164223083836591Z), [M 171–174 and M 178–180](https://ark.dasch.swiss/ark:/72163/1/0806/EWmihye1Si=0OUqf=AyuigX.20240706T164219237846765Z):
 
@@ -158,55 +165,41 @@ In fact, one of the extant sources of “Dies ist ein Lied” M 133 ([**C**](htt
 
 After the world premiere of his six songs in 1910, it is likely that Webern’s George songs were only performed again after the end of the war. These performances were closely connected with the publication of his *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3, by the publishing house of the Verein für musikalische Privataufführungen (the Society for Private Musical Performances) ([**L**](https://edition.anton-webern.ch/dev/edition/complex/op3/report#source_L)). [On 6 April 1919](https://ark.dasch.swiss/ark:/72163/1/0806/sZ9JzyC_SAy3unJ4gzsndg0.20230526T200336467265224Z), the Verein held a concert in which [Felicie Hüni-Mihacsek](https://ark.dasch.swiss/ark:/72163/1/0806/229V7vNzQVKQVVyHDWfBqAg.20130201T141419Z) sang “Four Songs, Op. 3” accompanied by [Eduard Steuermann](https://ark.dasch.swiss/ark:/72163/1/0806/dO0nWhTqSmm5q6TSYpbkAQs.20230526T201818690082467Z), though “An Bachesranft” M 135 was subsequently inserted as the third song when they were published two months later as *Five Songs*, Op. 3.[^53] [On 6 June 1919, the same performers gave the world premiere of the complete collection of five songs](https://ark.dasch.swiss/ark:/72163/1/0806/oNFEV2IsQ5WXX2YjTn0DoQO.20230526T133409619659697Z), the score of which was also put on sale at the concert.[^54] We know almost nothing about the production process of this publication.[^55] The engraver’s copy [**K**] has not survived, though it must have included new versions of the musical text of some of the songs that are not documented in other sources. The Verein’s two performances in April and June are likely to have used manuscript sources containing earlier versions of the musical text; if not, then the copies in question have also not survived.[^56] Print [**L**](https://edition.anton-webern.ch/dev/edition/complex/op3/report#source_L) was completed only a few days before the second performance of June 1919,[^57] and contains the following songs:
 
-> I    “Dies ist ein Lied” M 133 (version 4)
->
-> II   “Im Windesweben” M 134 (version 3)
->
-> III  “An Bachesranft” M 135 (version 3)
->
-> IV  “Im Morgentaun” M 136 (version 3)
->
-> V   “Kahl reckt der Baum” M 137 (version 5)
+|  |  |
+| --- | --- |
+| I | “Dies ist ein Lied” M 133 (version 4) |
+| II | “Im Windesweben” M 134 (version 3) |
+| III | “An Bachesranft” M 135 (version 3) |
+| IV | “Im Morgentaun” M 136 (version 3) |
+| V | “Kahl reckt der Baum” M 137 (version 5) |
 
 Webern finally concluded a contract with Universal Edition in August 1920, signing over the rights to his [Op. 1](https://ark.dasch.swiss/ark:/72163/1/0806/fcgOtGhnQMW3cH0Ddrd_Og_.20240706T164225097044107Z) (Passacaglia M 127), [Op. 2](https://ark.dasch.swiss/ark:/72163/1/0806/B4KoqjrjQ9G=proU5qmQfwN.20240706T164216979936562Z) (“Entflieht auf leichten Kähnen” M 129), Op. 3 (George songs M 133–137) and [Op. 6](https://ark.dasch.swiss/ark:/72163/1/0806/EPKg=eIcRGO44SrOX=JpAwM.20240706T164218678674628Z) (*Pieces for Orchestra* M 152–157), and Universal subsequently also took on the remaining copies of the edition of the *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3, that had been printed by the Verein in 1919.[^58]
 
 For the publication of his *Five Songs on Poems of Stefan George*, Op. 4, Webern had a copy, **I**, made of the versions of the songs contained in his autograph fair copy **H**. It is unclear just when he had this done, though it was presumably not long after he signed the contract for the work in April 1923.[^59] Print **J** was published in August 1923 and contains the following songs:
 
-> I     *Eingang* (“Welt der Gestalten”) M 138 (version 3)
->
-> II   “Noch zwingt mich Treue” M 139 (version 3)
->
-> III  “Ja Heil und Dank dir” M 140 (version 2)
->
-> IV  “So ich traurig bin” M 141 (version 2)
->
-> V   “Ihr tratet zu dem Herde” M 142 (version 3)
+|  |  |
+| --- | --- |
+| I | *Eingang* (“Welt der Gestalten”) M 138 (version 3) |
+| II | “Noch zwingt mich Treue” M 139 (version 3) |
+| III | “Ja Heil und Dank dir” M 140 (version 2) |
+| IV | “So ich traurig bin” M 141 (version 2) |
+| V | “Ihr tratet zu dem Herde” M 142 (version 3) |
 
 The [world premiere of the Five Songs on Poems of Stefan George, Op. 4](https://ark.dasch.swiss/ark:/72163/1/0806/zA8MiJSxTNC8NjavQyFXtQh.20240507T15252944409618Z), was given by [Jenny Jungbauer](https://ark.dasch.swiss/ark:/72163/1/0806/5evNWSVVRV=eFl2Dw6x1EwY.20240507T152904817631725Z) und [Ilse Fromm-Michaels](https://ark.dasch.swiss/ark:/72163/1/0806/MSetm2ihRkyKb_GpCwVDEAx.20240507T153730821948699Z) on 23 November 1923 in Hamburg at a cycle of concerts entitled “New Music” that was organized by [Josef Rufer](https://ark.dasch.swiss/ark:/72163/1/0806/0PDraSNuT8=_WT6C8tpZ5gp.20240507T134915656624186Z) und [Hans Heinz Stuckenschmidt](https://ark.dasch.swiss/ark:/72163/1/0806/BcK4HDnpToSxFrCrJBSUnA3.20240808T1346055010363Z). Webern was presumably not in attendance, nor had he been involved in preparations for the performance.[^60] [The complete collection of Op. 4 was performed in Webern’s presence only on 10 February 1940 in Basel](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) in a concert of the International Society for Contemporary Music (hereinafter ISCM) featuring [Marguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) accompanied by [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z), at which they also performed three of Webern’s *Four Songs*, Op. 12, alongside songs by Schoenberg and Berg.[^61]   
 
 As in the latter case, further performances of Webern’s George songs during his lifetime often took place in various combinations comprising selections from the published collections Opp. 3 and 4 and the *Four Songs*, Op. 12. In addition to the performances already mentioned from the years 1910, 1919 (the world premiere of Op. 3) and 1923 (the world premiere of Op. 4), we currently have documentary evidence of the following:
 
-–  [20 November 1922, Prague, Verein für musikalische Privataufführungen](https://ark.dasch.swiss/ark:/72163/1/0806/MTckoKrlQjuo63pcfXMiIAT.20230526T214750265461303Z), Felicie Hüni-Mihacsek and Eduard Steuermann: *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^62]
-
-–  [17 January 1925, Paris, Revue musicale](https://ark.dasch.swiss/ark:/72163/1/0806/0tjlVh0tT=a3jTOBe1_DywV.20201029T101142Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) and [Ernst Bachrich](https://ark.dasch.swiss/ark:/72163/1/0806/tnrPEmghRZejLt6n_YZ3Xw1.20150427T123034Z): Op. 3/1, 3/2, 3/3.[^63]
-
-–  [26 October 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), Ruzena Herlinger and Eduard Steuermann: Opp. 3/1, 3/2, 3/5, 12/1 and 12/4.[^64]
-
-–  [25 October 1929, Brussels, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger and [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): songs from Opp. 4 and 12.[^65]
-
-–  [13 April 1931, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) and Eduard Steuermann: Opp. 4/1, 3/1, 3/2, 3/5, 12/1 and 12/4.[^66]
-
-–  [18 November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) and [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): Opp. 3/1, 3/3, 12/2.[^67]
-
-–  [2 December 1933, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Concert of the ISCM on the occasion of Webern’s 60<sup>th</sup> birthday), Aenne Michalsky and Eduard Steuermann: songs from Opp. 3, 4 and 12.[^68]
-
-–  [17 December 1934, Vienna, Ehrbar Hall](https://ark.dasch.swiss/ark:/72163/1/0806/IlPYvEQiRweaMnNsyUfkCwn.20111118T235102Z), Felicie Hüni-Mihacsek and Eduard Steuermann: *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^69]
-
-–  [10 February 1940, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Concert of the ISCM, Basel Section), Marguerite Gradmann-Lüscher and Erich Schmid: *Five Songs on Poems of Stefan George*, Op. 4 and Op. 12/2, 12/4 and 12/1.[^70]
-
-–  [28 March 1941, Zurich, guild house “Zur Saffran”](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (concert of the ISCM, Zurich Section “Pro Musica”), Marguerite Gradmann-Lüscher and Erich Schmid: Five George songs plus three songs from Op. 12.[^71]
-
-–  [5 December 1943, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/YqAC8rgdQf6Egg=G6XpAaAt.20230526T154815742910429Z), Marguerite Gradmann-Lüscher and [Paul Baumgartner](https://ark.dasch.swiss/ark:/72163/1/0806/IHAK7=ESSKmigjTWgDhmhwa.20171124T083908Z): *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^72]
+- [20 November 1922, Prague, Verein für musikalische Privataufführungen](https://ark.dasch.swiss/ark:/72163/1/0806/MTckoKrlQjuo63pcfXMiIAT.20230526T214750265461303Z), Felicie Hüni-Mihacsek and Eduard Steuermann: *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^62]
+- [17 January 1925, Paris, Revue musicale](https://ark.dasch.swiss/ark:/72163/1/0806/0tjlVh0tT=a3jTOBe1_DywV.20201029T101142Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) and [Ernst Bachrich](https://ark.dasch.swiss/ark:/72163/1/0806/tnrPEmghRZejLt6n_YZ3Xw1.20150427T123034Z): Op. 3/1, 3/2, 3/3.[^63]
+- [26 October 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), Ruzena Herlinger and Eduard Steuermann: Opp. 3/1, 3/2, 3/5, 12/1 and 12/4.[^64]
+- [25 October 1929, Brussels, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger and [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): songs from Opp. 4 and 12.[^65]
+- [13 April 1931, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) and Eduard Steuermann: Opp. 4/1, 3/1, 3/2, 3/5, 12/1 and 12/4.[^66]
+- [18 November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) and [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): Opp. 3/1, 3/3, 12/2.[^67]
+- [2 December 1933, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Concert of the ISCM on the occasion of Webern’s 60<sup>th</sup> birthday), Aenne Michalsky and Eduard Steuermann: songs from Opp. 3, 4 and 12.[^68]
+- [17 December 1934, Vienna, Ehrbar Hall](https://ark.dasch.swiss/ark:/72163/1/0806/IlPYvEQiRweaMnNsyUfkCwn.20111118T235102Z), Felicie Hüni-Mihacsek and Eduard Steuermann: *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^69]
+- [10 February 1940, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Concert of the ISCM, Basel Section), Marguerite Gradmann-Lüscher and Erich Schmid: *Five Songs on Poems of Stefan George*, Op. 4 and Op. 12/2, 12/4 and 12/1.[^70]
+- [28 March 1941, Zurich, guild house “Zur Saffran”](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (concert of the ISCM, Zurich Section “Pro Musica”), Marguerite Gradmann-Lüscher and Erich Schmid: Five George songs plus three songs from Op. 12.[^71]
+- [5 December 1943, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/YqAC8rgdQf6Egg=G6XpAaAt.20230526T154815742910429Z), Marguerite Gradmann-Lüscher and [Paul Baumgartner](https://ark.dasch.swiss/ark:/72163/1/0806/IHAK7=ESSKmigjTWgDhmhwa.20171124T083908Z): *Five Songs from *Der siebente Ring* by Stefan George*, Op. 3.[^72]
 
 Webern had personal contact with most of these performers, and in some cases he also assisted when they rehearsed his songs. In his personal copy of the *Five Songs on Poems of Stefan George*, Op. 4 (**J<sup>H</sup>**), we find various annotations pertaining to performances, and indications of durations. It is impossible to prove whether or not these are connected with one of the abovementioned performances (though perhaps with the first performance of the entire collection in Basel in 1940).
 
@@ -246,7 +239,7 @@ It was in 1920 at the latest when Webern brought together these four songs with 
 
 Webern received an enthusiastic reaction from Alban Berg, who wrote to him just a few days after these songs were published:
 
-> What great pleasure you have given me, my dear, with your Op. 12! This is once again – just like everything by you – a real Webern. Even the way you have compiled the wonderful texts and have brought them together into a single whole! Not to mention the music! Yes, it seems to me as if I were to see you in a completely new way. What a tone you strike in the Strindberg song. And overall, what variety there is in these 4 songs. The last one, for example: such gracefulness. One can safely say that we will not find this anywhere else in the whole music repertoire –: such a song by you is for me a veritable fount of joy, a joy that shines out over my whole being. It’s like when the sun suddenly bursts forth on a gloomy day, and you just don’t know why you suddenly feel happy again.[^98]
+> What great pleasure you have given me, my dear, with your Op. 12! This is once again – just like everything by you – a <u>real</u> Webern. Even the way you have compiled the wonderful texts and have brought them together into a <u>single whole</u>! Not to mention the music! Yes, it seems to me as if I were to see you in a completely new way. What a tone you strike in the Strindberg song. And overall, what <u>variety</u> there is in these 4 songs. The <u>last</u> one, for example: such gracefulness. One can safely say that we will not find this anywhere else in the whole music repertoire –: such a song by you is for me a veritable fount of joy, a joy that shines out over my whole being. It’s like when the sun suddenly bursts forth on a gloomy day, and you just don’t know why you suddenly feel happy again.[^98]
 
 The [world premiere of Webern’s Op. 12 in its entirety took place on 8 January 1927 in the small hall of the Vienna Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/ncab0O0TQdeKs=MKDFoX=Qc.20230602T093729719873208Z), sung by the Dutch singer [Co van Geuns](https://ark.dasch.swiss/ark:/72163/1/0806/m21nVGTUTNGuSUU0YmciYQc.20130201T141421Z) with [Eduard Steuermann](https://ark.dasch.swiss/ark:/72163/1/0806/dO0nWhTqSmm5q6TSYpbkAQs.20230526T201818690082467Z) at the piano. The same concert saw the world premiere of Alban Berg’s *Lyric Suite*, performed by the Vienna String Quartet (the [Kolisch Quartet](https://ark.dasch.swiss/ark:/72163/1/0806/hSBoov15RAWBZtHvXtFpfgv.20250130T132308295626946Z)), plus a performance under Webern’s baton of [Johann Sebastian Bach’s](https://ark.dasch.swiss/ark:/72163/1/0806/awxdbT2CRNOgsVZxQEu9Jgt.20200902T070155Z) Concerto for Four Pianos BWV 1065.[^99] Webern wrote to Schoenberg a few days later, offering a succinct commentary on the performance of his songs: “On the same evening as Berg’s quartet, a song opus of mine was also given its first performance. It went very well.”[^100] The *Arbeiter-Zeitung *afterwards featured a positive review of the concert in which it placed Berg’s work in the foreground and offered a comparatively brief report of Webern’s *Four Songs*, Op. 12:
 
@@ -254,23 +247,15 @@ The [world premiere of Webern’s Op. 12 in its entirety took place on 8 January
 
 According to a diary entry by Webern, *Gleich und Gleich* M 216 had already been sung by a “Dutch [woman] singer” in October 1926,[^102] presumably also van Geuns, who also performed songs by Webern (probably also from Op. 12) and by [Alexander Zemlinsky](https://ark.dasch.swiss/ark:/72163/1/0806/GwIvlipuTGuJsf1rj=YEhgw.20150427T094535Z) in Cologne sometime after the world premiere of the *Four Songs*, Op. 12 of early January 1927.[^103] As with the George songs, several performances during Webern’s lifetime (probably with his consent or even at his suggestion) took place at which only a selection of the *Four Songs*, Op. 12 was sung, or at which selected songs from that opus were combined with individual numbers from the George songs Opp. 3 and 4. Apart from the performances with van Geuns already mentioned above, we have proof of the following concerts having taken place:
 
-–  [26 October 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) and Eduard Steuermann: Opp. 3/1, 3/2, 3/5, 12/1 and 12/4.[^104]
-
-–  [25 October 1929, Brussels, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger and [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): songs from Opp. 4 and 12.[^105]
-
-–  [13 April 1931, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) and Eduard Steuermann: Opp. 4/1, 3/1, 3/2, 3/5, 12/1 and 12/4.[^106]
-
-–  [18 November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) and [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): Opp. 3/1, 3/3, 12/2.[^107]
-
-–  [2 December 1933, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Concert of the ISCM on the occasion of Webern’s 60<sup>th</sup> birthday), Aenne Michalsky and Eduard Steuermann: songs from Opp. 3, 4 and 12.[^108]
-
-–  [9 May 1935, Vienna, Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/Yxolmc8HSzKnQEbhXk3W9QE.20111118T235102Z) (a concert of the Hertzka Memorial Foundation), [Julia Nessy](https://ark.dasch.swiss/ark:/72163/1/0806/uyYCI5XISOCTnLbb1aMNQQM.20200520T095844Z) (voice): *Four Songs*, Op. 12.[^109]
-
-–  [21 November 1935, Vienna, Hagenbund](https://ark.dasch.swiss/ark:/72163/1/0806/YlmTAzngTI2LKQAim6yIlwn.20230526T150250683807671Z) (Concert of the Verein für neue Musik), Julia Nessy (voice): *Four Songs*, Op. 12.[^110]
-
-–  [10 February 1940, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Concert of the ISCM, Basel Section), [Marguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) and [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z): *Five Songs on Poems of Stefan George*, Op. 4 and Op. 12/2, 12/4 and 12/1.[^111]
-
-–  [28 March 1941, Zurich, guild house “Zur Saffran”](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (concert of the ISCM, Zurich Section “Pro Musica”), Marguerite Gradmann-Lüscher and Erich Schmid: Five George songs plus three songs from Op. 12.[^112]
+- [26 October 1928, London, Wigmore Hall](https://ark.dasch.swiss/ark:/72163/1/0806/Lkxch0_VSxGNtAld1rx=uAm.20230526T190025308613279Z), [Ruzena Herlinger](https://ark.dasch.swiss/ark:/72163/1/0806/aPjdxg0SSnyAUMaHQCS_uQa.20130201T141420Z) and Eduard Steuermann: Opp. 3/1, 3/2, 3/5, 12/1 and 12/4.[^104]
+- [25 October 1929, Brussels, Palais des Beaux-Arts](https://ark.dasch.swiss/ark:/72163/1/0806/QkNkF9wqQIWz4FWv443tfAo.20111118T235100Z), Ruzena Herlinger and [Stefan Askenase](https://ark.dasch.swiss/ark:/72163/1/0806/JqYy8tZ9TxiiV1TNKjqcQAr.20240808T135123531367332Z): songs from Opp. 4 and 12.[^105]
+- [13 April 1931, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/8Q7jKkm8RoSLg=fe4wJgIQg.20230526T143727259548116Z), [Aenne Michalsky](https://ark.dasch.swiss/ark:/72163/1/0806/HP=wOs6YS6yGQjYYrWwjJAJ.20171114T124124Z) and Eduard Steuermann: Opp. 4/1, 3/1, 3/2, 3/5, 12/1 and 12/4.[^106]
+- [18 November 1931, Amsterdam](https://ark.dasch.swiss/ark:/72163/1/0806/QDpv9tPJSsem_Yq8=5WXZAl.20230526T232542804100399Z), [Berthe Seroen](https://ark.dasch.swiss/ark:/72163/1/0806/uKFIiHn6RGeQoP4Nb=99=An.20230526T232623433421061Z) and [Phons Dusch](https://ark.dasch.swiss/ark:/72163/1/0806/74q9bqlCSPuIikGgRmR7NQW.20201214T081729Z): Opp. 3/1, 3/3, 12/2.[^107]
+- [2 December 1933, Vienna, Small Hall of the Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/iC5g4PHfRKSWXwVi8Vb12g2.20230526T144926011817175Z) (Concert of the ISCM on the occasion of Webern’s 60<sup>th</sup> birthday), Aenne Michalsky and Eduard Steuermann: songs from Opp. 3, 4 and 12.[^108]
+- [9 May 1935, Vienna, Musikverein](https://ark.dasch.swiss/ark:/72163/1/0806/Yxolmc8HSzKnQEbhXk3W9QE.20111118T235102Z) (a concert of the Hertzka Memorial Foundation), [Julia Nessy](https://ark.dasch.swiss/ark:/72163/1/0806/uyYCI5XISOCTnLbb1aMNQQM.20200520T095844Z) (voice): *Four Songs*, Op. 12.[^109]
+- [21 November 1935, Vienna, Hagenbund](https://ark.dasch.swiss/ark:/72163/1/0806/YlmTAzngTI2LKQAim6yIlwn.20230526T150250683807671Z) (Concert of the Verein für neue Musik), Julia Nessy (voice): *Four Songs*, Op. 12.[^110]
+- [10 February 1940, Basel, Conservatory](https://ark.dasch.swiss/ark:/72163/1/0806/1GdSoIKASUKNovRprwKihwB.20230526T15413085034697Z) (Concert of the ISCM, Basel Section), [Marguerite Gradmann-Lüscher](https://ark.dasch.swiss/ark:/72163/1/0806/tsWHLWd7QvaNdKoR=MZeDAe.20231128T131952684964307Z) and [Erich Schmid](https://ark.dasch.swiss/ark:/72163/1/0806/qMCFngv3R_qn1VLSZKbPawh.20130201T141420Z): *Five Songs on Poems of Stefan George*, Op. 4 and Op. 12/2, 12/4 and 12/1.[^111]
+- [28 March 1941, Zurich, guild house “Zur Saffran”](https://ark.dasch.swiss/ark:/72163/1/0806/tzIJJyTXSySOkpoPooa3fAw.20230526T19422666189774Z) (concert of the ISCM, Zurich Section “Pro Musica”), Marguerite Gradmann-Lüscher and Erich Schmid: Five George songs plus three songs from Op. 12.[^112]
 
 Webern had personal contact with most of these performers, and in some cases he also assisted when they rehearsed his songs. In his personal copy of the *Four Songs*, Op. 12 (**G<sup>H</sup>**), we find indications of the durations of the individual songs. We do not know if these were made in connection with any of the performances listed above.
 
@@ -280,7 +265,7 @@ The *Three Songs from *Viae inviae *by Hildegard Jone*, Op. 23, which Webern beg
 
 Webern presumably first met Jone and her husband, the sculptor [Josef Humplik](https://ark.dasch.swiss/ark:/72163/1/0806/HCLb8JygShOaXx_p9FTU0gE.20130201T141418Z), in autumn 1926 at an exhibition of the Hagenbund in Vienna. This acquaintance led to plans for a collaboration between Webern and Jone by 1928 at the latest,[^113] and resulted in Jone writing “three opera texts”.[^114] A letter exists from Webern to Jone, written over a year later, in which he wrote that he wanted “to talk about your dramas”,[^115] though it remains unclear whether he is referring to the aforementioned three libretti or to other texts by Jone. However, it does seem that Jone still intended to “write [...] a ‘libretto’” for Webern.[^116] We know that Webern wrote to Jone in September 1930 to apologize
 
-> that your dramas, which are so beautiful, had obviously not found me in the right state of mind for such work, despite the fact that I was very serious at the time about composing such things.[^117]
+> that your dramas, which are so beautiful, had obviously not found me in the <u>right state of mind</u> for such work, despite the fact that I was very serious at the time about composing such things.[^117]
 
 Instead, he goes on to ask her in this letter to write him a cantata text.[^118] Nevertheless, we do not know of any poems by Jone from this same time that might be connected to this request on the part of the composer (as is well known, Webern did indeed compose “cantatas” to texts by Jone, but only between 1935 and 1943; these were [*Das Augenlicht*, Op. 26](https://ark.dasch.swiss/ark:/72163/1/0806/wE1RDgEzSqSszu7eLv3EMwc.20240706T164229302542901Z), the [Cantata No. 1, Op. 29](https://ark.dasch.swiss/ark:/72163/1/0806/xypqVOTnRuCzxu2YxF4chwc.20240706T164229579022199Z) and the [Cantata No. 2, Op. 31](https://ark.dasch.swiss/ark:/72163/1/0806/wFuGrX48QMWW=DjOObGI0QO.20130310T105428Z)). Quite apart from such concrete proposals for a possible collaboration, Jone repeatedly sent Webern manuscripts of her poems.[^119]
 
@@ -342,7 +327,7 @@ On 20 February, Webern wrote to Humplik, telling him that he had nevertheless re
 
 In a letter that Webern sent one week later to Alban Berg, he went into greater detail about the work’s formal organization, also regarding the other songs:
 
-> I have just finished a third song (based on Jone texts). Actually, it’s an aria, comprising a slow section and a quicker section. It will be the first.
+> I have just finished a third song (based on Jone texts). Actually, it’s an <u>aria</u>, comprising a slow section and a quicker section. It will be the first.
 >
 > And I’ve realized that the other two, which I composed earlier, are actually something other than songs (in their form): the one is a straightforward recitative with an arioso, the other (which is now the last of the sequence) is a rondo.
 >
@@ -372,11 +357,9 @@ All the same, his increasing isolation did have one specific consequence: “I�
 
 After completing his *Three Songs*, Op. 23 in March 1934, Webern continued working on his [*Concerto for Flute, Oboe, Clarinet, Horn, Trumpet, Trombone, Violin, Viola and Piano*, Op. 24](https://ark.dasch.swiss/ark:/72163/1/0806/_7zTHDH9ROmZdNRhCkwqyQl.20130308T135219Z), and in parallel with this he also began composing a song to a text from Jone’s collection entitled *Die Freude* (“Joy”), which comprises 29 (unnumbered) poems in total, in July of the same year. Jone had published her cycle in the autumn of 1933 in the Catholic bimonthly magazine *Die Schildgenossen*. It is subdivided into the following:
 
-–  5 “Spring” (“Frühling”) poems (from which Webern set “Wie bin ich froh!” M 317 [Op. 25/1]),
-
-–  8 “Star” (“Stern”) poems (from which Webern set “Sterne, ihr silbernen Biene” M 321 [Op. 25/3]) and
-
-–  16 “Death” (“Tod”) poems (from which Webern set “Des Herzens Purpurvogel” M 322 [Op. 25/2]).[^158]
+- 5 “Spring” (“Frühling”) poems (from which Webern set “Wie bin ich froh!” M 317 [Op. 25/1]),
+- 8 “Star” (“Stern”) poems (from which Webern set “Sterne, ihr silbernen Biene” M 321 [Op. 25/3]) and
+- 16 “Death” (“Tod”) poems (from which Webern set “Des Herzens Purpurvogel” M 322 [Op. 25/2]).[^158]
 
 It is impossible to determine whether Webern might have received a manuscript from Jone of the three poems he chose to set, either before or after she published them. In any case, we do know that the relevant issue of *Die Schildgenossen* was still unknown to Webern at the close of November 1933.[^159]
 
@@ -524,7 +507,7 @@ Translation: Chris Walton
 
 [^40]: | See [Bungardt, “Einleitung”](https://ark.dasch.swiss/ark:/72163/1/0806/O3BK7rlhSZKFEQRUOYDgrwq.20201104T095539Z) [note [22](#fn22)), pp. 25 f.: “Given the new situation, the company’s priorities shifted with regard to how they might utilize their available capacity for promising and ‘contemporary’ projects and products, which now primarily comprised ‘war music’ and works of music theatre. In 1915 and in the subsequent war years, they accordingly signed initial contracts with composers who were ‘new to our publishing house’. However, contributions by Webern to those genres were neither forthcoming, nor to be expected.”
 
-[^41]: | *Das moderne Lied. Eine Sammlung von 50 Gesängen für mittlere Stimme*, ed. Josef V. v. Wöss, Vienna: Universal Edition, 1915. See also Berg to Schoenberg, 20 July 1914 (cited as in *Briefwechsel Arnold Schönberg – Alban Berg*, ed. Juliane Brand, Christopher Hailey and Andreas Mayer [Briefwechsel der Wiener Schule 3], vol. 1, p. 492): “Anyway, we’ll be writing to Webern for a song. I think he’ll send one of his George songs.”
+[^41]: | *Das moderne Lied. Eine Sammlung von 50 Gesängen für mittlere Stimme*, ed. Josef V. v. Wöss, Vienna: Universal Edition, 1915. See also Berg to Schoenberg, 20 July 1914 (cited as in *Briefwechsel Arnold Schönberg – Alban Berg*, ed. Juliane Brand, Christopher Hailey and Andreas Mayer [Briefwechsel der Wiener Schule 3], vol. 1, p. 492): “Anyway, we’ll be writing to Webern for a song. I think he’ll send one of <u>his</u> George songs.”
 
 [^42]: | See [Webern to Hertzka, 23 July 1914](https://ark.dasch.swiss/ark:/72163/1/0806/Ok_dyBNxS_C_WG0sP0QkXQs.20240706T16412645977271Z) (cited as in [Webern, *Briefwechsel mit der Universal-Edition*](https://ark.dasch.swiss/ark:/72163/1/0806/RlzKk20zRJePbPN9xleTjgl.20201027T135553Z) [note [22](#fn22)], p. 87): “In response to your letter of 20 July, I am sending you 3 songs of mine to choose from. I hope that these songs are short enough.” See also [Webern to Hertzka, 29 September 1914](https://ark.dasch.swiss/ark:/72163/1/0806/YD0xFXLJSz6nIeLEKiEBrQG.20240706T164140207716027Z) (*ibid.*, pp. 87 f.): “Please let me know whether the two songs of mine that I sent to Universal-Edition in July at their request for possible inclusion in their collection ‘Das moderne Lied’ are still needed. If not, please send the songs back to me as soon as possible. I have no other copies of them.” It is unclear why Webern only mentions two songs here, not three.
 
@@ -550,7 +533,7 @@ Translation: Chris Walton
 
 [^53]: | Verein für musikalische Privataufführungen in Wien, “Mitteilungen Nr. 5”, 16 March 1919 (A-Was, Resource ID 4957), pp. 2 and 7 (programme No. 45): “Four Songs, Op. 3, from *Der siebente Ring* by Stefan George”. We know nothing about why the song was omitted that was later made No. 3. It is possible that Webern’s idea for this collection at that time indeed only encompassed four songs, and that he changed the number for the repeat performance and for the work’s publication (which he might well have only begun to plan at this time).
 
-[^54]: | See Gottfried Kassowitz to Berg, 7 June 1919 (A-Wn, F21.Berg.920/15 Mus Mag): “The performance of the Webern songs was again quite wonderful [...]. [...] Should I have sent you the Webern songs? [...] They were available for sale punctually yesterday, in time for the performance, and they have come out very well, both in their extremely clear, beautiful engraving and in their very beautiful external appearance.” See also [Berg to Webern, 18 June 1919](https://ark.dasch.swiss/ark:/72163/1/0806/v1QYcbTXQayQ2G7OTDD3wAT.20111119T000729Z) (cited as in *Briefwechsel Anton Webern – Alban Berg* [note [31](#fn31)]): “I finally have the engraved songs too! They have turned out very beautiful. I am really happy about them. These songs and Pierrot are now the only scores that I have here.”
+[^54]: | See Gottfried Kassowitz to Berg, 7 June 1919 (A-Wn, F21.Berg.920/15 Mus Mag): “The performance of the Webern songs was again quite wonderful [...]. [...] Should I have sent you the Webern songs? [...] They were available for sale punctually yesterday, in time for the performance, and they have come out very well, both in their extremely clear, beautiful engraving and in their very beautiful external appearance.” See also [Berg to Webern, 18 June 1919](https://ark.dasch.swiss/ark:/72163/1/0806/v1QYcbTXQayQ2G7OTDD3wAT.20111119T000729Z) (cited as in *Briefwechsel Anton Webern – Alban Berg* [note [31](#fn31)]): “I finally have the engraved songs too! They have turned out very beautiful. I am <u>really</u> happy about them. These songs and Pierrot are now the only scores that I have here.”
 
 [^55]: | See [Bungardt, “Einleitung”](https://ark.dasch.swiss/ark:/72163/1/0806/O3BK7rlhSZKFEQRUOYDgrwq.20201104T095539Z) (note [22](#fn22)), p. 26: “The songs […] were engraved and printed by Waldheim-Eberle at the expense of the Verein and on Schoenberg’s initiative.”
 
@@ -770,7 +753,7 @@ Translation: Chris Walton
 
 [^163]: | [Webern to Jone, 18 July 1934](https://ark.dasch.swiss/ark:/72163/1/0806/h04nEVYNRQGZoBao5m31qQC.20111119T000740Z) (A-Wn, HS 431/1–132). In this same letter, which also mentions Bach’s forthcoming birthday, Webern makes a remark that indicates he had meanwhile told Jone the “reasons” for composing this song. (“You know what I owe to him”).
 
-[^164]: | This song is also mentioned on its own on a [postcard of 8 August](https://ark.dasch.swiss/ark:/72163/1/0806/ZLlccjzUTQC3J5XSK8PyHgs.20111119T000740Z) (A-Wn, HS 431/1–134): “I hope to be able to show you and Pepo [i. e. Humplik] everything soon after my return! and I am already looking forward to it a lot. The song ‘Wie bin ich froh’[.]”
+[^164]: | This song is also mentioned on its own on a [postcard of 8 August](https://ark.dasch.swiss/ark:/72163/1/0806/ZLlccjzUTQC3J5XSK8PyHgs.20111119T000740Z) (A-Wn, HS 431/1–134): “I hope to be able to show you and Pepo [i. e. Humplik] everything soon after my return! and I am already looking forward to it a lot. The song ‘<u>Wie bin ich froh</u>’[.]”
 
 [^165]: | See [Moldenhauer, *Anton von Webern*](https://ark.dasch.swiss/ark:/72163/1/0806/OQuMlQB_QYCZA5wgvzmThAw.20230526T231228092746021Z) (note [18](#fn18)), p. 418, though he erroneously writes that Webern had dedicated a fair copy of the *Two Songs*, Op. 19, to Bach and had given it to him on this occasion (Moldenhauer presumably did not have **B** available for consultation). Webern had already dedicated the *Two Songs*, Op. 19, to Bach in 1928 when the work was published.
 

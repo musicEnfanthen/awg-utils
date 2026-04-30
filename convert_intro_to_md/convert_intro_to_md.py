@@ -16,14 +16,15 @@ from typing import Dict
 
 from utils.file_utils import FileUtils
 from utils.html_parser import parse_intro
+from utils.nodes import Block
 from utils import md_renderer, tei_renderer
 
 
-def convert_intro_to_md(intro: Dict, intro_locale: str) -> str:
-    """Convert a single intro entry to Markdown and return the content.
+def convert_intro_to_md(blocks: list[Block], intro_locale: str) -> str:
+    """Convert parsed intro blocks to Markdown and return the content.
 
     Args:
-        intro (Dict): A single intro object from the JSON ``intro`` array.
+        blocks (list[Block]): Parsed IR blocks from :func:`~utils.html_parser.parse_intro`.
         intro_locale (str): The locale string (e.g. ``'de'`` or ``'en'``) used to
             select the footnote section header.
 
@@ -31,30 +32,29 @@ def convert_intro_to_md(intro: Dict, intro_locale: str) -> str:
         str: The fully converted Markdown string, with normalised whitespace and a
         trailing newline.
     """
-    return md_renderer.render(parse_intro(intro), intro_locale)
+    return md_renderer.render(blocks, intro_locale)
 
 
-def convert_intro_to_tei(intro: Dict, intro_locale: str) -> str:
-    """Convert a single intro entry to TEI XML and return the content as a string.
+def convert_intro_to_tei(blocks: list[Block], intro_id: str, intro_locale: str) -> str:
+    """Convert parsed intro blocks to TEI XML and return the content as a string.
 
     Produces a stand-alone TEI document with:
 
     - A minimal ``<teiHeader>`` carrying the intro id and language.
     - A ``<text><body>`` where each block becomes a ``<div>``, with an optional
       ``<head>`` for block headers and block content converted to TEI elements.
-    - A ``<back><div type="notes">`` section holding stand-off footnotes as
-      ``<note>`` elements referenced from the body via ``<ptr target="#note-N"/>``.
+    - Footnotes rendered inline as ``<note place="end" n="N">`` elements.
 
     Args:
-        intro (Dict): A single intro object from the JSON ``intro`` array.
+        blocks (list[Block]): Parsed IR blocks from :func:`~utils.html_parser.parse_intro`.
+        intro_id (str): The id string from the intro object (e.g. ``'de-1'``).
         intro_locale (str): The locale string (e.g. ``'de'`` or ``'en'``) used
             to set ``xml:lang`` on the document root.
 
     Returns:
         str: A serialized TEI XML string with an XML declaration.
     """
-    intro_id = intro.get("id", "")
-    return tei_renderer.render(parse_intro(intro), intro_id, intro_locale)
+    return tei_renderer.render(blocks, intro_id, intro_locale)
 
 
 def get_intro_context(intro: Dict, output_path: Path) -> tuple[str, str, Path]:
@@ -101,9 +101,10 @@ def main():
         intro_id, intro_locale, intro_output_path = get_intro_context(
             intro, output_path
         )
+        blocks = parse_intro(intro)
 
-        intro_md = convert_intro_to_md(intro, intro_locale)
-        intro_tei = convert_intro_to_tei(intro, intro_locale)
+        intro_md = convert_intro_to_md(blocks, intro_locale)
+        intro_tei = convert_intro_to_tei(blocks, intro_id, intro_locale)
 
         FileUtils.write_file(intro_output_path.with_suffix(".md"), intro_md)
         FileUtils.write_file(intro_output_path.with_suffix(".tei"), intro_tei)
