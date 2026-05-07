@@ -141,7 +141,7 @@ def _render_inline(node: Node) -> str:  # pylint: disable=too-many-return-statem
     if isinstance(node, FootnoteRef):
         return f"[^{node.n}]"
     if isinstance(node, CrossRef):
-        return f"[{node.n}](#fn{node.n})"
+        return f"[{node.n}](#fn:{node.n})"
     if isinstance(node, Ref):
         return f"[{_render_inline_children(node.children)}]({node.target})"
 
