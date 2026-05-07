@@ -12,6 +12,6 @@ class IdMapping:
     css_class: str
     prefix: str
 
-
-TKK = IdMapping(css_class="tkk", prefix="awg-tkk-")
+KV = IdMapping(css_class="kv", prefix="awg-kv-")
 LINKBOX = IdMapping(css_class="link-box", prefix="awg-lb-")
+TKK = IdMapping(css_class="tkk", prefix="awg-tkk-")

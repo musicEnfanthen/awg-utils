@@ -41,6 +41,7 @@ class TestLoggerInitAndStats(unittest.TestCase):
             "ids_changed": 0,
             "ids_missing": 0,
             "ids_multiple": 0,
+            "ids_unchanged": 0,
             "svg_errors": 0,
             "svg_unchanged": 0,
         }
@@ -230,7 +231,6 @@ class TestLoggerProcessing(unittest.TestCase):
         with unittest.mock.patch("builtins.print") as mock_print:
             self.logger.log_processing_entry_context("M143_TF1", ["a.svg"])
             mock_print.assert_not_called()
-
 
 
 class TestLoggerIdChange(unittest.TestCase):

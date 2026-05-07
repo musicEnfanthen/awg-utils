@@ -1,6 +1,6 @@
 # Testing Guide for unify_ids
 
-This directory contains comprehensive tests for the `unify_tkk_ids.py` and `unify_link_box_ids.py` scripts and their shared utility modules.
+This directory contains comprehensive tests for the `unify_tkk_ids.py`, `unify_link_box_ids.py`, and `unify_kv_ids.py` scripts and their shared utility modules.
 
 ## Project Structure
 
@@ -9,6 +9,7 @@ The project now uses a clean package structure:
 unify_ids/
 ├── unify_tkk_ids.py          # Main script
 ├── unify_link_box_ids.py     # Link-box unification script
+├── unify_kv_ids.py           # KV ID unification script
 ├── utils/                    # Utility package
 │   ├── __init__.py
 │   ├── models.py             # Data models (dataclasses)
@@ -22,7 +23,8 @@ unify_ids/
 │   ├── data/scenarios/       # Minimal JSON scenario fixtures for integration tests
 │   ├── img/scenarios/        # Minimal SVG scenario fixtures for integration tests
 │   ├── test_fixtures.py      # Shared test data and fixtures
-│   ├── test_unify_tkk_ids.py # Main script tests
+│   ├── test_unify_kv_ids.py    # KV ID unification tests
+│   ├── test_unify_tkk_ids.py  # Main script tests
 │   ├── test_unify_link_box_ids.py
 │   ├── test_unifier_main_contracts.py
 │   ├── test_unifiers_integration.py
@@ -65,7 +67,7 @@ Run with coverage to see which parts of the code are tested:
 pytest tests/
 
 # Explicit full-coverage run (equivalent to default)
-pytest tests/ --cov=utils --cov=unify_link_box_ids --cov=unify_tkk_ids --cov-report=html --cov-report=term
+pytest tests/ --cov=utils --cov=unify_link_box_ids --cov=unify_tkk_ids --cov=unify_kv_ids --cov-report=html --cov-report=term
 
 # Generate coverage for integration scenarios only (uses default coverage flags from pytest.ini)
 pytest tests/ -m integration
@@ -125,8 +127,10 @@ Tests for `utils/extraction_utils.py`:
 
 ### File Utils Tests (`test_file_utils.py`) 
 Tests for `utils/file_utils.py`:
-- **`load_and_validate_inputs()`**: JSON/SVG file loading and validation
+- **`load_json_file()`**: JSON file loading and error handling
+- **`load_and_validate_inputs()`**: Composition of JSON and SVG loading with validation
 - **`create_svg_loader()`**: SVG file caching system
+- **`save_json_file()`**: JSON file writing with consistent formatting
 - **`save_results()`**: Combined SVG and JSON save operation
 - Error handling for missing files and permissions
 
@@ -157,6 +161,13 @@ Integration tests for both unifier scripts:
 - Link-box scenarios: single success, multi-match JSON expansion, and missing `sheetId` no-op behavior
 - Combined scenario: shared fixture with both TKK + link-box IDs updated in one sequential integration flow
 - Input-path guard checks: missing JSON and missing SVG directory
+
+### KV Script Tests (`test_unify_kv_ids.py`)
+Unit and integration tests for `unify_kv_ids.py`:
+- **`process_kv_ids_per_correction()`**: Sequential svgGroupId assignment across blockComments including idempotency, dry-run, mutation contract, and stats
+- **`process_correction_entry()`**: Single correction entry processing and delegation to sub-functions
+- **`unify_kv_ids()`**: Complete KV ID unification workflow including JSON read/write, dry-run, and idempotency
+- **`main()`**: CLI entry point behavior and error handling
 
 ### Link Box Script Tests (`test_unify_link_box_ids.py`)
 Unit tests for `unify_link_box_ids.py`:
@@ -228,13 +239,14 @@ When adding new functionality:
 ## Example Test Run Output
 
 ```
-$ pytest tests/ --cov=utils --cov=unify_link_box_ids --cov=unify_tkk_ids --cov-report=term
+$ pytest tests/ --cov=utils --cov=unify_link_box_ids --cov=unify_tkk_ids --cov=unify_kv_ids --cov-report=term
 
 ======== test session starts ========
 
 tests/test_extraction_utils.py::... PASSED
 tests/test_file_utils.py::... PASSED
 tests/test_svg_utils.py::... PASSED
+tests/test_unify_kv_ids.py::... PASSED
 tests/test_unify_link_box_ids.py::... PASSED
 tests/test_unify_tkk_ids.py::... PASSED
 tests/test_validation_utils.py::... PASSED

@@ -19,6 +19,7 @@ class Logger:
             "ids_changed": 0,
             "ids_missing": 0,
             "ids_multiple": 0,
+            "ids_unchanged": 0,
             "svg_errors": 0,
             "svg_unchanged": 0,
         }
@@ -172,6 +173,7 @@ class Logger:
             "ids_changed": "changed",
             "ids_missing": "missing",
             "ids_multiple": "multiple",
+            "ids_unchanged": "ids_unchanged",
             "svg_errors": "svg_errors",
             "svg_unchanged": "svg_unchanged",
         }

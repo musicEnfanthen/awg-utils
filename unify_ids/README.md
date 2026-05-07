@@ -6,8 +6,9 @@ SVG files generated from music notation and/or image software may contain auto-g
 
 * `unify_tkk_ids.py` — replaces SVG group IDs for textcritical comment (TKK) elements with IDs of the form `awg-tkk-<entryId>-001`, where `<entryId>` is lowercased and the final segment is a zero-padded counter to support multiple comments per entry.
 * `unify_link_box_ids.py` — replaces SVG group IDs for link-box elements with IDs of the form `awg-lb-<entryId>-to-<sheetId>`. In the generated ID, the relevant parts are lowercased. Additionally, if the SVG filename contains an `-NvonM-` pattern, the script may append a per-SVG suffix to `<entryId>` (for example, resulting in IDs ending in `...sk1a...` or `...sk1b...`).
+* `unify_kv_ids.py` — assigns sequential svgGroupIds to blockComment entries in a source description JSON file, using IDs of the form `awg-kv-<complexId><corrSuffix>-001`. No SVG files are modified; only the JSON file is updated.
 
-Both scripts update the IDs in the JSON textcritics file and in the corresponding SVG files at the same time.
+`unify_tkk_ids.py` and `unify_link_box_ids.py` update the IDs in the JSON textcritics file and in the corresponding SVG files at the same time. `unify_kv_ids.py` only updates the JSON file.
 
 ## HOW?
 
@@ -32,11 +33,11 @@ Now you're good to run the scripts.
 
 ### Unification (Python scripts)
 
-* Open the script you want to run (`unify_tkk_ids.py` or `unify_link_box_ids.py`) in **VSCode**.
-* In the `main()` function at the bottom of the file, fill in the two configuration variables:
-  * Set `json_path` to the path of your JSON textcritics file.
-  * Set `svg_folder` to the path of the folder containing your SVG files.
-* In the terminal, type `python unify_tkk_ids.py` or `python unify_link_box_ids.py` to run the chosen script.
+* Open the script you want to run (`unify_tkk_ids.py`, `unify_link_box_ids.py`, or `unify_kv_ids.py`) in **VSCode**.
+* In the `main()` function at the bottom of the file, fill in the configuration variables:
+  * For `unify_tkk_ids.py` and `unify_link_box_ids.py`: set `json_path` and `svg_folder`.
+  * For `unify_kv_ids.py`: set `json_path` and `complex_id` (no SVG folder needed).
+* In the terminal, type `python unify_tkk_ids.py`, `python unify_link_box_ids.py`, or `python unify_kv_ids.py` to run the chosen script.
 
 > [!TIP]
 > If your files are in the same directory as the script, use `./` at the start of the path.

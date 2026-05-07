@@ -32,30 +32,133 @@ import pytest
 
 # Import the functions we want to test
 from utils.file_utils import (
+    load_and_validate_inputs,
+    load_json_file,
+    _load_svg_files,
+    create_svg_loader,
+    save_json_file,
+    save_results,
     _parse_svg_xml,
     _serialize_svg_xml,
-    _save_json_file,
     _save_svg_files,
-    load_and_validate_inputs,
-    create_svg_loader,
-    save_results,
 )
 
 
 @pytest.mark.unit
-class TestLoadAndValidateInputs(unittest.TestCase):
-    """Test cases for the load_and_validate_inputs function"""
+class TestLoadJsonFile(unittest.TestCase):
+    """Tests for the load_json_file function."""
 
     def setUp(self):
-        """Set up temporary directories and files for testing"""
+        self.test_dir = tempfile.mkdtemp()
+        self.json_file = os.path.join(self.test_dir, "test.json")
+        self.test_data = {"textcritics": [{"id": "M143_TF1"}]}
+        with open(self.json_file, "w", encoding="utf-8") as f:
+            json.dump(self.test_data, f)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
+
+    def test_returns_parsed_data(self):
+        """Valid JSON file is loaded and returned as a dict."""
+        data = load_json_file(self.json_file)
+        self.assertEqual(data, self.test_data)
+
+    def test_raises_file_not_found(self):
+        """Raises FileNotFoundError when the JSON file does not exist."""
+        nonexistent = os.path.join(self.test_dir, "nonexistent.json")
+        with self.assertRaises(FileNotFoundError) as ctx:
+            load_json_file(nonexistent)
+        self.assertIn("JSON file not found", str(ctx.exception))
+        self.assertIn(nonexistent, str(ctx.exception))
+
+    def test_raises_json_decode_error_for_malformed_json(self):
+        """Raises JSONDecodeError when the file contains invalid JSON."""
+        with open(self.json_file, "w", encoding="utf-8") as f:
+            f.write('{"invalid": json syntax')
+        with self.assertRaises(json.JSONDecodeError):
+            load_json_file(self.json_file)
+
+
+@pytest.mark.unit
+class TestLoadSvgFiles(unittest.TestCase):
+    """Tests for the _load_svg_files function."""
+
+    def setUp(self):
+        self.test_dir = tempfile.mkdtemp()
+        self.svg_folder = os.path.join(self.test_dir, "svgs")
+        os.makedirs(self.svg_folder)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
+
+    def _create_svg(self, name):
+        path = os.path.join(self.svg_folder, name)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("<svg></svg>")
+
+    def test_returns_svg_filenames(self):
+        """Returns a list of SVG filenames found in the folder."""
+        self._create_svg("a.svg")
+        self._create_svg("b.svg")
+        result = _load_svg_files(self.svg_folder)
+        self.assertIn("a.svg", result)
+        self.assertIn("b.svg", result)
+        self.assertEqual(len(result), 2)
+
+    def test_raises_file_not_found_for_missing_folder(self):
+        """Raises FileNotFoundError when the SVG folder does not exist."""
+        nonexistent = os.path.join(self.test_dir, "nonexistent")
+        with self.assertRaises(FileNotFoundError) as ctx:
+            _load_svg_files(nonexistent)
+        self.assertIn("SVG folder not found", str(ctx.exception))
+        self.assertIn(nonexistent, str(ctx.exception))
+
+    def test_raises_value_error_when_no_svg_files(self):
+        """Raises ValueError when the folder contains no SVG files."""
+        with open(os.path.join(self.svg_folder, "not_svg.txt"), "w", encoding="utf-8") as f:
+            f.write("text")
+        with self.assertRaises(ValueError) as ctx:
+            _load_svg_files(self.svg_folder)
+        self.assertIn("No SVG files found in folder", str(ctx.exception))
+        self.assertIn(self.svg_folder, str(ctx.exception))
+
+    def test_raises_permission_error_on_os_error(self):
+        """Wraps OSError from os.listdir as PermissionError."""
+        with patch("os.listdir", side_effect=OSError("Permission denied")):
+            with self.assertRaises(PermissionError) as ctx:
+                _load_svg_files(self.svg_folder)
+        self.assertIn("Cannot list contents of SVG folder", str(ctx.exception))
+        self.assertIn("Permission denied", str(ctx.exception))
+
+    def test_detection_is_case_insensitive(self):
+        """SVG file detection is case-insensitive (.svg, .SVG, .Svg)."""
+        for i, ext in enumerate([".svg", ".SVG", ".Svg", ".sVg"]):
+            self._create_svg(f"test{i}{ext}")
+        result = _load_svg_files(self.svg_folder)
+        self.assertEqual(len(result), 4)
+
+    def test_filters_non_svg_files(self):
+        """Only SVG files are returned; other extensions are ignored."""
+        self._create_svg("image.svg")
+        self._create_svg("another.SVG")
+        for name in ["doc.txt", "script.py", "data.json", "readme.md"]:
+            with open(os.path.join(self.svg_folder, name), "w", encoding="utf-8") as f:
+                f.write("content")
+        result = _load_svg_files(self.svg_folder)
+        self.assertEqual(len(result), 2)
+        self.assertIn("image.svg", result)
+        self.assertIn("another.SVG", result)
+
+
+@pytest.mark.unit
+class TestLoadAndValidateInputs(unittest.TestCase):
+    """Tests for the load_and_validate_inputs composition function."""
+
+    def setUp(self):
         self.test_dir = tempfile.mkdtemp()
         self.json_file = os.path.join(self.test_dir, "test.json")
         self.svg_folder = os.path.join(self.test_dir, "svgs")
-
-        # Create SVG folder
         os.makedirs(self.svg_folder)
-
-        # Create valid JSON test data
         self.test_data = {
             "textcritics": [
                 {
@@ -66,157 +169,46 @@ class TestLoadAndValidateInputs(unittest.TestCase):
                 }
             ]
         }
-
-        # Write valid JSON file
         with open(self.json_file, "w", encoding="utf-8") as f:
             json.dump(self.test_data, f)
 
     def tearDown(self):
-        """Clean up temporary files and directories"""
-        if os.path.exists(self.test_dir):
-            shutil.rmtree(self.test_dir)
+        shutil.rmtree(self.test_dir)
+
+    def _create_svg(self, name, content='<svg></svg>'):
+        with open(os.path.join(self.svg_folder, name), "w", encoding="utf-8") as f:
+            f.write(content)
 
     @patch("sys.stdout", new_callable=StringIO)
-    def test_load_and_validate_inputs_success(self, mock_stdout):
-        """Test successful loading with valid inputs"""
-        # Create test SVG files
-        svg1 = os.path.join(self.svg_folder, "test1.svg")
-        svg2 = os.path.join(self.svg_folder, "test2.SVG")  # Test case insensitive
-
-        with open(svg1, "w", encoding="utf-8") as f:
-            f.write('<svg><g id="test1" class="tkk"></g></svg>')
-        with open(svg2, "w", encoding="utf-8") as f:
-            f.write('<svg><g id="test2" class="tkk"></g></svg>')
-
+    def test_returns_data_and_svg_files(self, _mock_stdout):
+        """Returns the parsed JSON data and the list of SVG filenames."""
+        self._create_svg("test1.svg")
+        self._create_svg("test2.SVG")
         data, svg_files = load_and_validate_inputs(self.json_file, self.svg_folder)
-
-        # Verify returned data
         self.assertEqual(data, self.test_data)
-        self.assertEqual(len(svg_files), 2)
         self.assertIn("test1.svg", svg_files)
         self.assertIn("test2.SVG", svg_files)
 
-        # Verify printed messages
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_prints_entry_and_svg_counts(self, mock_stdout):
+        """Prints the number of textcritics entries and SVG files found."""
+        self._create_svg("test1.svg")
+        self._create_svg("test2.svg")
+        load_and_validate_inputs(self.json_file, self.svg_folder)
         output = mock_stdout.getvalue()
         self.assertIn("Loaded JSON with 1 textcritics entries", output)
         self.assertIn("Found 2 SVG files", output)
 
-    def test_load_and_validate_inputs_with_json_not_found(self):
-        """Test FileNotFoundError when JSON file doesn't exist"""
-        nonexistent_json = os.path.join(self.test_dir, "nonexistent.json")
-
-        with self.assertRaises(FileNotFoundError) as context:
-            load_and_validate_inputs(nonexistent_json, self.svg_folder)
-
-        self.assertIn("JSON file not found", str(context.exception))
-        self.assertIn(nonexistent_json, str(context.exception))
-
-    def test_load_and_validate_inputs_with_svg_folder_not_found(self):
-        """Test FileNotFoundError when SVG folder doesn't exist"""
-        nonexistent_folder = os.path.join(self.test_dir, "nonexistent")
-
-        with self.assertRaises(FileNotFoundError) as context:
-            load_and_validate_inputs(self.json_file, nonexistent_folder)
-
-        self.assertIn("SVG folder not found", str(context.exception))
-        self.assertIn(nonexistent_folder, str(context.exception))
-
-    def test_load_and_validate_inputs_no_svg_files(self):
-        """Test ValueError when no SVG files found in folder"""
-        # Create non-SVG files
-        txt_file = os.path.join(self.svg_folder, "not_svg.txt")
-        with open(txt_file, "w", encoding="utf-8") as f:
-            f.write("Not an SVG file")
-
-        with self.assertRaises(ValueError) as context:
-            load_and_validate_inputs(self.json_file, self.svg_folder)
-
-        self.assertIn("No SVG files found in folder", str(context.exception))
-        self.assertIn(self.svg_folder, str(context.exception))
-
-    def test_load_and_validate_inputs_with_invalid_json(self):
-        """Test JSON parsing error with malformed JSON"""
-        # Write invalid JSON
-        with open(self.json_file, "w", encoding="utf-8") as f:
-            f.write('{"invalid": json syntax')
-
-        with self.assertRaises(json.JSONDecodeError):
-            load_and_validate_inputs(self.json_file, self.svg_folder)
-
-    def test_load_and_validate_inputs_with_permission_error(self):
-        """Test PermissionError when cannot list directory contents"""
-        with patch("os.listdir") as mock_listdir:
-            mock_listdir.side_effect = OSError("Permission denied")
-
-            with self.assertRaises(PermissionError) as context:
-                load_and_validate_inputs(self.json_file, self.svg_folder)
-
-            self.assertIn("Cannot list contents of SVG folder", str(context.exception))
-            self.assertIn("Permission denied", str(context.exception))
-
     @patch("sys.stdout", new_callable=StringIO)
-    def test_load_and_validate_inputs_with_nested_data_structure(self, mock_stdout):
-        """Test with nested data structure (non-dict at root level)"""
-        # Create nested data structure
+    def test_nested_data_prints_nested_count(self, mock_stdout):
+        """Non-dict root data is printed with 'nested' as the entry count."""
         nested_data = [{"id": "M123_TF1", "commentary": {"comments": []}}]
-
         with open(self.json_file, "w", encoding="utf-8") as f:
             json.dump(nested_data, f)
-
-        # Create SVG file
-        svg_file = os.path.join(self.svg_folder, "test.svg")
-        with open(svg_file, "w", encoding="utf-8") as f:
-            f.write("<svg></svg>")
-
-        data, svg_files = load_and_validate_inputs(self.json_file, self.svg_folder)
-
+        self._create_svg("test.svg")
+        data, _ = load_and_validate_inputs(self.json_file, self.svg_folder)
         self.assertEqual(data, nested_data)
-        self.assertEqual(len(svg_files), 1)
-
-        # Check that it handles nested structure in print statement
-        output = mock_stdout.getvalue()
-        self.assertIn("Loaded JSON with nested textcritics entries", output)
-
-    def test_load_and_validate_inputs_with_case_insensitive_svg_detection(self):
-        """Test that SVG file detection is case insensitive"""
-        # Create SVG files with different case extensions
-        extensions = [".svg", ".SVG", ".Svg", ".sVg"]
-        for i, ext in enumerate(extensions):
-            svg_file = os.path.join(self.svg_folder, f"test{i}{ext}")
-            with open(svg_file, "w", encoding="utf-8") as f:
-                f.write("<svg></svg>")
-
-        _, svg_files = load_and_validate_inputs(self.json_file, self.svg_folder)
-
-        self.assertEqual(len(svg_files), 4)
-        for i, ext in enumerate(extensions):
-            self.assertIn(f"test{i}{ext}", svg_files)
-
-    def test_load_and_validate_inputs_with_mixed_file_types(self):
-        """Test with mixed file types, only SVG files should be included"""
-        # Create various file types
-        file_types = [
-            ("image.svg", "svg content"),
-            ("document.txt", "text content"),
-            ("script.py", "python content"),
-            ("data.json", "json content"),
-            ("another.SVG", "svg content"),
-            ("readme.md", "markdown content"),
-        ]
-
-        for filename, content in file_types:
-            filepath = os.path.join(self.svg_folder, filename)
-            with open(filepath, "w", encoding="utf-8") as f:
-                f.write(content)
-
-        _, svg_files = load_and_validate_inputs(self.json_file, self.svg_folder)
-
-        # Only SVG files should be included
-        self.assertEqual(len(svg_files), 2)
-        self.assertIn("image.svg", svg_files)
-        self.assertIn("another.SVG", svg_files)
-        self.assertNotIn("document.txt", svg_files)
-        self.assertNotIn("script.py", svg_files)
+        self.assertIn("Loaded JSON with nested textcritics entries", mock_stdout.getvalue())
 
 
 @pytest.mark.unit
@@ -373,7 +365,7 @@ class TestSaveOperations(unittest.TestCase):
 
         self.assertEqual(saved_content, original_content)
 
-    def test_save_json_file(self):
+    def test_save_json_file_formats_correctly(self):
         """Test saving JSON data with proper formatting"""
         test_data = {
             "textcritics": [
@@ -389,7 +381,7 @@ class TestSaveOperations(unittest.TestCase):
         }
 
         # Save JSON
-        _save_json_file(test_data, self.json_file)
+        save_json_file(test_data, self.json_file)
 
         # Verify file was saved correctly
         self.assertTrue(os.path.exists(self.json_file))

@@ -1,7 +1,7 @@
 """
-Contract tests for the unifier modules (TKK + LinkBox).
+Contract tests for the unifier modules (TKK, LinkBox, and KV).
 
-This file verifies shared external behavior across both unifiers:
+This file verifies shared external behavior across all unifiers:
 1) each module exports its expected public entry function, and
 2) the CLI-style `main()` path handles missing files consistently
    by exiting with status code 1.
@@ -16,8 +16,12 @@ import pytest
 
 @pytest.mark.parametrize(
     "module_name,entry_fn",
-    [("unify_tkk_ids", "unify_tkk_ids"), ("unify_link_box_ids", "unify_link_box_ids")],
-    ids=["tkk", "linkbox"],
+    [
+        ("unify_tkk_ids", "unify_tkk_ids"),
+        ("unify_link_box_ids", "unify_link_box_ids"),
+        ("unify_kv_ids", "unify_kv_ids"),
+    ],
+    ids=["tkk", "linkbox", "kv"],
 )
 def test_unifier_modules_export_entrypoint(module_name, entry_fn):
     "Test that each unifier module exports its expected public entry function"
@@ -28,8 +32,12 @@ def test_unifier_modules_export_entrypoint(module_name, entry_fn):
 
 @pytest.mark.parametrize(
     "module_name,entry_fn",
-    [("unify_tkk_ids", "unify_tkk_ids"), ("unify_link_box_ids", "unify_link_box_ids")],
-    ids=["tkk", "linkbox"],
+    [
+        ("unify_tkk_ids", "unify_tkk_ids"),
+        ("unify_link_box_ids", "unify_link_box_ids"),
+        ("unify_kv_ids", "unify_kv_ids"),
+    ],
+    ids=["tkk", "linkbox", "kv"],
 )
 def test_main_handles_missing_file(module_name, entry_fn, mocker):
     "Test that unifier main() exits with code 1 when required files are missing"
